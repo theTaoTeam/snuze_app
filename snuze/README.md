@@ -1,8 +1,5 @@
 # snuze
 
-A new Flutter project.
+An alarm clock that forces users to pay a mimimum of 25cents per snuze.
 
-## Getting Started
-
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+A portion of the proceeds go directly to charitbale originizations. 

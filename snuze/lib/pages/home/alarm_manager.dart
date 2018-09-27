@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import './time_picker.dart';
 import './alarm_settings.dart';
@@ -11,6 +12,7 @@ class AlarmManager extends StatelessWidget {
     final double targetWidth = deviceWidth > 550.0 ? 400.0 : deviceWidth * 0.65;
 
     return Container(
+      decoration: BoxDecoration(color: Colors.white),
       padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
       child: Column(
         children: <Widget>[

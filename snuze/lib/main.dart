@@ -24,6 +24,7 @@ class _MyAppState extends State<MyApp> {
     // TODO: implement build
     return MaterialApp(
       theme: ThemeData(
+        backgroundColor: Colors.white,
         brightness: Brightness.light,
         primaryColor: Colors.white,
         accentColor: Colors.red,

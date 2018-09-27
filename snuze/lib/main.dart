@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:flutter/rendering.dart';
 
-import './pages/home/home.dart';
+import './pages/home/main.dart';
 
 void main() {
   // debugPaintSizeEnabled = true;
@@ -29,11 +29,11 @@ class _MyAppState extends State<MyApp> {
         accentColor: Colors.red,
       ),
       routes: {
-        '/': (BuildContext context) => HomePage(),
+        '/': (BuildContext context) => MainPage(),
       },
       onUnknownRoute: (RouteSettings settings) {
         return MaterialPageRoute(
-          builder: (BuildContext context) => HomePage(),
+          builder: (BuildContext context) => MainPage(),
         );
       },
     );

@@ -1,5 +1,5 @@
 # snuze
 
-An alarm clock that forces users to pay a mimimum of 25cents per snuze.
+A native iOS and Android alarm clock app where users pay a mimimum of 25 cents everytime they decide to hit snuze.
 
-A portion of the proceeds go directly to charitbale originizations. 
+A portion of the proceeds go to charitbale originizations. 

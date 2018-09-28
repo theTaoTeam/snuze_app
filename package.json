@@ -1,0 +1,17 @@
+{
+  "name": "snuze-app",
+  "version": "1.0.0",
+  "description": "an alarm clock for the well-intentioned",
+  "main": "index.js",
+  "repository": "https://github.com/sclampet/snuze-app.git",
+  "author": "Tao Team",
+  "license": "MIT",
+  "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

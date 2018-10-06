@@ -16,7 +16,7 @@ class AlarmManager extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
       child: Column(
         children: <Widget>[
-          TimePicker(),
+          HourPicker(),
           AlarmSettings(),
           SizedBox(),
           HomeNav(targetWidth),

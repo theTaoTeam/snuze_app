@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 // import 'package:flutter/rendering.dart';
 
+import 'package:scoped_model/scoped_model.dart';
+
+import './scoped-models/main.dart';
+
 import './pages/home/main.dart';
+import './pages/auth/auth.dart';
 
 void main() {
   // debugPaintSizeEnabled = true;
@@ -21,22 +26,26 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return MaterialApp(
-      theme: ThemeData(
-        backgroundColor: Colors.white,
-        brightness: Brightness.light,
-        primaryColor: Colors.white,
-        accentColor: Colors.red,
+    final MainModel model = MainModel();
+    return ScopedModel<MainModel>(
+      model: model,
+      child: MaterialApp(
+        theme: ThemeData(
+          backgroundColor: Colors.white,
+          brightness: Brightness.light,
+          primaryColor: Colors.white,
+          accentColor: Colors.red,
+        ),
+        routes: {
+          '/': (BuildContext context) => AuthPage(),
+          '/home': (BuildContext context) => MainPage(),
+        },
+        onUnknownRoute: (RouteSettings settings) {
+          return MaterialPageRoute(
+            builder: (BuildContext context) => MainPage(),
+          );
+        },
       ),
-      routes: {
-        '/': (BuildContext context) => MainPage(),
-      },
-      onUnknownRoute: (RouteSettings settings) {
-        return MaterialPageRoute(
-          builder: (BuildContext context) => MainPage(),
-        );
-      },
     );
   }
 }

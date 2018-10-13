@@ -24,11 +24,17 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final MainModel _model = MainModel();
+  @override
+    void initState() {
+      _model.autoAuthenticate();
+      super.initState();
+    }
+
   @override
   Widget build(BuildContext context) {
-    final MainModel model = MainModel();
     return ScopedModel<MainModel>(
-      model: model,
+      model: _model,
       child: MaterialApp(
         theme: ThemeData(
           backgroundColor: Colors.white,
@@ -37,12 +43,12 @@ class _MyAppState extends State<MyApp> {
           accentColor: Colors.red,
         ),
         routes: {
-          '/': (BuildContext context) => AuthPage(),
-          '/home': (BuildContext context) => MainPage(),
+          '/': (BuildContext context) => _model.user != null ? AuthPage() : MainPage(_model),
+          '/home': (BuildContext context) => MainPage(_model),
         },
         onUnknownRoute: (RouteSettings settings) {
           return MaterialPageRoute(
-            builder: (BuildContext context) => MainPage(),
+            builder: (BuildContext context) => MainPage(_model),
           );
         },
       ),

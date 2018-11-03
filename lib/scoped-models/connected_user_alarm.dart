@@ -5,7 +5,6 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:rxdart/subjects.dart';
-import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 
 import '../models/auth.dart';
 import '../models/user.dart';

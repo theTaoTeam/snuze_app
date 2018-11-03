@@ -106,99 +106,90 @@ class _AuthPageState extends State<AuthPage> {
   Widget build(BuildContext context) {
     final double deviceWidth = MediaQuery.of(context).size.width;
     final double targetWidth = deviceWidth > 550.0 ? 500.0 : deviceWidth * 0.95;
-    return Scaffold(
-      body: Container(
-        // decoration: BoxDecoration(
-        //   image: _buildBackgroundImage(),
-        // ),
-        padding: EdgeInsets.all(10.0),
-        child: Center(
-          child: SingleChildScrollView(
-            child: Container(
-              width: targetWidth,
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: <Widget>[
-                    _buildEmailTextField(),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    _buildPasswordTextField(),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    _authMode == AuthMode.Signup
-                        ? _buildPasswordConfirmTextField()
-                        : Container(),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    ScopedModelDescendant<MainModel>(
-                      builder: (BuildContext context, Widget child,
-                          MainModel model) {
-                        return model.isLoading
-                            ? CircularProgressIndicator()
-                            : RaisedButton(
-                                textColor: Colors.red,
-                                color: Colors.white,
-                                child: Text(_authMode == AuthMode.Login
-                                    ? 'LOGIN'
-                                    : 'SIGNUP'),
-                                onPressed: () =>
-                                    _submitForm(model.authenticate),
-                              );
-                      },
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    ScopedModelDescendant<MainModel>(
-                      builder: (BuildContext context, Widget child,
-                          MainModel model) {
-                        return model.isLoading
-                            ? CircularProgressIndicator()
-                            : RaisedButton(
-                                color: Colors.red,
-                                textColor: Colors.white,
-                                child: Text('login with facebook'),
-                                onPressed: () {
-                                  setState(() {
-                                    model.startFacebookLogin();
-                                  });
-                                });
-                      },
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    RaisedButton(
-                      color: Colors.red,
-                      textColor: Colors.white,
-                      child: Text(_authMode == AuthMode.Login
-                          ? 'create an account'
-                          : 'back to login'),
-                      onPressed: () {
-                        setState(() {
-                          _authMode = _authMode == AuthMode.Login
-                              ? AuthMode.Signup
-                              : AuthMode.Login;
-                        });
-                      },
-                    ),
-                    FlatButton(
-                      child: Text('forgot password?'),
-                      onPressed: () {
-                        print('Forgot Password pressed!');
-                      },
-                    ),
-                  ],
+    return ScopedModelDescendant<MainModel>(
+        builder: (BuildContext context, Widget child, MainModel model) {
+      return Scaffold(
+        body: Container(
+          // decoration: BoxDecoration(
+          //   image: _buildBackgroundImage(),
+          // ),
+          padding: EdgeInsets.all(10.0),
+          child: Center(
+            child: SingleChildScrollView(
+              child: Container(
+                width: targetWidth,
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: <Widget>[
+                      _buildEmailTextField(),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      _buildPasswordTextField(),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      _authMode == AuthMode.Signup
+                          ? _buildPasswordConfirmTextField()
+                          : Container(),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      model.isLoading
+                          ? CircularProgressIndicator()
+                          : RaisedButton(
+                              textColor: Colors.red,
+                              color: Colors.white,
+                              child: Text(_authMode == AuthMode.Login
+                                  ? 'LOGIN'
+                                  : 'SIGNUP'),
+                              onPressed: () => _submitForm(model.authenticate),
+                            ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      RaisedButton(
+                        color: Colors.red,
+                        textColor: Colors.white,
+                        child: Text('login with facebook'),
+                        onPressed: () {
+                          setState(() {
+                            print('login with facebook pressed!');
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      RaisedButton(
+                        color: Colors.red,
+                        textColor: Colors.white,
+                        child: Text(_authMode == AuthMode.Login
+                            ? 'create an account'
+                            : 'back to login'),
+                        onPressed: () {
+                          setState(() {
+                            _authMode = _authMode == AuthMode.Login
+                                ? AuthMode.Signup
+                                : AuthMode.Login;
+                          });
+                        },
+                      ),
+                      FlatButton(
+                        child: Text('forgot password?'),
+                        onPressed: () {
+                          print('Forgot Password pressed!');
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

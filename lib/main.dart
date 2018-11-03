@@ -25,11 +25,18 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final MainModel _model = MainModel();
+  bool _isAuthenticated = false;
   @override
-    void initState() {
-      _model.autoAuthenticate();
-      super.initState();
-    }
+  void initState() {
+    _model.autoAuthenticate();
+    _model.userSubject.listen((bool isAuthenticated) {
+      //used to listen for different auth states. boolean
+      setState(() {
+        _isAuthenticated = isAuthenticated;
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +50,8 @@ class _MyAppState extends State<MyApp> {
           accentColor: Colors.red,
         ),
         routes: {
-          '/': (BuildContext context) => _model.user != null ? AuthPage() : MainPage(_model),
+          '/': (BuildContext context) =>
+              !_isAuthenticated ? AuthPage() : MainPage(_model),
           '/home': (BuildContext context) => MainPage(_model),
         },
         onUnknownRoute: (RouteSettings settings) {

@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:rxdart/subjects.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 
 import '../models/auth.dart';
 import '../models/user.dart';
@@ -14,8 +16,13 @@ class ConnectedUserAlarmModel extends Model {
 }
 
 class UserModel extends ConnectedUserAlarmModel {
+  PublishSubject<bool> _userSubject = PublishSubject();
   User get user {
     return _authenticatedUser;
+  }
+
+  PublishSubject<bool> get userSubject {
+    return _userSubject;
   }
 
   Future<Map<String, dynamic>> authenticate(String email, String password,
@@ -53,8 +60,11 @@ class UserModel extends ConnectedUserAlarmModel {
           id: responseData['localId'],
           email: email,
           token: responseData['idToken']);
-      final SharedPreferences prefs = await SharedPreferences.getInstance();//gets required instance of device storage
-      prefs.setString('token', responseData['idToken']); //sets token in device storage
+      _userSubject.add(true);
+      final SharedPreferences prefs = await SharedPreferences
+          .getInstance(); //gets required instance of device storage
+      prefs.setString(
+          'token', responseData['idToken']); //sets token in device storage
       prefs.setString('userEmail', email);
       prefs.setString('userId', responseData['localId']);
     } else if (responseData['error']['message'] == 'EMAIL_EXISTS') {

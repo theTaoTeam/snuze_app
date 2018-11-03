@@ -4,9 +4,13 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:snuze/models/alarm.dart';
 
 class AlarmModel extends Model {
-  Alarm _alarm = new Alarm(hour: 7, minute: 30, snuzeAmount: 0.25, isActive: false);
+  Alarm _alarm;
 
   Alarm get alarm => _alarm;
+
+  set alarm(Alarm alarm) {
+    _alarm = alarm;
+  }
 
   void updateAlarm(Map<String, dynamic> alarmData) {
     var jsonAlarm = _alarm.toJson();

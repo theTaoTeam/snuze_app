@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import './alarm_manager.dart';
-import '../../scoped-models/main.dart';
+import 'package:snuze/scoped-models/main.dart';
 
 
 class MainPage extends StatefulWidget {

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'package:scoped_model/scoped_model.dart';
 
-import './scoped-models/main.dart';
+import "package:snuze/models/alarm.dart";
+import 'package:snuze/scoped-models/main.dart';
 
 import './pages/home/main.dart';
 import './pages/auth/auth.dart';
@@ -35,6 +36,14 @@ class _MyAppState extends State<MyApp> {
         _isAuthenticated = isAuthenticated;
       });
     });
+
+    _model.alarm = new Alarm.fromJson(<String, dynamic>{
+      'hour': 7,
+      'minute': 30,
+      'isActive': false,
+      'snuzeAmount': 0.25
+    });
+
     super.initState();
   }
 

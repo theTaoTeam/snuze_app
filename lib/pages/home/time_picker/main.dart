@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../../models/alarm.dart';
+import 'package:snuze/models/alarm.dart';
 
 import './hour_picker.dart';
 import './minute_picker.dart';

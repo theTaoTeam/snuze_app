@@ -86,6 +86,7 @@ class UserModel extends ConnectedUserAlarmModel {
       final String userEmail = prefs.getString('userEmail');
       final String userId = prefs.getString('userId');
       _authenticatedUser = User(id: userId, email: userEmail, token: token);
+      _userSubject.add(true);
       notifyListeners();
     }
   }

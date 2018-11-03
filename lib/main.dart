@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import 'package:scoped_model/scoped_model.dart';
+
+import './scoped-models/main.dart';
+
 import './pages/home/main.dart';
+import './pages/auth/auth.dart';
 
 void main() {
   // debugPaintSizeEnabled = true;
@@ -19,24 +24,42 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final MainModel _model = MainModel();
+  bool _isAuthenticated = false;
+  @override
+  void initState() {
+    _model.autoAuthenticate();
+    _model.userSubject.listen((bool isAuthenticated) {
+      //used to listen for different auth states. boolean
+      setState(() {
+        _isAuthenticated = isAuthenticated;
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return MaterialApp(
-      theme: ThemeData(
-        backgroundColor: Colors.white,
-        brightness: Brightness.light,
-        primaryColor: Colors.white,
-        accentColor: Colors.red,
+    return ScopedModel<MainModel>(
+      model: _model,
+      child: MaterialApp(
+        theme: ThemeData(
+          backgroundColor: Colors.white,
+          brightness: Brightness.light,
+          primaryColor: Colors.white,
+          accentColor: Colors.red,
+        ),
+        routes: {
+          '/': (BuildContext context) =>
+              !_isAuthenticated ? AuthPage() : MainPage(_model),
+          '/home': (BuildContext context) => MainPage(_model),
+        },
+        onUnknownRoute: (RouteSettings settings) {
+          return MaterialPageRoute(
+            builder: (BuildContext context) => MainPage(_model),
+          );
+        },
       ),
-      routes: {
-        '/': (BuildContext context) => MainPage(),
-      },
-      onUnknownRoute: (RouteSettings settings) {
-        return MaterialPageRoute(
-          builder: (BuildContext context) => MainPage(),
-        );
-      },
     );
   }
 }

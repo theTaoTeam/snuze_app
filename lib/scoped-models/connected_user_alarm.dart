@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 import '../models/auth.dart';
 import '../models/user.dart';
@@ -88,24 +87,6 @@ class UserModel extends ConnectedUserAlarmModel {
       final String userId = prefs.getString('userId');
       _authenticatedUser = User(id: userId, email: userEmail, token: token);
       notifyListeners();
-    }
-  }
-
-  void startFacebookLogin() async {
-    var facebookLogin = new FacebookLogin();
-    var result = await facebookLogin.logInWithReadPermissions(['email']);
-    print(result);
-    switch (result.status) {
-      case FacebookLoginStatus.loggedIn:
-        FirebaseAuth.instance
-            .signInWithFacebook(accessToken: result.accessToken.token);
-        break;
-      case FacebookLoginStatus.cancelledByUser:
-        print("Facebook sign in cancelled by user");
-        break;
-      case FacebookLoginStatus.error:
-        print("Facebook sign in failed");
-        break;
     }
   }
 }

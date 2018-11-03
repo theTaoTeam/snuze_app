@@ -153,20 +153,14 @@ class _AuthPageState extends State<AuthPage> {
                     SizedBox(
                       height: 10.0,
                     ),
-                    ScopedModelDescendant<MainModel>(
-                      builder: (BuildContext context, Widget child,
-                          MainModel model) {
-                        return model.isLoading
-                            ? CircularProgressIndicator()
-                            : RaisedButton(
-                                color: Colors.red,
-                                textColor: Colors.white,
-                                child: Text('login with facebook'),
-                                onPressed: () {
-                                  setState(() {
-                                    model.startFacebookLogin();
-                                  });
-                                });
+                    RaisedButton(
+                      color: Colors.red,
+                      textColor: Colors.white,
+                      child: Text('login with facebook'),
+                      onPressed: () {
+                        setState(() {
+                          print('login with facebook pressed!');
+                        });
                       },
                     ),
                     SizedBox(

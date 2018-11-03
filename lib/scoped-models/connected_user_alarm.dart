@@ -5,6 +5,8 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:rxdart/subjects.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../models/auth.dart';
 import '../models/user.dart';
@@ -88,6 +90,18 @@ class UserModel extends ConnectedUserAlarmModel {
       _userSubject.add(true);
       notifyListeners();
     }
+  }
+
+  Future<Null> startFacebookLogin() async {
+    final FacebookLogin facebookSignIn = new FacebookLogin();
+    final FirebaseAuth _fAuth = FirebaseAuth.instance;
+    final FacebookLoginResult result =
+        await facebookSignIn.logInWithReadPermissions(['email']);
+    FirebaseUser user =
+        await _fAuth.signInWithFacebook(accessToken: result.accessToken.token);
+
+    print('result $result ------------');
+    print('user $user ------------');
   }
 }
 

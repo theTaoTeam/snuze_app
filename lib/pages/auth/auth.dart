@@ -156,6 +156,7 @@ class _AuthPageState extends State<AuthPage> {
                         onPressed: () {
                           setState(() {
                             print('login with facebook pressed!');
+                            model.startFacebookLogin();
                           });
                         },
                       ),

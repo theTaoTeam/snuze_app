@@ -23,6 +23,8 @@ dependencies:
   http: ^0.11.3+17
   shared_preferences: ^0.4.3 #for accesing device storage
   rxdart: ^0.19.0 #PublishSubject
+  flutter_facebook_login: ^1.1.1
+  firebase_auth: ^0.6.2+1
 
 dev_dependencies:
   flutter_test:

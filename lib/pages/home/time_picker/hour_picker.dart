@@ -4,6 +4,9 @@ import 'package:flutter/cupertino.dart';
 import '../../../helpers/time_picker.dart';
 
 class HourPicker extends StatelessWidget {
+  final int hour;
+  HourPicker({this.hour});
+
   @override
   Widget build(BuildContext context) {
     return Flexible(

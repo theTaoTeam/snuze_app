@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 
 import '../models/auth.dart';
 import '../models/user.dart';
@@ -60,12 +60,12 @@ class UserModel extends ConnectedUserAlarmModel {
       _authenticatedUser = User(
           id: responseData['localId'],
           email: email,
-          token: responseData['idToken']);
+          token: responseData['refreshToken']);
       _userSubject.add(true);
       final SharedPreferences prefs = await SharedPreferences
           .getInstance(); //gets required instance of device storage
       prefs.setString(
-          'token', responseData['idToken']); //sets token in device storage
+          'token', responseData['refreshToken']); //sets token in device storage
       prefs.setString('userEmail', email);
       prefs.setString('userId', responseData['localId']);
     } else if (responseData['error']['message'] == 'EMAIL_EXISTS') {
@@ -93,15 +93,85 @@ class UserModel extends ConnectedUserAlarmModel {
   }
 
   Future<Null> startFacebookLogin() async {
+    _isLoading = true;
+    notifyListeners();
+
     final FacebookLogin facebookSignIn = new FacebookLogin();
-    final FirebaseAuth _fAuth = FirebaseAuth.instance;
     final FacebookLoginResult result =
         await facebookSignIn.logInWithReadPermissions(['email']);
-    FirebaseUser user =
-        await _fAuth.signInWithFacebook(accessToken: result.accessToken.token);
+    switch (result.status) {
+      case FacebookLoginStatus.loggedIn:
+        final FacebookAccessToken accessToken = result.accessToken;
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        final String userEmail = prefs.getString('userEmail');
+        var graphResponse = await http.get(
+            'https://graph.facebook.com/v2.12/me?fields=name,email&access_token=${result.accessToken.token}');
+        var profile = json.decode(graphResponse.body);
 
-    print('result $result ------------');
-    print('user $user ------------');
+        print('''
+         Logged in!
+         device-storage: $userEmail
+         accessToken: $accessToken
+         Token: ${accessToken.token}
+         User id: ${accessToken.userId}
+         User profile: $profile
+         Expires: ${accessToken.expires}
+         Permissions: ${accessToken.permissions}
+         Declined permissions: ${accessToken.declinedPermissions}
+         ''');
+        final Map<String, dynamic> authData = {
+          'email': profile['email'],
+          'password': profile['id'],
+          'returnSecureToken': true,
+        };
+        http.Response response;
+        response = await http.post(
+          'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyC47HhW4oK9NHk7Yng6iDjs2AYvoB02LWk',
+          body: json.encode(authData),
+          headers: {'Content-Type': 'application/json'},
+        );
+        final Map<String, dynamic> firstResponseData = json.decode(response.body);
+        if (firstResponseData['error'] != null) {
+          print('user not found. attempting to sign up ----------');
+          response = await http.post(
+            'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyC47HhW4oK9NHk7Yng6iDjs2AYvoB02LWk',
+            body: json.encode(authData),
+            headers: {'Content-Type': 'application/json'},
+          );
+        }
+        final Map<String, dynamic> responseData = json.decode(response.body);
+
+        print('RESPONSE DATA $responseData');
+        if (responseData.containsKey('idToken')) {
+          _userSubject.add(true);
+          final SharedPreferences prefs = await SharedPreferences
+              .getInstance(); //gets required instance of device storage
+          prefs.setString('userEmail', responseData['email']);
+          prefs.setString('userId', responseData['idToken']);
+          prefs.setString('token', responseData['refreshToken']);
+          _isLoading = false;
+          notifyListeners();
+        } else {
+          print('something went wrong with the response $responseData');
+          _isLoading = false;
+          notifyListeners();
+        }
+        break;
+      case FacebookLoginStatus.cancelledByUser:
+        print('Login cancelled by the user.');
+        _isLoading = false;
+        notifyListeners();
+        break;
+      case FacebookLoginStatus.error:
+        print('Something went wrong with the login process.\n'
+            'Here\'s the error Facebook gave us: ${result.errorMessage}');
+        break;
+    }
+  }
+
+  void sendForgotPassword(String email) {
+    print('reset pass clicked!');
+    print(email);
   }
 }
 

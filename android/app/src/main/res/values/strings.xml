@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Your App Name here.</string>
+    <string name="app_name">snuze-app</string>
 
     <!-- Replace "000000000000" with your Facebook App ID here. -->
     <string name="facebook_app_id">736561056702402</string>
     
     <!-- Replace "000000000000" with your Facebook App ID here. -->
-    <string name="fb_login_protocol_scheme">fb000000000000</string>
+    <string name="fb_login_protocol_scheme">fb736561056702402</string>
 </resources>

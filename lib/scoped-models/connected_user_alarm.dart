@@ -83,6 +83,7 @@ class UserModel extends ConnectedUserAlarmModel {
   void autoAuthenticate() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String token = prefs.getString('token');
+    print(prefs.getString('token'));
     if (token != null) {
       final String userEmail = prefs.getString('userEmail');
       final String userId = prefs.getString('userId');
@@ -95,7 +96,6 @@ class UserModel extends ConnectedUserAlarmModel {
   Future<Null> startFacebookLogin() async {
     _isLoading = true;
     notifyListeners();
-
     final FacebookLogin facebookSignIn = new FacebookLogin();
     final FacebookLoginResult result =
         await facebookSignIn.logInWithReadPermissions(['email']);
@@ -107,7 +107,6 @@ class UserModel extends ConnectedUserAlarmModel {
         var graphResponse = await http.get(
             'https://graph.facebook.com/v2.12/me?fields=name,email&access_token=${result.accessToken.token}');
         var profile = json.decode(graphResponse.body);
-
         print('''
          Logged in!
          device-storage: $userEmail
@@ -130,7 +129,8 @@ class UserModel extends ConnectedUserAlarmModel {
           body: json.encode(authData),
           headers: {'Content-Type': 'application/json'},
         );
-        final Map<String, dynamic> firstResponseData = json.decode(response.body);
+        final Map<String, dynamic> firstResponseData =
+            json.decode(response.body);
         if (firstResponseData['error'] != null) {
           print('user not found. attempting to sign up ----------');
           response = await http.post(
@@ -140,8 +140,8 @@ class UserModel extends ConnectedUserAlarmModel {
           );
         }
         final Map<String, dynamic> responseData = json.decode(response.body);
-
         print('RESPONSE DATA $responseData');
+        print(responseData['refreshToken']);
         if (responseData.containsKey('idToken')) {
           _userSubject.add(true);
           final SharedPreferences prefs = await SharedPreferences

@@ -128,7 +128,7 @@ class _AuthPageState extends State<AuthPage> {
       return;
     }
     _formKey.currentState.save();
-    _model.sendForgotPassword(_forgotPassEmail);
+    // _model.sendForgotPassword(_forgotPassEmail);
     setState(() {
       hasForgotPass = false;
     });

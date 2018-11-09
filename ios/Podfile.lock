@@ -9,49 +9,15 @@ PODS:
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.34.0):
     - FBSDKCoreKit
-  - Firebase/Auth (5.4.0):
-    - Firebase/CoreOnly
-    - FirebaseAuth (= 5.0.2)
-  - Firebase/Core (5.4.0):
-    - Firebase/CoreOnly
-    - FirebaseAnalytics (= 5.0.1)
-  - Firebase/CoreOnly (5.4.0):
-    - FirebaseCore (= 5.0.5)
-  - firebase_auth (0.0.1):
-    - Firebase/Auth
-    - Firebase/Core
-    - Flutter
-  - FirebaseAnalytics (5.0.1):
-    - FirebaseCore (~> 5.0)
-    - FirebaseInstanceID (~> 3.0)
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-    - nanopb (~> 0.3)
-  - FirebaseAuth (5.0.2):
-    - FirebaseCore (~> 5.0)
-    - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (5.0.5):
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-  - FirebaseInstanceID (3.1.1):
-    - FirebaseCore (~> 5.0)
   - Flutter (1.0.0)
   - flutter_facebook_login (0.0.1):
     - FBSDKLoginKit (~> 4.29)
     - Flutter
-  - GoogleToolboxForMac/Defines (2.1.4)
-  - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
-    - GoogleToolboxForMac/Defines (= 2.1.4)
-  - GTMSessionFetcher/Core (1.1.15)
-  - nanopb (0.3.8):
-    - nanopb/decode (= 0.3.8)
-    - nanopb/encode (= 0.3.8)
-  - nanopb/decode (0.3.8)
-  - nanopb/encode (0.3.8)
   - shared_preferences (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - FBSDKLoginKit
-  - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - Flutter (from `.symlinks/flutter/ios`)
   - flutter_facebook_login (from `.symlinks/plugins/flutter_facebook_login/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
@@ -61,18 +27,8 @@ SPEC REPOS:
     - Bolts
     - FBSDKCoreKit
     - FBSDKLoginKit
-    - Firebase
-    - FirebaseAnalytics
-    - FirebaseAuth
-    - FirebaseCore
-    - FirebaseInstanceID
-    - GoogleToolboxForMac
-    - GTMSessionFetcher
-    - nanopb
 
 EXTERNAL SOURCES:
-  firebase_auth:
-    :path: ".symlinks/plugins/firebase_auth/ios"
   Flutter:
     :path: ".symlinks/flutter/ios"
   flutter_facebook_login:
@@ -84,19 +40,10 @@ SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   FBSDKCoreKit: 0ff57f093b85c8c9d5aba697d3edf68a8960ce78
   FBSDKLoginKit: 8c78f57a145afb756e4755e69195ebe08a42466e
-  Firebase: d66f4f29c23f22d96808d9abc174d81d8eee968f
-  firebase_auth: 27a5a77a032d557c18f8e223aaf8ec1368f6cdbc
-  FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
-  FirebaseAuth: 096e457cdd4274412a66c4a35874787e411f5a03
-  FirebaseCore: 42b3267233bd21a5abd54117ccc38ca3dd0f8e83
-  FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
   Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
   flutter_facebook_login: e3d2f0a348889fe0f49c302bc044b8cc66c691be
-  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
-  GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
-  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   shared_preferences: 5a1d487c427ee18fcd3ea1f2a131569481834b53
 
-PODFILE CHECKSUM: f7e816e5d8a16c5226d34898be2b4d8e246b5f95
+PODFILE CHECKSUM: 783ee8fa0a4179820c47256fed0776d8b768a86c
 
 COCOAPODS: 1.5.3

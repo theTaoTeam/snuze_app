@@ -11,12 +11,9 @@ import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import '../models/auth.dart';
 import '../models/user.dart';
 
-class ConnectedUserAlarmModel extends Model {
+class UserModel extends Model {
   User _authenticatedUser;
   bool _isLoading = false;
-}
-
-class UserModel extends ConnectedUserAlarmModel {
   PublishSubject<bool> _userSubject = PublishSubject();
   User get user {
     return _authenticatedUser;
@@ -176,7 +173,7 @@ class UserModel extends ConnectedUserAlarmModel {
   }
 }
 
-class UtilityModel extends ConnectedUserAlarmModel {
+class UtilityModel extends UserModel {
   bool get isLoading {
     return _isLoading;
   }

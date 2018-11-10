@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import '../../models/auth.dart';
-import '../../scoped-models/main.dart';
-import '../auth/credit_card_form.dart';
+import 'package:snuze/models/auth.dart';
+import 'package:snuze/scoped-models/main.dart';
+import 'package:snuze/pages/auth/credit_card_form.dart';
 
 class AuthPage extends StatefulWidget {
   @override

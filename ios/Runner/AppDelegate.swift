@@ -1,6 +1,5 @@
 import UIKit
 import Flutter
-import Stripe
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {

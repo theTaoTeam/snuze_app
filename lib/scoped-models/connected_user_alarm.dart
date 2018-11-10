@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
-import '../.env.dart';
+import 'package:snuze/.env.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,8 +9,8 @@ import 'package:rxdart/subjects.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 
-import '../models/auth.dart';
-import '../models/user.dart';
+import 'package:snuze/models/auth.dart';
+import 'package:snuze/models/user.dart';
 
 class ConnectedUserAlarmModel extends Model {
   String apiKey = FIREBASE_API_KEY;

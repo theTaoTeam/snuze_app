@@ -25,20 +25,17 @@ class AlarmModel extends Model {
     });
 
     _alarm = new Alarm.fromJson(jsonAlarm);
-    print('UPDATED ALARM');
     print(_alarm.toJson());
     notifyListeners();
   }
 
   void defaultAlarm() {
-    print("SETTING DEFAULT");
     final Alarm initialAlarm = new Alarm();
     _alarm = initialAlarm;
     updateAlarm(_alarm.toJson());
   }
 
   void fetchAlarm() async {
-    print('FETCHING ALARM');
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     
     final Map<String, Function> typeMap = {

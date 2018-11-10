@@ -1,9 +1,10 @@
-import 'package:scoped_model/scoped_model.dart';
+// import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:snuze/scoped-models/connected_user_alarm.dart';
 import 'package:snuze/models/alarm.dart';
 
-class AlarmModel extends Model {
+mixin AlarmModel on ConnectedUserAlarmModel {
   Alarm _alarm;
 
   Alarm get alarm => _alarm;

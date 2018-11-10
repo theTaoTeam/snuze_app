@@ -3,6 +3,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 import 'package:snuze/models/auth.dart';
 import 'package:snuze/scoped-models/main.dart';
+import 'package:snuze/pages/auth/credit_card_form.dart';
 
 class AuthPage extends StatefulWidget {
   @override
@@ -12,12 +13,18 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
+  final MainModel _model = new MainModel();
   final Map<String, dynamic> _formData = {
     'email': null,
     'password': null,
   };
+  var _hasForgotPass = false;
+  var _isSettingUpStripe = false;
+  Map<String, String> _forgotPasswordEmail = {'email': null};
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordTextController = TextEditingController();
+  final TextEditingController _newPasswordTextController =
+      TextEditingController();
   AuthMode _authMode = AuthMode.Login;
 
   Widget _buildEmailTextField() {
@@ -102,6 +109,41 @@ class _AuthPageState extends State<AuthPage> {
     }
   }
 
+  Widget _buildForgotPassEmailField() {
+    return TextFormField(
+      decoration: InputDecoration(
+          labelText: 'E-Mail', filled: true, fillColor: Colors.white),
+      keyboardType: TextInputType.emailAddress,
+      validator: (String value) {
+        if (value.isEmpty ||
+            !RegExp(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+                .hasMatch(value)) {
+          return 'Double check your email';
+        }
+      },
+      onSaved: (String value) {
+        _forgotPasswordEmail['email'] = value;
+      },
+    );
+  }
+
+  void _resetPass(Map<String, String> forgotPasswordData) {
+    if (!_formKey.currentState.validate()) {
+      return;
+    }
+    _formKey.currentState.save();
+    _model.resetPassword(forgotPasswordData['email']);
+    setState(() {
+      _hasForgotPass = false;
+    });
+  }
+
+  void _goToStripeSetup() {
+    setState(() {
+      _isSettingUpStripe = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final double deviceWidth = MediaQuery.of(context).size.width;
@@ -118,73 +160,130 @@ class _AuthPageState extends State<AuthPage> {
             child: SingleChildScrollView(
               child: Container(
                 width: targetWidth,
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: <Widget>[
-                      _buildEmailTextField(),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      _buildPasswordTextField(),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      _authMode == AuthMode.Signup
-                          ? _buildPasswordConfirmTextField()
-                          : Container(),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      model.isLoading
-                          ? CircularProgressIndicator()
-                          : RaisedButton(
-                              textColor: Colors.red,
-                              color: Colors.white,
-                              child: Text(_authMode == AuthMode.Login
-                                  ? 'LOGIN'
-                                  : 'SIGNUP'),
-                              onPressed: () => _submitForm(model.authenticate),
+                child: !_isSettingUpStripe
+                    ? !_hasForgotPass
+                        ? Form(
+                            key: _formKey,
+                            child: Column(
+                              children: <Widget>[
+                                // SizedBox(height: 150.0),
+                                _buildEmailTextField(),
+                                SizedBox(
+                                  height: 10.0,
+                                ),
+                                _buildPasswordTextField(),
+                                SizedBox(
+                                  height: 10.0,
+                                ),
+                                _authMode == AuthMode.Signup
+                                    ? _buildPasswordConfirmTextField()
+                                    : Container(),
+                                SizedBox(
+                                  height: 10.0,
+                                ),
+                                model.isLoading
+                                    ? CircularProgressIndicator()
+                                    : Column(
+                                        children: <Widget>[
+                                          RaisedButton(
+                                            textColor: Colors.red,
+                                            color: Colors.white,
+                                            child: Text(
+                                                _authMode == AuthMode.Login
+                                                    ? 'LOGIN'
+                                                    : 'NEXT'),
+                                            onPressed: () =>
+                                                _authMode == AuthMode.Login
+                                                    ? _submitForm(
+                                                        model.authenticate)
+                                                    : _goToStripeSetup(),
+                                          ),
+                                          SizedBox(
+                                            height: 10.0,
+                                          ),
+                                          _authMode == AuthMode.Login
+                                              ? RaisedButton(
+                                                  color: Colors.red,
+                                                  textColor: Colors.white,
+                                                  child: Text(
+                                                      'login with facebook'),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      print(
+                                                          'login with facebook pressed!');
+                                                      model
+                                                          .startFacebookLogin();
+                                                    });
+                                                  },
+                                                )
+                                              : Container(),
+                                          SizedBox(
+                                            height: 10.0,
+                                          ),
+                                          RaisedButton(
+                                            color: Colors.red,
+                                            textColor: Colors.white,
+                                            child: Text(
+                                                _authMode == AuthMode.Login
+                                                    ? 'create an account'
+                                                    : 'back to login'),
+                                            onPressed: () {
+                                              setState(() {
+                                                _authMode =
+                                                    _authMode == AuthMode.Login
+                                                        ? AuthMode.Signup
+                                                        : AuthMode.Login;
+                                              });
+                                            },
+                                          ),
+                                          _authMode == AuthMode.Login
+                                              ? FlatButton(
+                                                  child:
+                                                      Text('forgot password?'),
+                                                  onPressed: () {
+                                                    print(
+                                                        'Forgot Password pressed!');
+                                                    setState(() {
+                                                      _hasForgotPass = true;
+                                                    });
+                                                  },
+                                                )
+                                              : Container(),
+                                        ],
+                                      ),
+                              ],
+                            ))
+                        : Form(
+                            key: _formKey,
+                            child: Column(
+                              children: <Widget>[
+                                _buildForgotPassEmailField(),
+                                SizedBox(),
+                                RaisedButton(
+                                  textColor: Colors.red,
+                                  color: Colors.white,
+                                  child: Text('Reset Password'),
+                                  onPressed: () {
+                                    _resetPass(_forgotPasswordEmail);
+                                  },
+                                ),
+                                SizedBox(
+                                  height: 10.0,
+                                ),
+                                RaisedButton(
+                                  color: Colors.red,
+                                  textColor: Colors.white,
+                                  child: Text('back to login'),
+                                  onPressed: () {
+                                    setState(() {
+                                      _hasForgotPass = false;
+                                    });
+                                  },
+                                ),
+                              ],
                             ),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      RaisedButton(
-                        color: Colors.red,
-                        textColor: Colors.white,
-                        child: Text('login with facebook'),
-                        onPressed: () {
-                          setState(() {
-                            print('login with facebook pressed!');
-                          });
-                        },
-                      ),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      RaisedButton(
-                        color: Colors.red,
-                        textColor: Colors.white,
-                        child: Text(_authMode == AuthMode.Login
-                            ? 'create an account'
-                            : 'back to login'),
-                        onPressed: () {
-                          setState(() {
-                            _authMode = _authMode == AuthMode.Login
-                                ? AuthMode.Signup
-                                : AuthMode.Login;
-                          });
-                        },
-                      ),
-                      FlatButton(
-                        child: Text('forgot password?'),
-                        onPressed: () {
-                          print('Forgot Password pressed!');
-                        },
-                      ),
-                    ],
-                  ),
-                ),
+                          )
+                    : CreditCardFrom(),
               ),
             ),
           ),

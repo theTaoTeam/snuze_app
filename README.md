@@ -1,6 +1,8 @@
-# snüze, an alarm clock for the well-intentioned
-## combating tardiness one snüze at a time
+# snuze
 
-A native iOS and Android alarm clock app where users pay a minimum of 25 cents everytime they decide to hit snuze.
+A new Flutter project.
 
-A portion of the proceeds go to charitbale originizations. 
+## Getting Started
+
+For help getting started with Flutter, view our online
+[documentation](https://flutter.io/).

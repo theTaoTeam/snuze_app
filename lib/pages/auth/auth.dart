@@ -17,10 +17,12 @@ class _AuthPageState extends State<AuthPage> {
     'email': null,
     'password': null,
   };
-  var _forgotPassEmail = '';
   var hasForgotPass = false;
+  Map<String, String> _forgotPasswordEmail = {'email': null};
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordTextController = TextEditingController();
+  final TextEditingController _newPasswordTextController =
+      TextEditingController();
   AuthMode _authMode = AuthMode.Login;
 
   Widget _buildEmailTextField() {
@@ -105,7 +107,7 @@ class _AuthPageState extends State<AuthPage> {
     }
   }
 
-  Widget _buildForgotPassField() {
+  Widget _buildForgotPassEmailField() {
     return TextFormField(
       decoration: InputDecoration(
           labelText: 'E-Mail', filled: true, fillColor: Colors.white),
@@ -118,17 +120,17 @@ class _AuthPageState extends State<AuthPage> {
         }
       },
       onSaved: (String value) {
-        _forgotPassEmail = value;
+        _forgotPasswordEmail['email'] = value;
       },
     );
   }
 
-  void _resetPass() {
+  void _resetPass(Map<String, String> forgotPasswordData) {
     if (!_formKey.currentState.validate()) {
       return;
     }
     _formKey.currentState.save();
-    // _model.sendForgotPassword(_forgotPassEmail);
+    _model.resetPassword(forgotPasswordData['email']);
     setState(() {
       hasForgotPass = false;
     });
@@ -235,14 +237,14 @@ class _AuthPageState extends State<AuthPage> {
                           key: _formKey,
                           child: Column(
                             children: <Widget>[
-                              _buildForgotPassField(),
+                              _buildForgotPassEmailField(),
                               SizedBox(),
                               RaisedButton(
                                 textColor: Colors.red,
                                 color: Colors.white,
                                 child: Text('Reset Password'),
                                 onPressed: () {
-                                  _resetPass();
+                                  _resetPass(_forgotPasswordEmail);
                                 },
                               ),
                               SizedBox(

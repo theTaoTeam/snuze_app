@@ -10,3 +10,4 @@ build/
 flutter/
 
 node_modules/
+.env.dart

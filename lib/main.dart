@@ -37,10 +37,10 @@ class _MyAppState extends State<MyApp> {
       });
     });
 
-    if(_model.alarm == null){
-      _model.defaultAlarm();
-    }
-
+    // if(_model.alarm == null){
+    //   _model.defaultAlarm();
+    // }
+    _model.fetchAlarm();
     super.initState();
   }
 

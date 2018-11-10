@@ -8,52 +8,73 @@ class AlarmModel extends Model {
 
   Alarm get alarm => _alarm;
 
-  void updateAlarm(Map<String, dynamic> alarmData) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+  void updateAlarm(Map<String, dynamic> alarmData) {
+    SharedPreferences.getInstance().then((prefs) {
+      final Map<String, Function> typeMap = {
+        "int": prefs.setInt,
+        "bool": prefs.setBool,
+        "double": prefs.setDouble
+      };
 
-    final Map<String, Function> typeMap = {
-      "int": prefs.setInt,
-      "bool": prefs.setBool,
-      "double": prefs.setDouble
-    };
+      // prevents null error on startup
+      if(_alarm == null) {
+        _alarm = new Alarm.fromJson(alarmData);
+      }
 
-    var jsonAlarm = _alarm.toJson();
+      var jsonAlarm = _alarm.toJson();
 
-    alarmData.forEach((key, value) {
-      jsonAlarm[key] = value;
-      typeMap[_alarmMap[key]](key, value);
+      alarmData.forEach((key, value) {
+        jsonAlarm[key] = value;
+        typeMap[_alarmMap[key]](key, value);
+      });
+
+      _alarm = new Alarm.fromJson(jsonAlarm);
+      print(_alarm.toJson());
+      notifyListeners();
     });
-
-    _alarm = new Alarm.fromJson(jsonAlarm);
-    print(_alarm.toJson());
-    notifyListeners();
   }
 
   void defaultAlarm() {
     final Alarm initialAlarm = new Alarm();
-    _alarm = initialAlarm;
-    updateAlarm(_alarm.toJson());
+    updateAlarm(initialAlarm.toJson());
   }
 
-  void fetchAlarm() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    
-    final Map<String, Function> typeMap = {
-      "int": prefs.getInt,
-      "bool": prefs.getBool,
-      "double": prefs.getDouble
-    };
+  void fetchAlarm() {
+    SharedPreferences.getInstance().then((prefs) {
+      final Map<String, Function> typeMap = {
+        "int": prefs.getInt,
+        "bool": prefs.getBool,
+        "double": prefs.getDouble
+      };
 
-    // update alarm for all prefs stored in shared prefs
-    // will only work with single-alarm implementation
-    _alarmMap.forEach((key, type) {
-      this.updateAlarm(convertPref(key, typeMap[type](key)));
+      print(prefs.getInt('hour'));
+      print('THIS IS THE HOUR FROM PREFS');
+
+      bool setDefault = false;
+      // update alarm for all prefs stored in shared pref
+      // will only work with single-alarm implementation
+      Map<String, dynamic> fetchedAlarm = {};
+      _alarmMap.forEach((key, type) {
+        fetchedAlarm[key] = typeMap[type](key);
+        if(fetchedAlarm[key] == null) {
+          setDefault = true;
+        }
+      });
+
+      if(setDefault == true) {
+        print('DID NOT FETCH ALARM');
+        this.defaultAlarm();
+      } else {
+        print('FETCHED ALARM');
+        print(fetchedAlarm);
+        this.updateAlarm(fetchedAlarm);
+      }
     });
   }
 
-  Map<String,dynamic> convertPref(String key, dynamic value) {
-    return <String, dynamic>{key: value};
-  }
+  // Map<String,dynamic> convertPref(String key, dynamic value) {
+  //   return <String, dynamic>{key: value};
+  // }
 
   Map<String, String> _alarmMap = {
     "hour": "int",

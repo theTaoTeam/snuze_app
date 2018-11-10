@@ -37,13 +37,9 @@ class _MyAppState extends State<MyApp> {
       });
     });
 
-    _model.updateAlarm(<String, dynamic>{
-      'hour': 7,
-      'minute': 30,
-      'meridiem': 0,
-      'isActive': false,
-      'snuzeAmount': 0.25
-    });
+    if(_model.alarm == null){
+      _model.defaultAlarm();
+    }
 
     super.initState();
   }

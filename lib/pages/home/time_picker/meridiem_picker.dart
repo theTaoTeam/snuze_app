@@ -8,6 +8,7 @@ class MeridiemPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final FixedExtentScrollController scrollController = FixedExtentScrollController(initialItem: this.meridiem);
     return Flexible(
       fit: FlexFit.loose,
       child: CupertinoPicker(
@@ -18,7 +19,8 @@ class MeridiemPicker extends StatelessWidget {
         children: [
           Text("AM"),
           Text("PM")
-        ]
+        ],
+        scrollController: scrollController,
       ),
     );
   }

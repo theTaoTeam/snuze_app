@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'alarm.g.dart';
@@ -12,7 +11,7 @@ class Alarm {
   bool isActive;
 
 
-  Alarm({@required this.hour, @required this.minute, @required this.meridiem, @required this.snuzeAmount, @required this.isActive});
+  Alarm({this.hour = 6, this.minute = 6, this.meridiem = 0, this.snuzeAmount = 0.25, this.isActive = false});
 
   factory Alarm.fromJson(Map<String, dynamic> json) => _$AlarmFromJson(json);
 

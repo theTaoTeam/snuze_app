@@ -1,5 +1,5 @@
 import 'package:scoped_model/scoped_model.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:snuze/models/alarm.dart';
 
@@ -8,28 +8,62 @@ class AlarmModel extends Model {
 
   Alarm get alarm => _alarm;
 
-  void updateAlarm(Map<String, dynamic> alarmData) {
-    // prevent error when _alarm is null on initial startup
-    var jsonAlarm = _alarm != null ? _alarm.toJson() : this.defaultAlarm().toJson();
+  void updateAlarm(Map<String, dynamic> alarmData) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    alarmData.forEach((key, value) => jsonAlarm[key] = value);
-    print('THIS IS THE NEW ALARM');
-    print(jsonAlarm);
+    final Map<String, Function> typeMap = {
+      "int": prefs.setInt,
+      "bool": prefs.setBool,
+      "double": prefs.setDouble
+    };
+
+    var jsonAlarm = _alarm.toJson();
+
+    alarmData.forEach((key, value) {
+      jsonAlarm[key] = value;
+      typeMap[_alarmMap[key]](key, value);
+    });
+
     _alarm = new Alarm.fromJson(jsonAlarm);
+    print('UPDATED ALARM');
+    print(_alarm.toJson());
     notifyListeners();
   }
 
-  Alarm defaultAlarm() {
-    return new Alarm(
-      hour: 7,
-      minute: 30,
-      meridiem: 0,
-      isActive: false,
-      snuzeAmount: 0.25
-    );
+  void defaultAlarm() {
+    print("SETTING DEFAULT");
+    final Alarm initialAlarm = new Alarm();
+    _alarm = initialAlarm;
+    updateAlarm(_alarm.toJson());
   }
 
-  void fetchAlarm() {
+  void fetchAlarm() async {
+    print('FETCHING ALARM');
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    
+    final Map<String, Function> typeMap = {
+      "int": prefs.getInt,
+      "bool": prefs.getBool,
+      "double": prefs.getDouble
+    };
 
+    // update alarm for all prefs stored in shared prefs
+    // will only work with single-alarm implementation
+    _alarmMap.forEach((key, type) {
+      this.updateAlarm(convertPref(key, typeMap[type](key)));
+    });
   }
+
+  Map<String,dynamic> convertPref(String key, dynamic value) {
+    return <String, dynamic>{key: value};
+  }
+
+  Map<String, String> _alarmMap = {
+    "hour": "int",
+    "minute": "int",
+    "meridiem": "int",
+    "isActive": "bool",
+    "snuzeAmount": "double"
+  };
+
 }

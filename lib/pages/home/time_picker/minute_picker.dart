@@ -10,6 +10,7 @@ class MinutePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final FixedExtentScrollController scrollController = FixedExtentScrollController(initialItem: this.minute);
     return Flexible(
       fit: FlexFit.loose,
       child: CupertinoPicker(
@@ -17,7 +18,8 @@ class MinutePicker extends StatelessWidget {
           onMinuteChange(<String, dynamic>{"minute": newValue});
         },
         itemExtent: 30.0,
-        children: numberTextList(start: 0, end: 59, inc: 5)
+        children: numberTextList(start: 0, end: 59, inc: 5),
+        scrollController: scrollController,
       ),
     );
   }

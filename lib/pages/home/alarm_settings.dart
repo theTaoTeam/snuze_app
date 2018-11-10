@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class AlarmSettings extends StatefulWidget {
   @override
@@ -19,14 +20,18 @@ class _AlarmSettingsState extends State<AlarmSettings>{
         children: <Widget>[
           Column(
             children: <Widget>[
-              Text('\$' + _sliderValue.toString()),
+              Text('\$${_sliderValue.toStringAsFixed(2)}'),
               Slider(
                 value: _sliderValue,
                 activeColor: Theme.of(context).accentColor,
                 min: 0.25,
-                max: 25.0,
-                divisions: 10,
+                max: 25.00,
+                divisions: 99,
                 onChanged: (double newValue) {
+                  int decimalPlaces = 2;
+                  int fac = pow(10, decimalPlaces);
+                  newValue = (newValue * fac).round() / fac;
+                  print(newValue);
                   setState(() {
                     _sliderValue = newValue;
                   });
@@ -37,6 +42,7 @@ class _AlarmSettingsState extends State<AlarmSettings>{
                 onChangeEnd: (double endValue) {
                   print('Ended change at $endValue');
                 },
+  
               ),
             ],
           )

@@ -12,7 +12,7 @@ class TimePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<MainModel>(
-      builder: (context, child, model) {
+      builder: (BuildContext context, Widget child, MainModel model) {
         return Container(
           child: new Row(
             children: <Widget>[

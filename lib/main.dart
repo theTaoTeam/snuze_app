@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:scoped_model/scoped_model.dart';
 
-import "package:snuze/models/alarm.dart";
+// import "package:snuze/models/alarm.dart";
 import 'package:snuze/scoped-models/main.dart';
 
 import './pages/home/main.dart';
@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return ScopedModel<MainModel>(
-      model: _model,
+      model: _model, 
       child: MaterialApp(
         theme: ThemeData(
           backgroundColor: Colors.white,

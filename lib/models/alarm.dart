@@ -5,12 +5,14 @@ part 'alarm.g.dart';
 
 @JsonSerializable()
 class Alarm {
-  num hour;
-  num minute;
+  int hour;
+  int minute;
+  int meridiem;
   double snuzeAmount;
   bool isActive;
 
-  Alarm({@required this.hour, @required this.minute, @required this.snuzeAmount, @required this.isActive});
+
+  Alarm({@required this.hour, @required this.minute, @required this.meridiem, @required this.snuzeAmount, @required this.isActive});
 
   factory Alarm.fromJson(Map<String, dynamic> json) => _$AlarmFromJson(json);
 

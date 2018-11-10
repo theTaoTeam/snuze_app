@@ -37,9 +37,10 @@ class _MyAppState extends State<MyApp> {
       });
     });
 
-    _model.alarm = new Alarm.fromJson(<String, dynamic>{
+    _model.updateAlarm(<String, dynamic>{
       'hour': 7,
       'minute': 30,
+      'meridiem': 0,
       'isActive': false,
       'snuzeAmount': 0.25
     });

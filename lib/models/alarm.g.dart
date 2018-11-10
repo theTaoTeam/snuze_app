@@ -8,8 +8,9 @@ part of 'alarm.dart';
 
 Alarm _$AlarmFromJson(Map<String, dynamic> json) {
   return Alarm(
-      hour: json['hour'] as num,
-      minute: json['minute'] as num,
+      hour: json['hour'] as int,
+      minute: json['minute'] as int,
+      meridiem: json['meridiem'] as int,
       snuzeAmount: (json['snuzeAmount'] as num)?.toDouble(),
       isActive: json['isActive'] as bool);
 }
@@ -17,6 +18,7 @@ Alarm _$AlarmFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$AlarmToJson(Alarm instance) => <String, dynamic>{
       'hour': instance.hour,
       'minute': instance.minute,
+      'meridiem': instance.meridiem,
       'snuzeAmount': instance.snuzeAmount,
       'isActive': instance.isActive
     };

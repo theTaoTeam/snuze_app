@@ -8,15 +8,28 @@ class AlarmModel extends Model {
 
   Alarm get alarm => _alarm;
 
-  set alarm(Alarm alarm) {
-    _alarm = alarm;
-  }
-
   void updateAlarm(Map<String, dynamic> alarmData) {
-    var jsonAlarm = _alarm.toJson();
+    // prevent error when _alarm is null on initial startup
+    var jsonAlarm = _alarm != null ? _alarm.toJson() : this.defaultAlarm().toJson();
 
     alarmData.forEach((key, value) => jsonAlarm[key] = value);
+    print('THIS IS THE NEW ALARM');
     print(jsonAlarm);
     _alarm = new Alarm.fromJson(jsonAlarm);
+    notifyListeners();
+  }
+
+  Alarm defaultAlarm() {
+    return new Alarm(
+      hour: 7,
+      minute: 30,
+      meridiem: 0,
+      isActive: false,
+      snuzeAmount: 0.25
+    );
+  }
+
+  void fetchAlarm() {
+
   }
 }

@@ -4,14 +4,17 @@ import 'package:flutter/cupertino.dart';
 import '../../../helpers/time_picker.dart';
 
 class MinutePicker extends StatelessWidget {
-  @override
+  final int minute;
+  final Function onMinuteChange;
+  MinutePicker({this.minute, this.onMinuteChange});
 
+  @override
   Widget build(BuildContext context) {
     return Flexible(
       fit: FlexFit.loose,
       child: CupertinoPicker(
         onSelectedItemChanged: (int newValue) {
-          print(newValue);
+          onMinuteChange(<String, dynamic>{"minute": newValue});
         },
         itemExtent: 30.0,
         children: numberTextList(start: 0, end: 59, inc: 5)

@@ -20,8 +20,14 @@ class TimePicker extends StatelessWidget {
                 hour: model.alarm.hour,
                 onHourChange: model.updateAlarm
               ),
-              MinutePicker(),
-              MeridiemPicker()
+              MinutePicker(
+                minute: model.alarm.minute,
+                onMinuteChange: model.updateAlarm
+              ),
+              MeridiemPicker(
+                meridiem: model.alarm.meridiem,
+                onMeridiemChange: model.updateAlarm
+              )
             ],
             mainAxisSize: MainAxisSize.min,
           ),

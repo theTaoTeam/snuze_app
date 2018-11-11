@@ -17,14 +17,15 @@ class _AuthPageState extends State<AuthPage> {
   final Map<String, dynamic> _formData = {
     'email': null,
     'password': null,
+    'number': '',
+    'expMonth': null,
+    'expYear': null,
+    'cvc': '',
   };
   var _hasForgotPass = false;
-  var _isSettingUpStripe = false;
   Map<String, String> _forgotPasswordEmail = {'email': null};
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordTextController = TextEditingController();
-  final TextEditingController _newPasswordTextController =
-      TextEditingController();
   AuthMode _authMode = AuthMode.Login;
 
   Widget _buildEmailTextField() {
@@ -72,7 +73,14 @@ class _AuthPageState extends State<AuthPage> {
     _formKey.currentState.save();
     Map<String, dynamic> successInformation;
     successInformation = await authenticate(
-        _formData['email'], _formData['password'], _authMode);
+      _formData['email'],
+      _formData['password'],
+      _authMode,
+      _formData['number'],
+      _formData['expMonth'],
+      _formData['expYear'],
+      _formData['cvc'],
+    );
     if (successInformation['success']) {
       Navigator.pushReplacementNamed(context, '/home');
     } else {
@@ -125,10 +133,13 @@ class _AuthPageState extends State<AuthPage> {
     });
   }
 
-  void _goToStripeSetup() {
-    setState(() {
-      _isSettingUpStripe = true;
+  void updateCardInfo(Map<String, dynamic> ccInfo) {
+    ccInfo.forEach((key, value) {
+      setState(() {
+        _formData[key] = value;
+      });
     });
+    print(_formData);
   }
 
   @override
@@ -165,7 +176,7 @@ class _AuthPageState extends State<AuthPage> {
                                 height: 10.0,
                               ),
                               _authMode == AuthMode.Signup
-                                  ? CreditCardFrom()
+                                  ? CreditCardForm(onCardChange: updateCardInfo)
                                   : Container(),
                               SizedBox(
                                 height: 10.0,

@@ -29,9 +29,11 @@ mixin UserModel on ConnectedUserAlarmModel {
   }
 
   Future<Map<String, dynamic>> authenticate(String email, String password,
-      [AuthMode mode = AuthMode.Login]) async {
+      [AuthMode mode = AuthMode.Login, String number, int expMonth, int expYear, String cvc]) async {
     _isLoading = true;
     notifyListeners();
+
+    print("$number, $expMonth, $expYear, $cvc");
     final Map<String, dynamic> authData = {
       'email': email,
       'password': password,

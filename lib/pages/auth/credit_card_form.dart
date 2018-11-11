@@ -1,36 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class CreditCardFrom extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _CreditCardFormState();
-  }
-}
+class CreditCardForm extends StatelessWidget {
+  final Function onCardChange;
 
-class _CreditCardFormState extends State<CreditCardFrom> {
-  final Map<String, dynamic> _creditCardInfo = {
-    'cardNumber': '',
-    'expMonth': null,
-    'expYear': null,
-    'cvc': '',
-  };
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  CreditCardForm({this.onCardChange});
 
   Widget _buildCCNumberField() {
     return TextFormField(
       decoration: InputDecoration(
-          labelText: 'xxxxxxxxxxxxxxxx', filled: true, fillColor: Colors.white),
-      keyboardType: TextInputType.emailAddress,
+          labelText: 'XXXXXXXXXXXXXXXX', filled: true, fillColor: Colors.white),
+      keyboardType: TextInputType.number,
       validator: (String value) {
-        if (value.isEmpty ||
-            !RegExp(r"[^([0-9]{4}]").hasMatch(value) ||
-            value.length != 16) {
+        if (value.isEmpty || value.length != 16) {
           return 'please enter a valid credit card number';
         }
       },
       onSaved: (String value) {
-        _creditCardInfo['cardNumber'] = value;
+        onCardChange(<String, String>{'number': value});
       },
     );
   }
@@ -38,35 +25,71 @@ class _CreditCardFormState extends State<CreditCardFrom> {
   Widget _buildExpMonthField() {
     return TextFormField(
       decoration: InputDecoration(
-          labelText: 'xx/xx', filled: true, fillColor: Colors.white),
-      keyboardType: TextInputType.emailAddress,
+          labelText: 'MM', filled: true, fillColor: Colors.white),
+      keyboardType: TextInputType.number,
       validator: (String value) {
-        if (value.isEmpty ||
-            !RegExp(r"[^([0-9]{4}]").hasMatch(value) ||
-            value.length != 16) {
-          return 'please enter a valid credit card number';
+        if (value.isEmpty || value.length != 2) {
+          return 'please enter a valid exp month';
         }
       },
       onSaved: (String value) {
-        _creditCardInfo['cardNumber'] = value;
+        var val = int.tryParse(value);
+        if (val == null) {
+          print('Error parsing expMonth');
+        }
+        onCardChange(<String, int>{'expMonth': val});
+      },
+    );
+  }
+
+  Widget _buildExpYearField() {
+    return TextFormField(
+      decoration: InputDecoration(
+          labelText: 'YYYY', filled: true, fillColor: Colors.white),
+      keyboardType: TextInputType.number,
+      validator: (String value) {
+        if (value.isEmpty || value.length != 4) {
+          return 'please enter a valid exp year';
+        }
+      },
+      onSaved: (String value) {
+        var val = int.tryParse(value);
+        if (val == null) {
+          print('Error parsing expMonth');
+        }
+        onCardChange(<String, int>{'expYear': val});
+      },
+    );
+  }
+
+  Widget _buildCvcField() {
+    return TextFormField(
+      decoration: InputDecoration(
+          labelText: 'CVC', filled: true, fillColor: Colors.white),
+      keyboardType: TextInputType.number,
+      validator: (String value) {
+        if (value.isEmpty || value.length != 3) {
+          return 'please enter a valid cvc';
+        }
+      },
+      onSaved: (String value) {
+        onCardChange(<String, String>{'cvc': value});
       },
     );
   }
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: <Widget>[
-          _buildCCNumberField(),
-        ],
-      ),
+    return Column(
+      children: <Widget>[
+        _buildCCNumberField(),
+        SizedBox(height: 10.0),
+        _buildExpMonthField(),
+        SizedBox(height: 10.0),
+        _buildExpYearField(),
+        SizedBox(height: 10.0),
+        _buildCvcField(),
+      ],
     );
   }
 }

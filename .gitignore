@@ -11,3 +11,5 @@ flutter/
 
 node_modules/
 .env.dart
+
+*.g.dart

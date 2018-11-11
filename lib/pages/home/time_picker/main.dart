@@ -4,9 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:snuze/scoped-models/main.dart';
 
-import './hour_picker.dart';
-import './minute_picker.dart';
-import './meridiem_picker.dart';
+import 'package:snuze/pages/home/time_picker/hour_picker.dart';
+import 'package:snuze/pages/home/time_picker/minute_picker.dart';
+import 'package:snuze/pages/home/time_picker/meridiem_picker.dart';
 
 class TimePicker extends StatelessWidget {
   @override

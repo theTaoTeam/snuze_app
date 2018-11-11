@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-class AlarmSettings extends StatefulWidget {
-  @override
-    State<StatefulWidget> createState() {
-      // TODO: implement createState
-      return _AlarmSettingsState();
-    }
-}
+import 'package:snuze/scoped-models/main.dart';
+import 'package:scoped_model/scoped_model.dart';
 
-class _AlarmSettingsState extends State<AlarmSettings>{
-  double _sliderValue = 10.00;
-  bool _alarmSet = true;
+class AlarmSettings extends StatelessWidget {
 
-    Widget _buildDonationSlider(BuildContext context) {
+  Widget _buildDonationSlider(BuildContext context, double snuzeAmount, Function onSnuzeAmountChange) {
+    final double _sliderValue = snuzeAmount;
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -32,8 +26,8 @@ class _AlarmSettingsState extends State<AlarmSettings>{
                   int fac = pow(10, decimalPlaces);
                   newValue = (newValue * fac).round() / fac;
                   print(newValue);
-                  setState(() {
-                    _sliderValue = newValue;
+                  onSnuzeAmountChange(<String, dynamic>{
+                    "snuzeAmount": newValue,
                   });
                 },
                 onChangeStart: (double startValue) {
@@ -42,7 +36,6 @@ class _AlarmSettingsState extends State<AlarmSettings>{
                 onChangeEnd: (double endValue) {
                   print('Ended change at $endValue');
                 },
-  
               ),
             ],
           )
@@ -51,30 +44,36 @@ class _AlarmSettingsState extends State<AlarmSettings>{
     );
   }
 
-  Widget _buildAlarmToggle(BuildContext context) {
+  Widget _buildAlarmToggle(BuildContext context, bool isActive, Function onAlarmToggleChange) {
+    final bool _alarmSet = isActive;
     return SwitchListTile(
       value: _alarmSet,
-      onChanged: (bool value) {
-        print(value);
-        setState(() {
-          _alarmSet = value;
+      onChanged: (bool newValue) {
+        print(newValue);
+        onAlarmToggleChange(<String, dynamic>{
+          "isActive": newValue
         });
       },
     );
   }
 
   @override
+  
   Widget build(BuildContext context) {
-    return Container(
-      child: Expanded(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _buildDonationSlider(context),
-            _buildAlarmToggle(context),
-          ],
-        ),
-      ),
+    return ScopedModelDescendant<MainModel>(
+      builder: (BuildContext context, Widget child, MainModel model) {
+        return Container(
+          child: Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                _buildDonationSlider(context, model.alarm.snuzeAmount, model.updateAlarm),
+                _buildAlarmToggle(context, model.alarm.isActive, model.updateAlarm),
+              ],
+            ),
+          ),
+        );
+      }
     );
   }
 }

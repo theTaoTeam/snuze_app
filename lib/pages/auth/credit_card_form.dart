@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/cupertino.dart';
 
 class CreditCardFrom extends StatefulWidget {
   @override
@@ -9,21 +9,64 @@ class CreditCardFrom extends StatefulWidget {
 }
 
 class _CreditCardFormState extends State<CreditCardFrom> {
-  void _addSource(String token) {
-    print(token);
+  final Map<String, dynamic> _creditCardInfo = {
+    'cardNumber': '',
+    'expMonth': null,
+    'expYear': null,
+    'cvc': '',
+  };
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  Widget _buildCCNumberField() {
+    return TextFormField(
+      decoration: InputDecoration(
+          labelText: 'xxxxxxxxxxxxxxxx', filled: true, fillColor: Colors.white),
+      keyboardType: TextInputType.emailAddress,
+      validator: (String value) {
+        if (value.isEmpty ||
+            !RegExp(r"[^([0-9]{4}]").hasMatch(value) ||
+            value.length != 16) {
+          return 'please enter a valid credit card number';
+        }
+      },
+      onSaved: (String value) {
+        _creditCardInfo['cardNumber'] = value;
+      },
+    );
+  }
+
+  Widget _buildExpMonthField() {
+    return TextFormField(
+      decoration: InputDecoration(
+          labelText: 'xx/xx', filled: true, fillColor: Colors.white),
+      keyboardType: TextInputType.emailAddress,
+      validator: (String value) {
+        if (value.isEmpty ||
+            !RegExp(r"[^([0-9]{4}]").hasMatch(value) ||
+            value.length != 16) {
+          return 'please enter a valid credit card number';
+        }
+      },
+      onSaved: (String value) {
+        _creditCardInfo['cardNumber'] = value;
+      },
+    );
   }
 
   @override
   void initState() {
-    // StripeSource.setPublishableKey("pk_test");
-    // StripeSource.addSource().then((String token) {
-    //   _addSource(token);
-    // });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Text('Stripe Setup');
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: <Widget>[
+          _buildCCNumberField(),
+        ],
+      ),
+    );
   }
 }

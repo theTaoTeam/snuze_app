@@ -100,17 +100,24 @@ mixin UserModel on ConnectedUserAlarmModel {
   Future<Null> resetPassword(String email) async {
     _isLoading = true;
     notifyListeners();
-    print(email);
+    print('email: $email');
     final Map<String, String> oobRequestBody = {
       'kind': "identitytoolkit#relyingparty",
       'requestType': "PASSWORD_RESET",
       'email': email,
     };
-    final http.Response getOob = await http.post(
-      'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getOobConfirmationCode?key=$apiKey',
-      body: json.encode(oobRequestBody),
-    );
-    print('OOB: ${getOob.body}');
+    http.Response getOob;
+    try {
+      print('made it into try');
+       getOob = await http.post(
+        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getOobConfirmationCode?key=$apiKey',
+        body: json.encode(oobRequestBody),
+      );
+    } catch(error) {
+      print(error);
+    }
+    _isLoading = false;
+    notifyListeners();
   }
 
   Future<Null> startFacebookLogin() async {

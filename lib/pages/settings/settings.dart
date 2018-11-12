@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 import 'package:snuze/pages/settings/update_payment_form.dart';
+import 'package:snuze/scoped-models/main.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -13,8 +15,9 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  final MainModel _model = new MainModel();
   Map<String, dynamic> userSettings = {
-    'email': 'test@test.com',
+    'email': 'clamptron@gmail.com',
     'theme': false,
   };
 
@@ -28,14 +31,6 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   void initState() {
     super.initState();
-  }
-
-  void _getUserSettings() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String userEmail = prefs.getString('userEmail');
-    userSettings['email'] = userEmail;
-    // final String userTheme = prefs.getString('userTheme');
-    // final String userCardInfo = prefs.getString('userCardInfo');
   }
 
   Widget _buildSectionTitle(String title) {
@@ -57,9 +52,13 @@ class _SettingsPageState extends State<SettingsPage> {
         Container(
           margin: EdgeInsets.only(left: 178),
           child: CupertinoSwitch(
-            value: false,
+            value: userSettings['theme'],
+            activeColor: Color(0xFFFE2562),
             onChanged: (bool val) {
               print(val);
+              setState(() {
+                userSettings['theme'] = !userSettings['theme'];
+              });
             },
           ),
         ),
@@ -69,14 +68,17 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Widget _buildEmailRow() {
     return Row(
+      // mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text('email'),
         Container(
-          margin: EdgeInsets.only(left: 160),
-          width: 110,
+          margin: EdgeInsets.only(left: 72),
+          width: 200,
           child: TextField(
             decoration: InputDecoration(
-                labelText: userSettings['email'], border: InputBorder.none),
+                labelText: userSettings['email'],
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.only(right: 10)),
           ),
         ),
       ],
@@ -108,6 +110,7 @@ class _SettingsPageState extends State<SettingsPage> {
             textColor: Color(0xFFFE2562),
             onPressed: () {
               print('pressed reset password');
+              _resetPassword();
             },
           )
         : FlatButton(
@@ -132,59 +135,74 @@ class _SettingsPageState extends State<SettingsPage> {
     print(_newCardInfo);
   }
 
+  void _resetPassword() {
+    _model.resetPassword(userSettings['email']);
+  }
+
   @override
   Widget build(BuildContext context) {
     final double deviceWidth = MediaQuery.of(context).size.width;
     final double targetWidth = deviceWidth > 550.0 ? 500.0 : deviceWidth * 0.75;
-    return Scaffold(
-      backgroundColor: Color(0xFFFFFFFF),
-      appBar: AppBar(
-        title: Text('settings'),
-        centerTitle: true,
-        elevation: 0.0,
-        backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
-          color: Colors.white, //change your color here
+    return ScopedModelDescendant<MainModel>(
+        builder: (BuildContext context, Widget child, MainModel model) {
+      return Scaffold(
+        backgroundColor: Color(0xFFFFFFFF),
+        appBar: AppBar(
+          title: Text('settings', style: TextStyle(fontSize: 23),),
+          centerTitle: true,
+          elevation: 0.0,
+          backgroundColor: Colors.white,
+          iconTheme: IconThemeData(
+            color: Colors.white, //change your color here
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text(
+                'done',
+                style: TextStyle(fontSize: 15),
+              ),
+              textColor: Color(0xFFFE2562),
+              onPressed: () {
+                print('save setting pressed');
+              },
+            )
+          ],
         ),
-        actions: <Widget>[
-          FlatButton(
-            child: Text('done', style: TextStyle(fontSize: 15),),
-            textColor: Color(0xFFFE2562),
-            onPressed: () {
-              print('save setting pressed');
-            },
-          )
-        ],
-      ),
-      body: Center(
-        child: SingleChildScrollView(
-          reverse: true,
-          child: Container(
-            width: targetWidth,
-            alignment: Alignment.topCenter,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                _buildDarkThemeRow(),
-                _buildDivider(targetWidth, false),
-                _buildEmailRow(),
-                _buildDivider(targetWidth, false),
-                Center(child: _buildActionButton('reset')),
-                SizedBox(
-                  height: 40,
-                ),
-                _buildSectionTitle('payment method'),
-                SizedBox(
-                  height: 20,
-                ),
-                UpdatePaymentForm(onCardChange: updateCardInfo),
-                _buildDivider(targetWidth, true),
-                Center(child: _buildActionButton('update')),
-              ],
+        body: Center(
+          child: SingleChildScrollView(
+            reverse: true,
+            child: Container(
+              width: targetWidth,
+              alignment: Alignment.topCenter,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  _buildDarkThemeRow(),
+                  _buildDivider(targetWidth, false),
+                  _buildEmailRow(),
+                  _buildDivider(targetWidth, false),
+                  Center(
+                      child: model.isLoading
+                          ? CircularProgressIndicator(
+                              valueColor:
+                                  AlwaysStoppedAnimation<Color>(Colors.white))
+                          : _buildActionButton('reset')),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  _buildSectionTitle('payment method'),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  UpdatePaymentForm(onCardChange: updateCardInfo),
+                  _buildDivider(targetWidth, true),
+                  Center(child: _buildActionButton('update')),
+                ],
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

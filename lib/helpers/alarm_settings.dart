@@ -1,10 +1,10 @@
 import 'dart:math';
 
 double toPrice(double index) {
-  double price = 0.0;
+  double price = 0.25;
   double i = 0;
   while(i < index) {
-    if(i < 20) {
+    if(i < 19) {
       price += 0.25;
     } else {
       price += 1.00;

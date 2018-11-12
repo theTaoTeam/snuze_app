@@ -15,13 +15,13 @@ class AlarmSettings extends StatelessWidget {
         children: <Widget>[
           Column(
             children: <Widget>[
-              Text('\$${_sliderValue.toStringAsFixed(2)}'),
+              Text('\$${toPrice(_sliderValue).toStringAsFixed(2)}'),
               Slider(
                 value: _sliderValue,
                 activeColor: Theme.of(context).accentColor,
                 min: 0.00,
-                max: 40.00,
-                divisions: 40,
+                max: 39.00,
+                divisions: 39,
                 onChanged: (double newValue) {
                   newValue = decimalPrecision(number: newValue);
                   onSnuzeAmountChange(<String, dynamic>{

@@ -24,6 +24,21 @@ class _SignUpPageState extends State<SignUpPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordTextController = TextEditingController();
 
+  Widget _buildTitleText(double targetWidth) {
+    return Container(
+        width: targetWidth - 100,
+        margin: EdgeInsets.only(right: 100),
+        child: Text(
+          "We're going to need a few things...",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 40,
+            fontWeight: FontWeight.w900,
+          ),
+          textAlign: TextAlign.left,
+        ));
+  }
+
   Widget _buildEmailTextField() {
     return TextFormField(
       decoration: InputDecoration(
@@ -148,16 +163,20 @@ class _SignUpPageState extends State<SignUpPage> {
                   Color(0xFFFFB52E),
                 ]),
           ),
-          padding: EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(5.0),
           child: Center(
             child: SingleChildScrollView(
               child: Container(
-                margin: new EdgeInsets.fromLTRB(0, 80, 0, 0),
+                margin: EdgeInsets.only(bottom: 50),
                 width: targetWidth,
                 child: Form(
                     key: _formKey,
                     child: Column(
                       children: <Widget>[
+                        _buildTitleText(targetWidth),
+                        SizedBox(
+                          height: 35,
+                        ),
                         _buildEmailTextField(),
                         SizedBox(
                           height: 10.0,
@@ -168,18 +187,31 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         CreditCardForm(onCardChange: updateCardInfo),
                         model.isLoading
-                            ? CircularProgressIndicator()
+                            ? Column(children: <Widget>[
+                                CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                        Colors.white)),
+                                SizedBox(
+                                  height: 15,
+                                )
+                              ])
                             : Column(
                                 children: <Widget>[
+                                  SizedBox(height: 20,),
                                   Container(
-                                    width: targetWidth,
+                                    width: targetWidth, 
+                                    height: 40,
                                     child: RaisedButton(
+                                      highlightElevation: 0,
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(25)),
                                       textColor: Colors.red,
                                       color: Colors.white,
-                                      child: Text('get snuzing'),
+                                      child: Text(
+                                        'get snuzing',
+                                        style: TextStyle(fontSize: 20),
+                                      ),
                                       onPressed: () =>
                                           _submitForm(model.authenticate),
                                     ),

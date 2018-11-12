@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:snuze/models/auth.dart';
@@ -22,6 +23,35 @@ class _AuthPageState extends State<AuthPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordTextController = TextEditingController();
   AuthMode _authMode = AuthMode.Login;
+
+  Widget _buildTitleText(double targetWidth) {
+    if (_hasForgotPass) {
+      return Container(
+          width: targetWidth - 100,
+          margin: EdgeInsets.only(right: 100),
+          child: Text(
+            "Forgot your pasword? Oh well, we'll send you an email.",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 40,
+              fontWeight: FontWeight.w900,
+            ),
+            textAlign: TextAlign.left,
+          ));
+    } else {
+      return Container(
+          // width: targetWidth - 100,
+          child: Text(
+        "snüze",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: Platform.isAndroid ? 110 : 100,
+          fontWeight: FontWeight.w900,
+        ),
+        textAlign: TextAlign.center,
+      ));
+    }
+  }
 
   Widget _buildEmailTextField() {
     return TextFormField(
@@ -54,7 +84,7 @@ class _AuthPageState extends State<AuthPage> {
         labelStyle: new TextStyle(color: Colors.white),
         filled: true,
         fillColor: Color.fromRGBO(255, 255, 255, 0.2),
-        border: InputBorder.none,        
+        border: InputBorder.none,
       ),
       style: new TextStyle(height: .3),
       obscureText: true,
@@ -128,7 +158,7 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
-  void _navigateToSignUpPage(AuthMode _authmode) {
+  void _navigateToSignUpPage() {
     Navigator.pushNamed(context, '/signup');
   }
 
@@ -170,13 +200,17 @@ class _AuthPageState extends State<AuthPage> {
           child: Center(
             child: SingleChildScrollView(
               child: Container(
-                  margin: new EdgeInsets.fromLTRB(0, 200, 0, 0),
+                  margin: new EdgeInsets.fromLTRB(0, 50, 0, 0),
                   width: targetWidth,
                   child: !_hasForgotPass
                       ? Form(
                           key: _formKey,
                           child: Column(
                             children: <Widget>[
+                              _buildTitleText(targetWidth),
+                              SizedBox(
+                                height: 40,
+                              ),
                               _buildEmailTextField(),
                               SizedBox(
                                 height: 10.0,
@@ -192,29 +226,43 @@ class _AuthPageState extends State<AuthPage> {
                                 ),
                               ),
                               model.isLoading
-                                  ? CircularProgressIndicator()
+                                  ? Column(children: <Widget>[
+                                      CircularProgressIndicator(
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                                  Colors.white)),
+                                      SizedBox(
+                                        height: 5,
+                                      )
+                                    ])
                                   : Column(
                                       children: <Widget>[
                                         Container(
                                           width: targetWidth,
+                                          height: 40,
                                           child: RaisedButton(
+                                            highlightElevation: 0,
                                             shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(25)),
                                             textColor: Colors.red,
                                             color: Colors.white,
-                                            child: Text('login'),
+                                            child: Text(
+                                              'login',
+                                              style: TextStyle(fontSize: 20),
+                                            ),
                                             onPressed: () =>
                                                 _submitForm(model.authenticate),
                                           ),
                                         ),
                                         SizedBox(
-                                          height: 0.5,
+                                          height: 15,
                                         ),
                                         Container(
                                             color: Color.fromRGBO(
                                                 255, 255, 255, 0),
                                             width: targetWidth,
+                                            height: 40,
                                             child: OutlineButton(
                                               shape: RoundedRectangleBorder(
                                                 borderRadius:
@@ -223,10 +271,13 @@ class _AuthPageState extends State<AuthPage> {
                                               color: Color.fromRGBO(
                                                   255, 255, 255, 0),
                                               textColor: Colors.white,
+                                              highlightColor: Color(0xFF434343),
                                               highlightedBorderColor:
                                                   Colors.transparent,
-                                              child:
-                                                  Text('login with facebook'),
+                                              child: Text(
+                                                'login with facebook',
+                                                style: TextStyle(fontSize: 20),
+                                              ),
                                               onPressed: () {
                                                 setState(() {
                                                   print(
@@ -236,10 +287,11 @@ class _AuthPageState extends State<AuthPage> {
                                               },
                                             )),
                                         SizedBox(
-                                          height: 0.5,
+                                          height: 15,
                                         ),
                                         Container(
                                           width: targetWidth,
+                                          height: 40,
                                           child: OutlineButton(
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
@@ -253,18 +305,23 @@ class _AuthPageState extends State<AuthPage> {
                                             highlightColor: Color.fromRGBO(
                                                 255, 255, 255, 0.2),
                                             highlightElevation: 3,
-                                            child: Text('create an account'),
+                                            child: Text(
+                                              'create an account',
+                                              style: TextStyle(fontSize: 20),
+                                            ),
                                             onPressed: () {
                                               setState(() {
-                                                _navigateToSignUpPage(
-                                                    _authMode);
+                                                _navigateToSignUpPage();
                                               });
                                             },
                                           ),
                                         ),
                                         FlatButton(
                                           textColor: Colors.white,
-                                          child: Text('forgot password?'),
+                                          child: Text(
+                                            'forgot password?',
+                                            style: TextStyle(fontSize: 17),
+                                          ),
                                           onPressed: () {
                                             print('Forgot Password pressed!');
                                             setState(() {
@@ -280,13 +337,19 @@ class _AuthPageState extends State<AuthPage> {
                           key: _formKey,
                           child: Column(
                             children: <Widget>[
+                              _buildTitleText(targetWidth),
+                              SizedBox(
+                                height: 30,
+                              ),
                               _buildForgotPassEmailField(),
                               SizedBox(
-                                height: 10,
+                                height: 20,
                               ),
                               Container(
                                 width: targetWidth,
+                                height: 40,
                                 child: RaisedButton(
+                                  highlightElevation: 0,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(25)),
                                   textColor: Colors.red,
@@ -298,11 +361,14 @@ class _AuthPageState extends State<AuthPage> {
                                 ),
                               ),
                               SizedBox(
-                                height: 0.5,
+                                height: 1,
                               ),
                               FlatButton(
                                 textColor: Colors.white,
-                                child: Text('cancel'),
+                                child: Text(
+                                  'cancel',
+                                  style: TextStyle(fontSize: 17),
+                                ),
                                 onPressed: () {
                                   setState(() {
                                     _hasForgotPass = false;

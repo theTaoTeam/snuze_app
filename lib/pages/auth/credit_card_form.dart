@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 
 class CreditCardForm extends StatelessWidget {
@@ -89,7 +90,7 @@ class CreditCardForm extends StatelessWidget {
 
   Widget _buildCvcField() {
     return Container(
-        margin: EdgeInsets.only(left: 25),
+        margin: Platform.isIOS ? EdgeInsets.only(left: 25) : EdgeInsets.only(left: 52),
         width: 113,
         child: TextFormField(
           decoration: InputDecoration(

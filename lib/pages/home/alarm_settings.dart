@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
 
+
+import 'package:snuze/helpers/alarm_settings.dart';
 import 'package:snuze/scoped-models/main.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -18,14 +19,11 @@ class AlarmSettings extends StatelessWidget {
               Slider(
                 value: _sliderValue,
                 activeColor: Theme.of(context).accentColor,
-                min: 0.25,
-                max: 25.00,
-                divisions: 99,
+                min: 0.00,
+                max: 40.00,
+                divisions: 40,
                 onChanged: (double newValue) {
-                  int decimalPlaces = 2;
-                  int fac = pow(10, decimalPlaces);
-                  newValue = (newValue * fac).round() / fac;
-                  print(newValue);
+                  newValue = decimalPrecision(number: newValue);
                   onSnuzeAmountChange(<String, dynamic>{
                     "snuzeAmount": newValue,
                   });

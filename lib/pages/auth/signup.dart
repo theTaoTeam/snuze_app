@@ -166,8 +166,9 @@ class _SignUpPageState extends State<SignUpPage> {
           padding: EdgeInsets.all(5.0),
           child: Center(
             child: SingleChildScrollView(
+              reverse: true,
               child: Container(
-                margin: EdgeInsets.only(bottom: 50),
+                margin: EdgeInsets.only(bottom: 35),
                 width: targetWidth,
                 child: Form(
                     key: _formKey,

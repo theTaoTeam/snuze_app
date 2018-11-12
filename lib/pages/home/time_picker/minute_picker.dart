@@ -18,7 +18,7 @@ class MinutePicker extends StatelessWidget {
           onMinuteChange(<String, dynamic>{"minute": newValue});
         },
         itemExtent: 30.0,
-        children: numberTextList(start: 0, end: 59, inc: 5),
+        children: numberTextList(start: 0, end: 59, inc: 1),
         scrollController: scrollController,
       ),
     );

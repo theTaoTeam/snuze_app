@@ -725,11 +725,11 @@
 		0A8D0D61ADFC34CF904F0FE56B7C3E24 /* Bolts-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Bolts-dummy.m"; sourceTree = "<group>"; };
 		0B85FAFBA1936978793CD8FB6DB889C9 /* STPAPIResponseDecodable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPAPIResponseDecodable.h; path = Stripe/PublicHeaders/STPAPIResponseDecodable.h; sourceTree = "<group>"; };
 		0C1DF88F4C00FA05B8E662FBF8541BF5 /* STPMultipartFormDataPart.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPMultipartFormDataPart.m; path = Stripe/STPMultipartFormDataPart.m; sourceTree = "<group>"; };
-		0C4E7899E9AC388218C522B14E638E32 /* shared_preferences.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = shared_preferences.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C4E7899E9AC388218C522B14E638E32 /* shared_preferences.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = shared_preferences.framework; path = shared_preferences.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C738310032ED528F591CD9D70731B46 /* FBSDKMaleSilhouetteIcon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKMaleSilhouetteIcon.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKMaleSilhouetteIcon.h; sourceTree = "<group>"; };
 		0C76560D4D4F63D274B83337555FC8AB /* FBSDKApplicationDelegate+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKApplicationDelegate+Internal.h"; path = "FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKApplicationDelegate+Internal.h"; sourceTree = "<group>"; };
 		0C815482CBEE0F350D13E3F2ABDE1B5A /* NSCharacterSet+Stripe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSCharacterSet+Stripe.m"; path = "Stripe/NSCharacterSet+Stripe.m"; sourceTree = "<group>"; };
-		0D31CAE0D1DEBE44CE964BDF51FB1817 /* Images */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = Images; path = Stripe/Resources/Images; sourceTree = "<group>"; };
+		0D31CAE0D1DEBE44CE964BDF51FB1817 /* Images */ = {isa = PBXFileReference; includeInIndex = 1; name = Images; path = Stripe/Resources/Images; sourceTree = "<group>"; };
 		0D97A5FA65FE39ADFCEC548165156FCF /* UIToolbar+Stripe_InputAccessory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIToolbar+Stripe_InputAccessory.h"; path = "Stripe/UIToolbar+Stripe_InputAccessory.h"; sourceTree = "<group>"; };
 		0DB2939CE8966BB4DDA32D73E7D12533 /* stp_card_error_amex.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = stp_card_error_amex.png; path = Stripe/Resources/Images/stp_card_error_amex.png; sourceTree = "<group>"; };
 		0DE9DF2C2104349DDDB8041BFF765EB0 /* flutter_facebook_login-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "flutter_facebook_login-dummy.m"; sourceTree = "<group>"; };
@@ -756,7 +756,7 @@
 		178040C6784181A33DEF26A5D468156B /* FBSDKLoginManagerLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKLoginManagerLogger.h; path = FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKLoginManagerLogger.h; sourceTree = "<group>"; };
 		1858CD2542A8E8AB07896ADF24D2FB5F /* STPCardBrand.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPCardBrand.h; path = Stripe/PublicHeaders/STPCardBrand.h; sourceTree = "<group>"; };
 		1876E80F0A217737A12AD86454F63702 /* FBSDKTimeSpentData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKTimeSpentData.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/FBSDKTimeSpentData.h; sourceTree = "<group>"; };
-		18F7404A6CCFC16B1F80ED9D8B194F4B /* flutter_facebook_login.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = flutter_facebook_login.podspec; path = "../../../../../../../.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_login-1.1.1/ios/flutter_facebook_login.podspec"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		18F7404A6CCFC16B1F80ED9D8B194F4B /* flutter_facebook_login.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = flutter_facebook_login.podspec; path = "../../../../../../../.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_login-1.1.1/ios/flutter_facebook_login.podspec"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		1944324764EEB97685C2ACA72E94AD1F /* FBSDKLoginManager+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKLoginManager+Internal.h"; path = "FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKLoginManager+Internal.h"; sourceTree = "<group>"; };
 		19AD2F43A81F0CC5D254D5A3D7123147 /* BFMeasurementEvent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BFMeasurementEvent.m; path = Bolts/iOS/BFMeasurementEvent.m; sourceTree = "<group>"; };
 		1B2249A111287619242511E06C91CCEC /* STPSourceSEPADebitDetails.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPSourceSEPADebitDetails.m; path = Stripe/STPSourceSEPADebitDetails.m; sourceTree = "<group>"; };
@@ -875,7 +875,7 @@
 		4AFE294CA83C494924BC596C7A468273 /* STPCustomer+SourceTuple.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "STPCustomer+SourceTuple.m"; path = "Stripe/STPCustomer+SourceTuple.m"; sourceTree = "<group>"; };
 		4C019E80F80A241BE7F3E5781A505E0F /* FBSDKError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKError.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKError.h; sourceTree = "<group>"; };
 		4D171EEF576E4A4C046AF7CD8CA2F8C2 /* FBSDKBridgeAPIProtocolWebV2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKBridgeAPIProtocolWebV2.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/ProtocolVersions/FBSDKBridgeAPIProtocolWebV2.h; sourceTree = "<group>"; };
-		4D62560FE049E639AD3B4A83CD8BCA7D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = "../../../../../../../.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.4.3/LICENSE"; sourceTree = "<group>"; };
+		4D62560FE049E639AD3B4A83CD8BCA7D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = "../../../../../../../.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.4.3/LICENSE"; sourceTree = "<group>"; };
 		4D985D006EFE95950F8EF2FDDF498837 /* STPPaymentMethodsViewController+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "STPPaymentMethodsViewController+Private.h"; path = "Stripe/STPPaymentMethodsViewController+Private.h"; sourceTree = "<group>"; };
 		4DE1EFE92E2304E8D3C49097830A3936 /* STPCard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPCard.h; path = Stripe/PublicHeaders/STPCard.h; sourceTree = "<group>"; };
 		4E0200F9C234B763F3A425F2D055F74A /* stp_card_mastercard@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_mastercard@3x.png"; path = "Stripe/Resources/Images/stp_card_mastercard@3x.png"; sourceTree = "<group>"; };
@@ -923,7 +923,7 @@
 		604C92E38B83531DCC64CED30E4336C6 /* FBSDKAccessToken.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKAccessToken.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKAccessToken.h; sourceTree = "<group>"; };
 		60696C4F5F9018C6F3C33AFD1FD85930 /* STPCoreScrollViewController+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "STPCoreScrollViewController+Private.h"; path = "Stripe/STPCoreScrollViewController+Private.h"; sourceTree = "<group>"; };
 		606FF3F1975C04A604752A01847EEEB6 /* FBSDKDeviceRequestsHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKDeviceRequestsHelper.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKDeviceRequestsHelper.h; sourceTree = "<group>"; };
-		610DB635E96F344341AB9E3E56D7F53F /* shared_preferences.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = shared_preferences.podspec; path = "../../../../../../../.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.4.3/ios/shared_preferences.podspec"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		610DB635E96F344341AB9E3E56D7F53F /* shared_preferences.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = shared_preferences.podspec; path = "../../../../../../../.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.4.3/ios/shared_preferences.podspec"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		626F9CB4ABCAE8FB3FC42CED8208DAE4 /* STPSourceCardDetails.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPSourceCardDetails.m; path = Stripe/STPSourceCardDetails.m; sourceTree = "<group>"; };
 		634745B35A7A5F046EF750B11D03B729 /* FBSDKAccessTokenCacheV3_17.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKAccessTokenCacheV3_17.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKAccessTokenCacheV3_17.h; sourceTree = "<group>"; };
 		6367F678A045CA558B4320A3A4A11B76 /* UIView+Stripe_FirstResponder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+Stripe_FirstResponder.m"; path = "Stripe/UIView+Stripe_FirstResponder.m"; sourceTree = "<group>"; };
@@ -931,8 +931,8 @@
 		63EF77880FF4D9BBB0429A58065C3978 /* stp_card_mastercard_template.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = stp_card_mastercard_template.png; path = Stripe/Resources/Images/stp_card_mastercard_template.png; sourceTree = "<group>"; };
 		643DC775DEF58D80746B30AE3021C5A3 /* FBSDKLoginButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKLoginButton.h; path = FBSDKLoginKit/FBSDKLoginKit/FBSDKLoginButton.h; sourceTree = "<group>"; };
 		64807F3BF51D671402CA2B80F61BDCB0 /* STPAPIClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPAPIClient.h; path = Stripe/PublicHeaders/STPAPIClient.h; sourceTree = "<group>"; };
-		64AB6235DB4CE7714EDC88DC855AB96D /* stp_test_upload_image.jpeg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = stp_test_upload_image.jpeg; path = Stripe/Resources/Images/stp_test_upload_image.jpeg; sourceTree = "<group>"; };
-		64CB413EACAA480148D8C56229B5D524 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSDKCoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		64AB6235DB4CE7714EDC88DC855AB96D /* stp_test_upload_image.jpeg */ = {isa = PBXFileReference; includeInIndex = 1; name = stp_test_upload_image.jpeg; path = Stripe/Resources/Images/stp_test_upload_image.jpeg; sourceTree = "<group>"; };
+		64CB413EACAA480148D8C56229B5D524 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBSDKCoreKit.framework; path = FBSDKCoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6559024629BD22493DE07C9296F2A12C /* STPShippingMethodTableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPShippingMethodTableViewCell.m; path = Stripe/STPShippingMethodTableViewCell.m; sourceTree = "<group>"; };
 		65FC24339E0B0A6F07FAC3D9F3372E40 /* BFAppLink.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BFAppLink.m; path = Bolts/iOS/BFAppLink.m; sourceTree = "<group>"; };
 		6646D043A6BD232BA78FB39995E6E50A /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -961,7 +961,7 @@
 		6D270961DAD90A137912E6B3894AC46A /* FBSDKErrorRecoveryAttempter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKErrorRecoveryAttempter.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/ErrorRecovery/FBSDKErrorRecoveryAttempter.m; sourceTree = "<group>"; };
 		6D4E3B28C6DD3810039B8FE1F6F62E2C /* STPDispatchFunctions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPDispatchFunctions.h; path = Stripe/STPDispatchFunctions.h; sourceTree = "<group>"; };
 		6DAB87537A1871157EC0C228575E0440 /* UIToolbar+Stripe_InputAccessory.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIToolbar+Stripe_InputAccessory.m"; path = "Stripe/UIToolbar+Stripe_InputAccessory.m"; sourceTree = "<group>"; };
-		6DE9F5242A29EE708C66081853510D93 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DE9F5242A29EE708C66081853510D93 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Runner.framework; path = "Pods-Runner.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E31BDAF28CB04816A1C341B8454171E /* STPPaymentCardTextField+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "STPPaymentCardTextField+Private.h"; path = "Stripe/STPPaymentCardTextField+Private.h"; sourceTree = "<group>"; };
 		6EB17F9E62E8D0CD39C63B6C1AACE8B2 /* STPCardIOProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPCardIOProxy.h; path = Stripe/STPCardIOProxy.h; sourceTree = "<group>"; };
 		6FF6D0EFB62A03A49A6CCE07782591F2 /* BFCancellationTokenSource.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BFCancellationTokenSource.m; path = Bolts/Common/BFCancellationTokenSource.m; sourceTree = "<group>"; };
@@ -970,7 +970,7 @@
 		706ECB8825E367E975B377BA39498033 /* UIViewController+Stripe_Promises.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Stripe_Promises.m"; path = "Stripe/UIViewController+Stripe_Promises.m"; sourceTree = "<group>"; };
 		7116D1B99AF48C790FB650EE482DD4A1 /* FBSDKGraphRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKGraphRequest.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKGraphRequest.h; sourceTree = "<group>"; };
 		713647D4799209CE592418ACA8C5EFBB /* STPStringUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPStringUtils.m; path = Stripe/STPStringUtils.m; sourceTree = "<group>"; };
-		715332A6A3C0E89AE969FE496D467A35 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = "../../../../../../.flutter-sdk/flutter/bin/cache/artifacts/engine/ios/LICENSE"; sourceTree = "<group>"; };
+		715332A6A3C0E89AE969FE496D467A35 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = "../../../../../../.flutter-sdk/flutter/bin/cache/artifacts/engine/ios/LICENSE"; sourceTree = "<group>"; };
 		71BBEAAAC82EB6890718A524CA2FFEB3 /* FBSDKCrypto.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKCrypto.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/Cryptography/FBSDKCrypto.h; sourceTree = "<group>"; };
 		71DF2968C43271F28A69A5BB8AD1A20E /* shared_preferences.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = shared_preferences.xcconfig; sourceTree = "<group>"; };
 		731175B55232431C0FFB7094A20D2F71 /* FBSDKGraphRequestPiggybackManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKGraphRequestPiggybackManager.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKGraphRequestPiggybackManager.h; sourceTree = "<group>"; };
@@ -979,7 +979,7 @@
 		73C1B563A401070F35614F05617395B5 /* FBSDKErrorRecoveryAttempter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKErrorRecoveryAttempter.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/ErrorRecovery/FBSDKErrorRecoveryAttempter.h; sourceTree = "<group>"; };
 		73C691906CD9CB3380EBD4C00C94FC65 /* FBSDKLoginManagerLoginResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKLoginManagerLoginResult.m; path = FBSDKLoginKit/FBSDKLoginKit/FBSDKLoginManagerLoginResult.m; sourceTree = "<group>"; };
 		73EB78FCBBEC6C9357BB73CEC4A9B194 /* FBSDKBoltsMeasurementEventListener.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKBoltsMeasurementEventListener.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppLink/FBSDKBoltsMeasurementEventListener.m; sourceTree = "<group>"; };
-		74089D2DF30F54344F60F587E6C223B3 /* Stripe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Stripe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		74089D2DF30F54344F60F587E6C223B3 /* Stripe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Stripe.framework; path = Stripe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		74AACCC7853CA864377947D28CC15270 /* BFAppLink.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BFAppLink.h; path = Bolts/iOS/BFAppLink.h; sourceTree = "<group>"; };
 		75B176898D8100A53C2BA1EEC1E62533 /* FBSDKBridgeAPICrypto.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKBridgeAPICrypto.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPICrypto.m; sourceTree = "<group>"; };
 		7605FBCB381FB859F7BCB8FF3C1EF6C1 /* FBSDKWebDialogView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKWebDialogView.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/WebDialog/FBSDKWebDialogView.h; sourceTree = "<group>"; };
@@ -1034,9 +1034,9 @@
 		8672131D79918DE50C0055EBE7E912A7 /* FBSDKCoreKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKCoreKit.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit.h; sourceTree = "<group>"; };
 		868C83826C91646FF166201E29E3CEF9 /* STPPaymentResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPPaymentResult.h; path = Stripe/PublicHeaders/STPPaymentResult.h; sourceTree = "<group>"; };
 		86D79278A1E0B132BF072291C419840E /* FBSDKLoginKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FBSDKLoginKit-dummy.m"; sourceTree = "<group>"; };
-		88F3D03684970C6F6151846C3B02AF5E /* Localizations */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = Localizations; path = Stripe/Resources/Localizations; sourceTree = "<group>"; };
+		88F3D03684970C6F6151846C3B02AF5E /* Localizations */ = {isa = PBXFileReference; includeInIndex = 1; name = Localizations; path = Stripe/Resources/Localizations; sourceTree = "<group>"; };
 		8A21419442733A931E6B67D15915959D /* FBSDKHybridAppEventsScriptMessageHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKHybridAppEventsScriptMessageHandler.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/FBSDKHybridAppEventsScriptMessageHandler.m; sourceTree = "<group>"; };
-		8A34D89CDEBAF9F9ADF7D15040A16507 /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A34D89CDEBAF9F9ADF7D15040A16507 /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Bolts.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AA9BC0DFC7F0E19E35C5D774E38C9B7 /* stp_card_applepay@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_applepay@2x.png"; path = "Stripe/Resources/Images/stp_card_applepay@2x.png"; sourceTree = "<group>"; };
 		8AC5A6EEA819F2654E48008A8F4FBA59 /* STPEmailAddressValidator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPEmailAddressValidator.h; path = Stripe/STPEmailAddressValidator.h; sourceTree = "<group>"; };
 		8B1318B118496184C590AD2E9E01323F /* STPSourceParams+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "STPSourceParams+Private.h"; path = "Stripe/STPSourceParams+Private.h"; sourceTree = "<group>"; };
@@ -1056,7 +1056,7 @@
 		92576F53AA59EFAFE3780418AE062365 /* FABKitProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FABKitProtocol.h; path = Stripe/FABKitProtocol.h; sourceTree = "<group>"; };
 		92B6926737AF6028D6D9D869A3748009 /* FBSDKBridgeAPIProtocolNativeV1.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKBridgeAPIProtocolNativeV1.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/ProtocolVersions/FBSDKBridgeAPIProtocolNativeV1.m; sourceTree = "<group>"; };
 		934FC05711F4C84ECBF5BF86E8905748 /* FBSDKLoginManagerLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKLoginManagerLogger.m; path = FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKLoginManagerLogger.m; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9449B8ECE00C26815438F0688BF915CC /* NSURLComponents+Stripe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSURLComponents+Stripe.m"; path = "Stripe/NSURLComponents+Stripe.m"; sourceTree = "<group>"; };
 		94A7B45BF0F46C814CFE6B121053AB26 /* flutter_facebook_login-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "flutter_facebook_login-umbrella.h"; sourceTree = "<group>"; };
 		94CB582C238C85D7274724ED7EFF81DA /* FBSDKSettings.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKSettings.m; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKSettings.m; sourceTree = "<group>"; };
@@ -1084,11 +1084,11 @@
 		A0A61FAD74A0AB88FB22BE120F8B2708 /* stp_card_cvc.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = stp_card_cvc.png; path = Stripe/Resources/Images/stp_card_cvc.png; sourceTree = "<group>"; };
 		A0FBEB808EC73ACC51909E33C1BFE022 /* FBSDKMonotonicTime.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKMonotonicTime.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKMonotonicTime.h; sourceTree = "<group>"; };
 		A144D2FD6B544C84C0167D1FE94C2678 /* UITableViewCell+Stripe_Borders.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITableViewCell+Stripe_Borders.h"; path = "Stripe/UITableViewCell+Stripe_Borders.h"; sourceTree = "<group>"; };
-		A162499FC141914FC69E5A62BD24E94F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = "../../../../../../../.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_login-1.1.1/LICENSE"; sourceTree = "<group>"; };
+		A162499FC141914FC69E5A62BD24E94F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = "../../../../../../../.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_login-1.1.1/LICENSE"; sourceTree = "<group>"; };
 		A1ADBA9DAD83D160D2619BE6E9134051 /* ResourceBundle-Stripe-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-Stripe-Info.plist"; sourceTree = "<group>"; };
 		A2BAC0CF45DB8B6335B9FE840A0F871B /* FBSDKAppEventsDeviceInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKAppEventsDeviceInfo.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/FBSDKAppEventsDeviceInfo.m; sourceTree = "<group>"; };
 		A2D3EDAA783BB01F254361DA232341A4 /* NSBundle+Stripe_AppName.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSBundle+Stripe_AppName.m"; path = "Stripe/NSBundle+Stripe_AppName.m"; sourceTree = "<group>"; };
-		A2E5C2AF333EBA34101A73DEFE2A69FA /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2E5C2AF333EBA34101A73DEFE2A69FA /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FBSDKLoginKit.framework; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A310D2E5F3955A9997467E6C0C3BB624 /* NSDictionary+Stripe.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+Stripe.m"; path = "Stripe/NSDictionary+Stripe.m"; sourceTree = "<group>"; };
 		A3485CA4F50C80384A998058D12F9E61 /* STPSource+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "STPSource+Private.h"; path = "Stripe/STPSource+Private.h"; sourceTree = "<group>"; };
 		A355A928911369C7B4BECC7216EB8E7F /* BFExecutor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BFExecutor.h; path = Bolts/Common/BFExecutor.h; sourceTree = "<group>"; };
@@ -1203,7 +1203,7 @@
 		D08DA550799815D537A284C7D1238649 /* stp_card_cvc@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_cvc@2x.png"; path = "Stripe/Resources/Images/stp_card_cvc@2x.png"; sourceTree = "<group>"; };
 		D08FBD888C2A73A37F3286451389D7B2 /* STPFormTextField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = STPFormTextField.h; path = Stripe/STPFormTextField.h; sourceTree = "<group>"; };
 		D0BD54C32B3CF58CBEF92F3D0B3D2C95 /* FBSDKApplicationDelegate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKApplicationDelegate.m; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKApplicationDelegate.m; sourceTree = "<group>"; };
-		D197DBBE487851F366D37638B3967619 /* flutter_facebook_login.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = flutter_facebook_login.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D197DBBE487851F366D37638B3967619 /* flutter_facebook_login.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = flutter_facebook_login.framework; path = flutter_facebook_login.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D21316C6C890EE68CC121A9579D25F82 /* FBSDKSwizzler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKSwizzler.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKSwizzler.h; sourceTree = "<group>"; };
 		D2DA34BE7F799FD4D3892142A96E1BEF /* stp_card_amex_template.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = stp_card_amex_template.png; path = Stripe/Resources/Images/stp_card_amex_template.png; sourceTree = "<group>"; };
 		D2E0D1B9EBA28C6623512DB721F3EC1B /* STPCoreViewController+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "STPCoreViewController+Private.h"; path = "Stripe/STPCoreViewController+Private.h"; sourceTree = "<group>"; };
@@ -1227,7 +1227,7 @@
 		DA834E8197C8F1701A9F9DC6831FB26B /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSDKCoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAED571D6AE32D057E2C7D719E2D5EDA /* StripeError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = StripeError.m; path = Stripe/StripeError.m; sourceTree = "<group>"; };
 		DBC9F85963BA7BCA9C675951216FC9BA /* stp_card_jcb@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_jcb@3x.png"; path = "Stripe/Resources/Images/stp_card_jcb@3x.png"; sourceTree = "<group>"; };
-		DBD5D6821F5BBAD752D5C7AE8C2DEF98 /* Stripe.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Stripe.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBD5D6821F5BBAD752D5C7AE8C2DEF98 /* Stripe.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = Stripe.bundle; path = "Stripe-Stripe.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC05B0C1DCED5A5A66EDB4596DE8E368 /* STPCategoryLoader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPCategoryLoader.m; path = Stripe/STPCategoryLoader.m; sourceTree = "<group>"; };
 		DC10590361310BBFE47924A040A5C29B /* FBSDKApplicationDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKApplicationDelegate.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKApplicationDelegate.h; sourceTree = "<group>"; };
 		DC9B8688CC0590809EF0A105348405F1 /* FBSDKDeviceLoginManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKDeviceLoginManager.m; path = FBSDKLoginKit/FBSDKLoginKit/FBSDKDeviceLoginManager.m; sourceTree = "<group>"; };
@@ -1258,7 +1258,7 @@
 		E40D6760E275B8013692AE8850CCC572 /* FBSDKSettings+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKSettings+Internal.h"; path = "FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKSettings+Internal.h"; sourceTree = "<group>"; };
 		E42A382FA133CECE382B17C2ED09EF29 /* stp_card_cvc_amex.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = stp_card_cvc_amex.png; path = Stripe/Resources/Images/stp_card_cvc_amex.png; sourceTree = "<group>"; };
 		E4A88CE63D78E156464044D01C4254B7 /* stp_card_cvc@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "stp_card_cvc@3x.png"; path = "Stripe/Resources/Images/stp_card_cvc@3x.png"; sourceTree = "<group>"; };
-		E649E544EDB570E40F828E22534BAAA6 /* Flutter.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Flutter.podspec; path = "../../../../../../.flutter-sdk/flutter/bin/cache/artifacts/engine/ios/Flutter.podspec"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		E649E544EDB570E40F828E22534BAAA6 /* Flutter.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Flutter.podspec; path = "../../../../../../.flutter-sdk/flutter/bin/cache/artifacts/engine/ios/Flutter.podspec"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E659FEB10BB6722E2DD74BF789CB242A /* STPSectionHeaderView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = STPSectionHeaderView.m; path = Stripe/STPSectionHeaderView.m; sourceTree = "<group>"; };
 		E73802841AE119EC1E4769ECDC9A1181 /* UIViewController+Stripe_ParentViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Stripe_ParentViewController.m"; path = "Stripe/UIViewController+Stripe_ParentViewController.m"; sourceTree = "<group>"; };
 		E7445CE43F6B87AD199AE0094CB9D042 /* FacebookLoginPlugin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FacebookLoginPlugin.h; path = "../../../../../../../../.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_login-1.1.1/ios/Classes/FacebookLoginPlugin.h"; sourceTree = "<group>"; };
@@ -1418,6 +1418,7 @@
 			children = (
 				A20B2E72D937A65A6E40A28766B3AC63 /* Classes */,
 			);
+			name = ios;
 			path = ios;
 			sourceTree = "<group>";
 		};
@@ -1449,6 +1450,7 @@
 			children = (
 				71CE3FB047AF9549DC00DD3BED5CEABE /* snuze-app */,
 			);
+			name = webDevProjects;
 			path = webDevProjects;
 			sourceTree = "<group>";
 		};
@@ -1694,6 +1696,7 @@
 				4C75BE1C7E898E3F1C245766D32E146D /* Resources */,
 				4C859DA9AADF4C92DCF76C23DED80B80 /* Support Files */,
 			);
+			name = Stripe;
 			path = Stripe;
 			sourceTree = "<group>";
 		};
@@ -1702,6 +1705,7 @@
 			children = (
 				FC6942F1DC81024F90F898F74D2E3AA4 /* flutter_facebook_login */,
 			);
+			name = plugins;
 			path = plugins;
 			sourceTree = "<group>";
 		};
@@ -1712,6 +1716,7 @@
 				4E5E79CADD170A2D8797BF7B211B61A8 /* Support Files */,
 				BDF09599DE35A202AA756BB5DF15057A /* Tasks */,
 			);
+			name = Bolts;
 			path = Bolts;
 			sourceTree = "<group>";
 		};
@@ -1733,6 +1738,7 @@
 			children = (
 				6955D0F3002ED02D8CFCB3D6AF998B4D /* .. */,
 			);
+			name = ..;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -1741,6 +1747,7 @@
 			children = (
 				AE374ECDF1212FF108FFE1804156EFDE /* ios */,
 			);
+			name = shared_preferences;
 			path = shared_preferences;
 			sourceTree = "<group>";
 		};
@@ -1749,6 +1756,7 @@
 			children = (
 				C396612A29B5F047CF6DEA958A5B6C59 /* .. */,
 			);
+			name = ..;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -1757,6 +1765,7 @@
 			children = (
 				6743C6A29FCBE549B39DD15079752923 /* ios */,
 			);
+			name = "snuze-app";
 			path = "snuze-app";
 			sourceTree = "<group>";
 		};
@@ -1775,6 +1784,7 @@
 			children = (
 				0FE1E633ABD1A7B2116425BA682743BA /* plugins */,
 			);
+			name = .symlinks;
 			path = .symlinks;
 			sourceTree = "<group>";
 		};
@@ -1783,6 +1793,7 @@
 			children = (
 				E60B7BD49B9B749E78F05D972D9F06A4 /* .. */,
 			);
+			name = ..;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -1962,6 +1973,7 @@
 			children = (
 				C351F0AB51D0194A4690EC2AD023AA92 /* .symlinks */,
 			);
+			name = ios;
 			path = ios;
 			sourceTree = "<group>";
 		};
@@ -1981,6 +1993,7 @@
 			children = (
 				988BCD519E14546C5B952787910BB783 /* .. */,
 			);
+			name = ..;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -1989,6 +2002,7 @@
 			children = (
 				17B9DE0762A65C76B3695289DD2AED2A /* .. */,
 			);
+			name = ..;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -1997,6 +2011,7 @@
 			children = (
 				96F3DCA346931F904144822F178F4E29 /* ios */,
 			);
+			name = "snuze-app";
 			path = "snuze-app";
 			sourceTree = "<group>";
 		};
@@ -2185,6 +2200,7 @@
 				09EC830623C3537DB2B4FEF59483EA70 /* Resources */,
 				3ECD3C9E94EA394C7931E9FB9FCA4989 /* Support Files */,
 			);
+			name = FBSDKCoreKit;
 			path = FBSDKCoreKit;
 			sourceTree = "<group>";
 		};
@@ -2205,6 +2221,7 @@
 			children = (
 				35D451370EB2D8EDB96232B1F5A1B5BF /* .symlinks */,
 			);
+			name = ios;
 			path = ios;
 			sourceTree = "<group>";
 		};
@@ -2213,6 +2230,7 @@
 			children = (
 				1B4F64F85C3C7A434BCBC596C5D44B62 /* .. */,
 			);
+			name = ..;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -2221,6 +2239,7 @@
 			children = (
 				F75E981EE41B18BE76800DEC8183AE1E /* .. */,
 			);
+			name = ..;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -2282,6 +2301,7 @@
 				E7445CE43F6B87AD199AE0094CB9D042 /* FacebookLoginPlugin.h */,
 				EA935EFFB39D0B500B5468D9A2871C0A /* FacebookLoginPlugin.m */,
 			);
+			name = Classes;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -2290,6 +2310,7 @@
 			children = (
 				1B141CCDD9410ED42EF4209FA60A4E29 /* shared_preferences */,
 			);
+			name = plugins;
 			path = plugins;
 			sourceTree = "<group>";
 		};
@@ -2306,6 +2327,7 @@
 			children = (
 				FA16155B36661BC0D3EAC71CE390F1BC /* Classes */,
 			);
+			name = ios;
 			path = ios;
 			sourceTree = "<group>";
 		};
@@ -2314,6 +2336,7 @@
 			children = (
 				242179D285C123F7216AE63994EBEBBD /* snuze-app */,
 			);
+			name = webDevProjects;
 			path = webDevProjects;
 			sourceTree = "<group>";
 		};
@@ -2322,6 +2345,7 @@
 			children = (
 				3C1D22FB6EC84FC8FCEBC934014860EA /* .. */,
 			);
+			name = ..;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -2330,6 +2354,7 @@
 			children = (
 				09993A767FD0430EC64AD485CDD1FF70 /* webDevProjects */,
 			);
+			name = ..;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -2383,6 +2408,7 @@
 			children = (
 				A65B7C772D0FB986744F325F7EBF61EF /* plugins */,
 			);
+			name = .symlinks;
 			path = .symlinks;
 			sourceTree = "<group>";
 		};
@@ -2391,6 +2417,7 @@
 			children = (
 				B32AF0D3318DC9C2B7DF5AC9175283EF /* webDevProjects */,
 			);
+			name = ..;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -2399,6 +2426,7 @@
 			children = (
 				B55B1E3061D6EB4CA341BFE555E7A077 /* .. */,
 			);
+			name = ..;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -2437,6 +2465,7 @@
 			children = (
 				9701D421FBAD873E467520C605B26FE2 /* .. */,
 			);
+			name = ..;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -2445,6 +2474,7 @@
 			children = (
 				6E5C0BE9396C57312B8F5A35B8726C5B /* .. */,
 			);
+			name = ..;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -2490,6 +2520,7 @@
 				379364DE43FC6408C1CCA9946C3931A0 /* FBSDKTooltipView.m */,
 				EB5CBE74453F34594D9EB2C6F283A85E /* Support Files */,
 			);
+			name = FBSDKLoginKit;
 			path = FBSDKLoginKit;
 			sourceTree = "<group>";
 		};
@@ -2522,6 +2553,7 @@
 			children = (
 				B5D379DE28237AF47A1F816695E604AA /* .. */,
 			);
+			name = ..;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -2531,6 +2563,7 @@
 				964D11056096530038642AB851ED4277 /* SharedPreferencesPlugin.h */,
 				793461CA4106B1954FEF98BC8FB48E8D /* SharedPreferencesPlugin.m */,
 			);
+			name = Classes;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -2539,6 +2572,7 @@
 			children = (
 				00BB68666FF99A166AB06E4B7BF15379 /* ios */,
 			);
+			name = flutter_facebook_login;
 			path = flutter_facebook_login;
 			sourceTree = "<group>";
 		};
@@ -3038,7 +3072,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 0930;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -3574,7 +3608,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3768,7 +3801,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -4342,7 +4374,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

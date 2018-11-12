@@ -5,8 +5,9 @@ import 'package:scoped_model/scoped_model.dart';
 
 import './scoped-models/main.dart';
 
-import './pages/home/main.dart';
-import './pages/auth/auth.dart';
+import 'package:snuze/pages/home/main.dart';
+import 'package:snuze/pages/auth/auth.dart';
+import 'package:snuze/pages/auth/signup.dart';
 
 void main() {
   // debugPaintSizeEnabled = true;
@@ -52,6 +53,8 @@ class _MyAppState extends State<MyApp> {
         routes: {
           '/': (BuildContext context) =>
               !_isAuthenticated ? AuthPage() : MainPage(_model),
+          '/signup': (BuildContext context) =>
+              SignUpPage(),
           '/home': (BuildContext context) => MainPage(_model),
         },
         onUnknownRoute: (RouteSettings settings) {

@@ -9,7 +9,13 @@ class CreditCardForm extends StatelessWidget {
   Widget _buildCCNumberField() {
     return TextFormField(
       decoration: InputDecoration(
-          labelText: 'XXXXXXXXXXXXXXXX', filled: true, fillColor: Colors.white),
+        labelText: 'XXXXXXXXXXXXXXXX',
+        labelStyle: new TextStyle(color: Colors.white),
+        filled: true,
+        fillColor: Color.fromRGBO(255, 255, 255, 0.2),
+        border: InputBorder.none,
+      ),
+      style: new TextStyle(height: .3),
       keyboardType: TextInputType.number,
       validator: (String value) {
         if (value.isEmpty || value.length != 16) {
@@ -23,59 +29,87 @@ class CreditCardForm extends StatelessWidget {
   }
 
   Widget _buildExpMonthField() {
-    return TextFormField(
-      decoration: InputDecoration(
-          labelText: 'MM', filled: true, fillColor: Colors.white),
-      keyboardType: TextInputType.number,
-      validator: (String value) {
-        if (value.isEmpty || value.length != 2) {
-          return 'please enter a valid exp month';
-        }
-      },
-      onSaved: (String value) {
-        var val = int.tryParse(value);
-        if (val == null) {
-          print('Error parsing expMonth');
-        }
-        onCardChange(<String, int>{'expMonth': val});
-      },
-    );
+    return Container(
+        width: 52,
+        child: TextFormField(
+          decoration: InputDecoration(
+            labelText: 'MM',
+            labelStyle: new TextStyle(color: Colors.white),
+            filled: true,
+            fillColor: Color.fromRGBO(255, 255, 255, 0.2),
+            border: InputBorder.none,
+          ),
+          style: new TextStyle(height: .3),
+          keyboardType: TextInputType.number,
+          validator: (String value) {
+            if (value.isEmpty || value.length != 2) {
+              return 'please enter a valid exp month';
+            }
+          },
+          onSaved: (String value) {
+            var val = int.tryParse(value);
+            if (val == null) {
+              print('Error parsing expMonth');
+            }
+            onCardChange(<String, int>{'expMonth': val});
+          },
+        ));
   }
 
   Widget _buildExpYearField() {
-    return TextFormField(
-      decoration: InputDecoration(
-          labelText: 'YYYY', filled: true, fillColor: Colors.white),
-      keyboardType: TextInputType.number,
-      validator: (String value) {
-        if (value.isEmpty || value.length != 4) {
-          return 'please enter a valid exp year';
-        }
-      },
-      onSaved: (String value) {
-        var val = int.tryParse(value);
-        if (val == null) {
-          print('Error parsing expMonth');
-        }
-        onCardChange(<String, int>{'expYear': val});
-      },
-    );
+    return Container(
+        margin: new EdgeInsets.fromLTRB(5, 0, 20, 0),
+        width: 66,
+        child: TextFormField(
+          decoration: InputDecoration(
+            labelText: 'YYYY',
+            labelStyle: new TextStyle(color: Colors.white),
+            filled: true,
+            fillColor: Color.fromRGBO(255, 255, 255, 0.2),
+            border: InputBorder.none,
+          ),
+          style: new TextStyle(
+            height: .3,
+          ),
+          keyboardType: TextInputType.number,
+          validator: (String value) {
+            if (value.isEmpty || value.length != 4) {
+              return 'please enter a valid exp year';
+            }
+          },
+          onSaved: (String value) {
+            var val = int.tryParse(value);
+            if (val == null) {
+              print('Error parsing expMonth');
+            }
+            onCardChange(<String, int>{'expYear': val});
+          },
+        ));
   }
 
   Widget _buildCvcField() {
-    return TextFormField(
-      decoration: InputDecoration(
-          labelText: 'CVC', filled: true, fillColor: Colors.white),
-      keyboardType: TextInputType.number,
-      validator: (String value) {
-        if (value.isEmpty || value.length != 3) {
-          return 'please enter a valid cvc';
-        }
-      },
-      onSaved: (String value) {
-        onCardChange(<String, String>{'cvc': value});
-      },
-    );
+    return Container(
+        margin: EdgeInsets.only(left: 25),
+        width: 113,
+        child: TextFormField(
+          decoration: InputDecoration(
+            labelText: 'CVC',
+            labelStyle: new TextStyle(color: Colors.white),
+            filled: true,
+            fillColor: Color.fromRGBO(255, 255, 255, 0.2),
+            border: InputBorder.none,
+          ),
+          style: new TextStyle(height: .3),
+          keyboardType: TextInputType.number,
+          validator: (String value) {
+            if (value.isEmpty || value.length != 3) {
+              return 'please enter a valid cvc';
+            }
+          },
+          onSaved: (String value) {
+            onCardChange(<String, String>{'cvc': value});
+          },
+        ));
   }
 
   @override
@@ -84,11 +118,15 @@ class CreditCardForm extends StatelessWidget {
       children: <Widget>[
         _buildCCNumberField(),
         SizedBox(height: 10.0),
-        _buildExpMonthField(),
-        SizedBox(height: 10.0),
-        _buildExpYearField(),
-        SizedBox(height: 10.0),
-        _buildCvcField(),
+        Row(
+          children: <Widget>[
+            _buildExpMonthField(),
+            SizedBox(height: 10.0),
+            _buildExpYearField(),
+            SizedBox(height: 10.0),
+            _buildCvcField(),
+          ],
+        ),
       ],
     );
   }

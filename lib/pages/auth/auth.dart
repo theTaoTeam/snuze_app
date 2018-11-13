@@ -279,11 +279,9 @@ class _AuthPageState extends State<AuthPage> {
                                                 style: TextStyle(fontSize: 20),
                                               ),
                                               onPressed: () {
-                                                setState(() {
                                                   print(
                                                       'login with facebook pressed!');
                                                   model.startFacebookLogin();
-                                                });
                                               },
                                             )),
                                         SizedBox(

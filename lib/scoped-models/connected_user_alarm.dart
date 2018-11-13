@@ -13,12 +13,13 @@ import 'package:snuze/models/auth.dart';
 import 'package:snuze/models/user.dart';
 
 class ConnectedUserAlarmModel extends Model {
-  String apiKey = FIREBASE_API_KEY;
-  User _authenticatedUser;
-  bool _isLoading = false;
+  
 }
 
 mixin UserModel on ConnectedUserAlarmModel {
+  String apiKey = FIREBASE_API_KEY;
+  User _authenticatedUser;
+  bool _isLoading = false;
   PublishSubject<bool> _userSubject = PublishSubject();
   User get user {
     return _authenticatedUser;
@@ -26,6 +27,10 @@ mixin UserModel on ConnectedUserAlarmModel {
 
   PublishSubject<bool> get userSubject {
     return _userSubject;
+  }
+
+  bool get isLoading {
+    return _isLoading;
   }
 
   Future<Map<String, dynamic>> authenticate(String email, String password,
@@ -57,7 +62,8 @@ mixin UserModel on ConnectedUserAlarmModel {
         headers: {'Content-Type': 'application/json'},
       );
     }
-
+    final SharedPreferences prefs = await SharedPreferences
+          .getInstance(); //gets required instance of device storage
     final Map<String, dynamic> responseData = json.decode(response.body);
     bool hasError = true;
     String message = 'Something went wrong.';
@@ -68,10 +74,11 @@ mixin UserModel on ConnectedUserAlarmModel {
       _authenticatedUser = User(
           id: responseData['localId'],
           email: email,
-          token: responseData['refreshToken']);
+          token: responseData['refreshToken'],
+          darkTheme: mode == AuthMode.Signup ? false : prefs.getBool('darkTheme')
+          );
       _userSubject.add(true);
-      final SharedPreferences prefs = await SharedPreferences
-          .getInstance(); //gets required instance of device storage
+      
       prefs.setString(
           'token', responseData['refreshToken']); //sets token in device storage
       prefs.setString('userEmail', email);
@@ -97,7 +104,8 @@ mixin UserModel on ConnectedUserAlarmModel {
       if (token != null) {
         final String userEmail = prefs.getString('userEmail');
         final String userId = prefs.getString('userId');
-        _authenticatedUser = User(id: userId, email: userEmail, token: token);
+        final bool darkTheme = prefs.getBool('darkTheme');
+        _authenticatedUser = User(id: userId, email: userEmail, token: token, darkTheme: darkTheme);
         _userSubject.add(true);
         notifyListeners();
       }
@@ -203,24 +211,31 @@ mixin UserModel on ConnectedUserAlarmModel {
       }
     }
 
-    Future<Map<String, dynamic>> fetchUserSettings() async {
+    Future<Null> fetchUserSettings() async {
+      _isLoading = true;
+      notifyListeners();
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       final Map<String, dynamic> userSettings = {
         'email': prefs.getString('userEmail'),
         'darkTheme': prefs.getBool('darkTheme'),
       };
-      return userSettings;
+      _isLoading = false;
+      notifyListeners();
     }
 
     Future<Null> saveUserSettings(Map<String, dynamic> settings) async {
+      _isLoading = true;
+      notifyListeners();
       final SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('userEmail', settings['email']);
       prefs.setBool('darkTheme', settings['darkTheme']);
+      _authenticatedUser = new User(
+        id: _authenticatedUser.id,
+        email: _authenticatedUser.email,
+        token: _authenticatedUser.token,
+        darkTheme: _authenticatedUser.darkTheme,
+      );
+      _isLoading = false;
+      notifyListeners();
     }
   }
-
-mixin UtilityModel on ConnectedUserAlarmModel {
-  bool get isLoading {
-    return _isLoading;
-  }
-}

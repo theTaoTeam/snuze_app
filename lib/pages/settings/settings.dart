@@ -29,7 +29,7 @@ class _SettingsPageState extends State<SettingsPage> {
   };
   @override
   void initState() {
-    // _fetchUserSettings();
+    _fetchUserSettings();
     super.initState();
   }
 

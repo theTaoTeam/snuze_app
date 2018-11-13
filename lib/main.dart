@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 // import 'package:flutter/rendering.dart';
 
 import 'package:scoped_model/scoped_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 import './scoped-models/main.dart';
 
@@ -20,7 +22,6 @@ void main() {
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _MyAppState();
   }
 }
@@ -52,13 +53,13 @@ class _MyAppState extends State<MyApp> {
           accentColor: Colors.red,
         ),
         routes: {
-          // '/': (BuildContext context) =>
-          //     !_isAuthenticated ? AuthPage() : MainPage(_model),
           '/': (BuildContext context) =>
-              SettingsPage(),
+              !_isAuthenticated ? AuthPage() : MainPage(_model),
           '/signup': (BuildContext context) =>
               SignUpPage(),
           '/home': (BuildContext context) => MainPage(_model),
+          '/settings': (BuildContext context) =>
+              SettingsPage(),
         },
         onUnknownRoute: (RouteSettings settings) {
           return MaterialPageRoute(

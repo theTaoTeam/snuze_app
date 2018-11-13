@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'dart:async';
 
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:snuze/pages/settings/update_payment_form.dart';
@@ -16,21 +16,36 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   final MainModel _model = new MainModel();
+  bool _sentPassword = false;
   Map<String, dynamic> userSettings = {
-    'email': 'clamptron@gmail.com',
-    'theme': false,
+    'email': '',
+    'darkTheme': false,
   };
-
   Map<String, dynamic> _newCardInfo = {
     'number': '',
     'expMonth': null,
     'expYear': null,
     'cvc': '',
   };
-
   @override
   void initState() {
+    _fetchUserSettings();
     super.initState();
+  }
+
+  void _fetchUserSettings() async {
+    final storedUserSettings = await _model.fetchUserSettings();
+    print(storedUserSettings);
+    setState(() {
+      storedUserSettings.forEach((key, val) {
+        if (userSettings[key] == null) {
+          userSettings[key] = false;
+        } else {
+          userSettings[key] = val;
+        }
+      });
+    });
+    print('settings: $userSettings');
   }
 
   Widget _buildSectionTitle(String title) {
@@ -48,16 +63,19 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget _buildDarkThemeRow() {
     return Row(
       children: <Widget>[
-        Text('dark-theme'),
+        Text(
+          'dark theme',
+          style: TextStyle(fontSize: 15),
+        ),
         Container(
-          margin: EdgeInsets.only(left: 178),
+          margin: EdgeInsets.only(left: 170),
           child: CupertinoSwitch(
-            value: userSettings['theme'],
+            value: userSettings['darkTheme'],
             activeColor: Color(0xFFFE2562),
             onChanged: (bool val) {
               print(val);
               setState(() {
-                userSettings['theme'] = !userSettings['theme'];
+                userSettings['darkTheme'] = !userSettings['darkTheme'];
               });
             },
           ),
@@ -79,6 +97,11 @@ class _SettingsPageState extends State<SettingsPage> {
                 labelText: userSettings['email'],
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.only(right: 10)),
+            onChanged: (String val) {
+              setState(() {
+                userSettings['email'] = val;
+              });
+            },
           ),
         ),
       ],
@@ -110,7 +133,15 @@ class _SettingsPageState extends State<SettingsPage> {
             textColor: Color(0xFFFE2562),
             onPressed: () {
               print('pressed reset password');
-              _resetPassword();
+              _model.resetPassword(userSettings['email']);
+              setState(() {
+                _sentPassword = true;
+              });
+              Timer(Duration(seconds: 5), () {
+                setState(() {
+                  _sentPassword = false;
+                });
+              });
             },
           )
         : FlatButton(
@@ -135,8 +166,9 @@ class _SettingsPageState extends State<SettingsPage> {
     print(_newCardInfo);
   }
 
-  void _resetPassword() {
-    _model.resetPassword(userSettings['email']);
+  void _saveSettings() {
+    _model.saveUserSettings(userSettings);
+    Navigator.pop(context);
   }
 
   @override
@@ -148,7 +180,10 @@ class _SettingsPageState extends State<SettingsPage> {
       return Scaffold(
         backgroundColor: Color(0xFFFFFFFF),
         appBar: AppBar(
-          title: Text('settings', style: TextStyle(fontSize: 23),),
+          title: Text(
+            'settings',
+            style: TextStyle(fontSize: 23),
+          ),
           centerTitle: true,
           elevation: 0.0,
           backgroundColor: Colors.white,
@@ -164,6 +199,7 @@ class _SettingsPageState extends State<SettingsPage> {
               textColor: Color(0xFFFE2562),
               onPressed: () {
                 print('save setting pressed');
+                _saveSettings();
               },
             )
           ],
@@ -182,10 +218,20 @@ class _SettingsPageState extends State<SettingsPage> {
                   _buildEmailRow(),
                   _buildDivider(targetWidth, false),
                   Center(
-                      child: model.isLoading
-                          ? CircularProgressIndicator(
-                              valueColor:
-                                  AlwaysStoppedAnimation<Color>(Colors.white))
+                      child: _sentPassword
+                          ? AnimatedOpacity(
+                              opacity: 1,
+                              duration: Duration(milliseconds: 500),
+                              child: FlatButton(
+                                highlightColor: Colors.transparent,
+                                splashColor: Colors.transparent,
+                                child: Text(
+                                  "we've sent you an email!",
+                                ),
+                                textColor: Color(0xFFFE2562),
+                                onPressed: () {},
+                              ),
+                            )
                           : _buildActionButton('reset')),
                   SizedBox(
                     height: 40,

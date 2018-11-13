@@ -29,7 +29,11 @@ mixin UserModel on ConnectedUserAlarmModel {
   }
 
   Future<Map<String, dynamic>> authenticate(String email, String password,
-      [AuthMode mode = AuthMode.Login, String number, int expMonth, int expYear, String cvc]) async {
+      [AuthMode mode = AuthMode.Login,
+      String number,
+      int expMonth,
+      int expYear,
+      String cvc]) async {
     _isLoading = true;
     notifyListeners();
 
@@ -72,69 +76,72 @@ mixin UserModel on ConnectedUserAlarmModel {
           'token', responseData['refreshToken']); //sets token in device storage
       prefs.setString('userEmail', email);
       prefs.setString('userId', responseData['localId']);
-    } else if (responseData['error']['message'] == 'EMAIL_EXISTS') {
-      message = 'This email already exists.';
-    } else if (responseData['error']['message'] == 'EMAIL_NOT_FOUND') {
-      message = 'This email was not found.';
-    } else if (responseData['error']['message'] == 'INVALID_PASSWORD') {
-      message = 'The password is invalid.';
-    }
-    _isLoading = false;
-    notifyListeners();
-    return {'success': !hasError, 'message': message};
-  }
+      if (mode == AuthMode.Signup) {
+        prefs.setBool('darkTheme', false);
+      } else if (responseData['error']['message'] == 'EMAIL_EXISTS') {
+        message = 'This email already exists.';
+      } else if (responseData['error']['message'] == 'EMAIL_NOT_FOUND') {
+        message = 'This email was not found.';
+      } else if (responseData['error']['message'] == 'INVALID_PASSWORD') {
+        message = 'The password is invalid.';
+      }
+      _isLoading = false;
+      notifyListeners();
+      return {'success': !hasError, 'message': message};
+    }}
 
-  void autoAuthenticate() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String token = prefs.getString('token');
-    print(prefs.getString('token'));
-    if (token != null) {
-      final String userEmail = prefs.getString('userEmail');
-      final String userId = prefs.getString('userId');
-      _authenticatedUser = User(id: userId, email: userEmail, token: token);
-      _userSubject.add(true);
+    void autoAuthenticate() async {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      final String token = prefs.getString('token');
+      print(prefs.getString('token'));
+      if (token != null) {
+        final String userEmail = prefs.getString('userEmail');
+        final String userId = prefs.getString('userId');
+        _authenticatedUser = User(id: userId, email: userEmail, token: token);
+        _userSubject.add(true);
+        notifyListeners();
+      }
+    }
+
+    Future<Null> resetPassword(String email) async {
+      _isLoading = true;
+      notifyListeners();
+      print('email: $email');
+      final Map<String, String> oobRequestBody = {
+        'kind': "identitytoolkit#relyingparty",
+        'requestType': "PASSWORD_RESET",
+        'email': email,
+      };
+      http.Response getOob;
+      try {
+        getOob = await http.post(
+          'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getOobConfirmationCode?key=$apiKey',
+          body: json.encode(oobRequestBody),
+        );
+      } catch (error) {
+        print(error);
+        return;
+      }
+      print('Successfully sent reset password! OOB: ${getOob.body}');
+      _isLoading = false;
       notifyListeners();
     }
-  }
 
-  Future<Null> resetPassword(String email) async {
-    _isLoading = true;
-    notifyListeners();
-    print('email: $email');
-    final Map<String, String> oobRequestBody = {
-      'kind': "identitytoolkit#relyingparty",
-      'requestType': "PASSWORD_RESET",
-      'email': email,
-    };
-    http.Response getOob;
-    try {
-      print('made it into try');
-       getOob = await http.post(
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getOobConfirmationCode?key=$apiKey',
-        body: json.encode(oobRequestBody),
-      );
-    } catch(error) {
-      print(error);
-    }
-    _isLoading = false;
-    notifyListeners();
-  }
-
-  Future<Null> startFacebookLogin() async {
-    _isLoading = true;
-    notifyListeners();
-    final FacebookLogin facebookSignIn = new FacebookLogin();
-    final FacebookLoginResult result =
-        await facebookSignIn.logInWithReadPermissions(['email']);
-    switch (result.status) {
-      case FacebookLoginStatus.loggedIn:
-        final FacebookAccessToken accessToken = result.accessToken;
-        final SharedPreferences prefs = await SharedPreferences.getInstance();
-        final String userEmail = prefs.getString('userEmail');
-        var graphResponse = await http.get(
-            'https://graph.facebook.com/v2.12/me?fields=name,email&access_token=${result.accessToken.token}');
-        var profile = json.decode(graphResponse.body);
-        print('''
+    Future<Null> startFacebookLogin() async {
+      _isLoading = true;
+      notifyListeners();
+      final FacebookLogin facebookSignIn = new FacebookLogin();
+      final FacebookLoginResult result =
+          await facebookSignIn.logInWithReadPermissions(['email']);
+      switch (result.status) {
+        case FacebookLoginStatus.loggedIn:
+          final FacebookAccessToken accessToken = result.accessToken;
+          final SharedPreferences prefs = await SharedPreferences.getInstance();
+          final String userEmail = prefs.getString('userEmail');
+          var graphResponse = await http.get(
+              'https://graph.facebook.com/v2.12/me?fields=name,email&access_token=${result.accessToken.token}');
+          var profile = json.decode(graphResponse.body);
+          print('''
          Logged in!
          device-storage: $userEmail
          accessToken: $accessToken
@@ -145,57 +152,72 @@ mixin UserModel on ConnectedUserAlarmModel {
          Permissions: ${accessToken.permissions}
          Declined permissions: ${accessToken.declinedPermissions}
          ''');
-        final Map<String, dynamic> authData = {
-          'email': profile['email'],
-          'password': profile['id'],
-          'returnSecureToken': true,
-        };
-        http.Response response;
-        response = await http.post(
-          'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=$apiKey',
-          body: json.encode(authData),
-          headers: {'Content-Type': 'application/json'},
-        );
-        final Map<String, dynamic> firstResponseData =
-            json.decode(response.body);
-        if (firstResponseData['error'] != null) {
-          print('user not found. attempting to sign up ----------');
+          final Map<String, dynamic> authData = {
+            'email': profile['email'],
+            'password': profile['id'],
+            'returnSecureToken': true,
+          };
+          http.Response response;
           response = await http.post(
-            'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=$apiKey',
+            'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=$apiKey',
             body: json.encode(authData),
             headers: {'Content-Type': 'application/json'},
           );
-        }
-        final Map<String, dynamic> responseData = json.decode(response.body);
-        print('RESPONSE DATA $responseData');
-        print(responseData['refreshToken']);
-        if (responseData.containsKey('idToken')) {
-          _userSubject.add(true);
-          final SharedPreferences prefs = await SharedPreferences
-              .getInstance(); //gets required instance of device storage
-          prefs.setString('userEmail', responseData['email']);
-          prefs.setString('userId', responseData['idToken']);
-          prefs.setString('token', responseData['refreshToken']);
+          final Map<String, dynamic> firstResponseData =
+              json.decode(response.body);
+          if (firstResponseData['error'] != null) {
+            print('user not found. attempting to sign up ----------');
+            response = await http.post(
+              'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=$apiKey',
+              body: json.encode(authData),
+              headers: {'Content-Type': 'application/json'},
+            );
+          }
+          final Map<String, dynamic> responseData = json.decode(response.body);
+          print('RESPONSE DATA $responseData');
+          print(responseData['refreshToken']);
+          if (responseData.containsKey('idToken')) {
+            _userSubject.add(true);
+            final SharedPreferences prefs = await SharedPreferences
+                .getInstance(); //gets required instance of device storage
+            prefs.setString('userEmail', responseData['email']);
+            prefs.setString('userId', responseData['idToken']);
+            prefs.setString('token', responseData['refreshToken']);
+            _isLoading = false;
+            notifyListeners();
+          } else {
+            print('something went wrong with the response $responseData');
+            _isLoading = false;
+            notifyListeners();
+          }
+          break;
+        case FacebookLoginStatus.cancelledByUser:
+          print('Login cancelled by the user.');
           _isLoading = false;
           notifyListeners();
-        } else {
-          print('something went wrong with the response $responseData');
-          _isLoading = false;
-          notifyListeners();
-        }
-        break;
-      case FacebookLoginStatus.cancelledByUser:
-        print('Login cancelled by the user.');
-        _isLoading = false;
-        notifyListeners();
-        break;
-      case FacebookLoginStatus.error:
-        print('Something went wrong with the login process.\n'
-            'Here\'s the error Facebook gave us: ${result.errorMessage}');
-        break;
+          break;
+        case FacebookLoginStatus.error:
+          print('Something went wrong with the login process.\n'
+              'Here\'s the error Facebook gave us: ${result.errorMessage}');
+          break;
+      }
+    }
+
+    Future<Map<String, dynamic>> fetchUserSettings() async {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      final Map<String, dynamic> userSettings = {
+        'email': prefs.getString('userEmail'),
+        'darkTheme': prefs.getBool('darkTheme'),
+      };
+      return userSettings;
+    }
+
+    Future<Null> saveUserSettings(Map<String, dynamic> settings) async {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('userEmail', settings['email']);
+      prefs.setBool('darkTheme', settings['darkTheme']);
     }
   }
-}
 
 mixin UtilityModel on ConnectedUserAlarmModel {
   bool get isLoading {

@@ -215,10 +215,14 @@ mixin UserModel on ConnectedUserAlarmModel {
       _isLoading = true;
       notifyListeners();
       final SharedPreferences prefs = await SharedPreferences.getInstance();
-      final Map<String, dynamic> userSettings = {
-        'email': prefs.getString('userEmail'),
-        'darkTheme': prefs.getBool('darkTheme'),
-      };
+      final email = prefs.getString('userEmail');
+      final theme = prefs.getBool('darkTheme');
+      _authenticatedUser = new User(
+        id: _authenticatedUser.id,
+        email: email,
+        token: _authenticatedUser.token,
+        darkTheme: theme,
+      );
       _isLoading = false;
       notifyListeners();
     }

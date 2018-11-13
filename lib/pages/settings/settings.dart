@@ -18,7 +18,7 @@ class _SettingsPageState extends State<SettingsPage> {
   final MainModel _model = new MainModel();
   bool _sentPassword = false;
   Map<String, dynamic> userSettings = {
-    'email': '',
+    'email': 'clamptron@gmail.com',
     'darkTheme': false,
   };
   Map<String, dynamic> _newCardInfo = {
@@ -29,7 +29,7 @@ class _SettingsPageState extends State<SettingsPage> {
   };
   @override
   void initState() {
-    _fetchUserSettings();
+    // _fetchUserSettings();
     super.initState();
   }
 
@@ -62,13 +62,15 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Widget _buildDarkThemeRow() {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Text(
-          'dark theme',
-          style: TextStyle(fontSize: 15),
+        Container(
+          child: Text(
+            'dark theme',
+            style: TextStyle(fontSize: 15),
+          ),
         ),
         Container(
-          margin: EdgeInsets.only(left: 170),
           child: CupertinoSwitch(
             value: userSettings['darkTheme'],
             activeColor: Color(0xFFFE2562),
@@ -86,17 +88,18 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Widget _buildEmailRow() {
     return Row(
-      // mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Text('email'),
         Container(
-          margin: EdgeInsets.only(left: 72),
+          child: Text('email'),
+        ),
+        Container(
           width: 200,
           child: TextField(
             decoration: InputDecoration(
-                labelText: userSettings['email'],
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.only(right: 10)),
+              labelText: userSettings['email'],
+              border: InputBorder.none,
+            ),
             onChanged: (String val) {
               setState(() {
                 userSettings['email'] = val;
@@ -213,36 +216,52 @@ class _SettingsPageState extends State<SettingsPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  _buildDarkThemeRow(),
-                  _buildDivider(targetWidth, false),
-                  _buildEmailRow(),
-                  _buildDivider(targetWidth, false),
-                  Center(
-                      child: _sentPassword
-                          ? AnimatedOpacity(
-                              opacity: 1,
-                              duration: Duration(milliseconds: 500),
-                              child: FlatButton(
-                                highlightColor: Colors.transparent,
-                                splashColor: Colors.transparent,
-                                child: Text(
-                                  "we've sent you an email!",
-                                ),
-                                textColor: Color(0xFFFE2562),
-                                onPressed: () {},
-                              ),
-                            )
-                          : _buildActionButton('reset')),
+                  Column(
+                    children: <Widget>[
+                      Container(
+                        child: _buildDarkThemeRow(),
+                      ),
+                      _buildDivider(targetWidth, false),
+                      Container(
+                        child: _buildEmailRow(),
+                      ),
+                      _buildDivider(targetWidth, false),
+                      Center(
+                          child: _sentPassword
+                              ? AnimatedOpacity(
+                                  opacity: 1,
+                                  duration: Duration(milliseconds: 500),
+                                  child: FlatButton(
+                                    highlightColor: Colors.transparent,
+                                    splashColor: Colors.transparent,
+                                    child: Text(
+                                      "we've sent you an email!",
+                                    ),
+                                    textColor: Color(0xFFFE2562),
+                                    onPressed: () {},
+                                  ),
+                                )
+                              : _buildActionButton('reset')),
+                    ],
+                  ),
                   SizedBox(
                     height: 40,
                   ),
-                  _buildSectionTitle('payment method'),
-                  SizedBox(
-                    height: 20,
+                  Column(
+                    children: <Widget>[
+                      Container(
+                        child: _buildSectionTitle('payment method'),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                          child:
+                              UpdatePaymentForm(onCardChange: updateCardInfo)),
+                      _buildDivider(targetWidth, true),
+                      Center(child: _buildActionButton('update')),
+                    ],
                   ),
-                  UpdatePaymentForm(onCardChange: updateCardInfo),
-                  _buildDivider(targetWidth, true),
-                  Center(child: _buildActionButton('update')),
                 ],
               ),
             ),

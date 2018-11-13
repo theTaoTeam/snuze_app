@@ -10,29 +10,28 @@ class UpdatePaymentForm extends StatelessWidget {
   Widget _buildCCNumberField() {
     return Container(
         child: TextFormField(
-          decoration: InputDecoration(
-            labelText: 'XXXXXXXXXXXXXXXX',
-            labelStyle: new TextStyle(color: Color(0xFFDFDFDF)),
-            filled: true,
-            fillColor: Color.fromRGBO(255, 255, 255, 0.2),
-            border: InputBorder.none,
-          ),
-          style: new TextStyle(height: .3),
-          keyboardType: TextInputType.number,
-          validator: (String value) {
-            if (value.isEmpty || value.length != 16) {
-              return 'please enter a valid credit card number';
-            }
-          },
-          onSaved: (String value) {
-            onCardChange(<String, String>{'number': value});
-          },
-        ));
+      decoration: InputDecoration(
+        labelText: 'XXXXXXXXXXXXXXXX',
+        labelStyle: new TextStyle(color: Color(0xFFDFDFDF)),
+        filled: true,
+        fillColor: Color.fromRGBO(255, 255, 255, 0.2),
+        border: InputBorder.none,
+      ),
+      style: new TextStyle(height: .3),
+      keyboardType: TextInputType.number,
+      validator: (String value) {
+        if (value.isEmpty || value.length != 16) {
+          return 'please enter a valid credit card number';
+        }
+      },
+      onSaved: (String value) {
+        onCardChange(<String, String>{'number': value});
+      },
+    ));
   }
 
   Widget _buildExpMonthField() {
     return Container(
-        margin: EdgeInsets.only(left: 55),
         width: 52,
         child: TextFormField(
           decoration: InputDecoration(
@@ -61,8 +60,7 @@ class UpdatePaymentForm extends StatelessWidget {
 
   Widget _buildExpYearField() {
     return Container(
-        margin: new EdgeInsets.fromLTRB(5, 0, 20, 0),
-        width: 63,
+        width: 70,
         child: TextFormField(
           decoration: InputDecoration(
             labelText: 'YYYY',
@@ -120,7 +118,6 @@ class UpdatePaymentForm extends StatelessWidget {
       height: 20.0,
       child: Center(
         child: Container(
-          margin: isFullWidth ? EdgeInsets.all(0) : EdgeInsets.only(left: 80),
           height: 1,
           color: Color(0xFFA1A1A1),
         ),
@@ -138,12 +135,12 @@ class UpdatePaymentForm extends StatelessWidget {
         _buildCCNumberField(),
         _buildDivider(targetWidth, true),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            _buildCvcField(),
+            Container(child: _buildCvcField(),),
             SizedBox(height: 10.0),
-            _buildExpMonthField(),
+            Row(children: <Widget>[_buildExpMonthField(),_buildExpYearField(),],),
             SizedBox(height: 10.0),
-            _buildExpYearField(),
           ],
         ),
       ],

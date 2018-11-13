@@ -199,6 +199,7 @@ class _AuthPageState extends State<AuthPage> {
           padding: EdgeInsets.all(20.0),
           child: Center(
             child: SingleChildScrollView(
+              reverse: true,
               child: Container(
                   margin: new EdgeInsets.fromLTRB(0, 50, 0, 0),
                   width: targetWidth,
@@ -271,7 +272,6 @@ class _AuthPageState extends State<AuthPage> {
                                               color: Color.fromRGBO(
                                                   255, 255, 255, 0),
                                               textColor: Colors.white,
-                                              highlightColor: Color(0xFF434343),
                                               highlightedBorderColor:
                                                   Colors.transparent,
                                               child: Text(

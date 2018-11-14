@@ -12,9 +12,7 @@ import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:snuze/models/auth.dart';
 import 'package:snuze/models/user.dart';
 
-class ConnectedUserAlarmModel extends Model {
-  
-}
+class ConnectedUserAlarmModel extends Model {}
 
 mixin UserModel on ConnectedUserAlarmModel {
   String apiKey = FIREBASE_API_KEY;
@@ -42,12 +40,14 @@ mixin UserModel on ConnectedUserAlarmModel {
     _isLoading = true;
     notifyListeners();
 
-    print("$number, $expMonth, $expYear, $cvc");
+    print("Credit Card info: $number, $expMonth, $expYear, $cvc");
     final Map<String, dynamic> authData = {
       'email': email,
       'password': password,
       'returnSecureToken': true
     };
+    final SharedPreferences prefs = await SharedPreferences
+        .getInstance(); //gets required instance of device storage
     http.Response response;
     if (mode == AuthMode.Login) {
       response = await http.post(
@@ -62,94 +62,94 @@ mixin UserModel on ConnectedUserAlarmModel {
         headers: {'Content-Type': 'application/json'},
       );
     }
-    final SharedPreferences prefs = await SharedPreferences
-          .getInstance(); //gets required instance of device storage
-    final Map<String, dynamic> responseData = json.decode(response.body);
     bool hasError = true;
     String message = 'Something went wrong.';
+    final Map<String, dynamic> responseData = json.decode(response.body);
     print(responseData);
     if (responseData.containsKey('idToken')) {
       hasError = false;
       message = 'Authentication succeeded!';
       _authenticatedUser = User(
-          id: responseData['localId'],
-          email: email,
-          token: responseData['refreshToken'],
-          darkTheme: mode == AuthMode.Signup ? false : prefs.getBool('darkTheme')
-          );
+        id: responseData['localId'],
+        email: email,
+        token: responseData['refreshToken'],
+        darkTheme: mode == AuthMode.Signup ? false : prefs.getBool('darkTheme'),
+      );
       _userSubject.add(true);
-      
+    
       prefs.setString(
           'token', responseData['refreshToken']); //sets token in device storage
       prefs.setString('userEmail', email);
       prefs.setString('userId', responseData['localId']);
-      if (mode == AuthMode.Signup) {
-        prefs.setBool('darkTheme', false);
-      } else if (responseData['error']['message'] == 'EMAIL_EXISTS') {
-        message = 'This email already exists.';
-      } else if (responseData['error']['message'] == 'EMAIL_NOT_FOUND') {
-        message = 'This email was not found.';
-      } else if (responseData['error']['message'] == 'INVALID_PASSWORD') {
-        message = 'The password is invalid.';
-      }
-      _isLoading = false;
-      notifyListeners();
-      return {'success': !hasError, 'message': message};
-    }}
+      prefs.setBool('darkTheme', _authenticatedUser.darkTheme);
+    } else if (responseData['error']['message'] == 'EMAIL_EXISTS') {
+      message = 'This email already exists.';
+    } else if (responseData['error']['message'] == 'EMAIL_NOT_FOUND') {
+      message = 'This email was not found.';
+    } else if (responseData['error']['message'] == 'INVALID_PASSWORD') {
+      message = 'The password is invalid.';
+    }
 
-    void autoAuthenticate() async {
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-      final String token = prefs.getString('token');
-      print(prefs.getString('token'));
-      if (token != null) {
+    print('USER: ${_authenticatedUser.email}');
+    _isLoading = false;
+    notifyListeners();
+    return {'success': !hasError, 'message': message};
+  }
+
+  void autoAuthenticate() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String token = prefs.getString('token');
+    print(prefs.getString('token'));
+    if (token != null) {
+      final String userEmail = prefs.getString('userEmail');
+      final String userId = prefs.getString('userId');
+      final bool darkTheme = prefs.getBool('darkTheme');
+      _authenticatedUser = User(
+          id: userId, email: userEmail, token: token, darkTheme: darkTheme);
+      _userSubject.add(true);
+      notifyListeners();
+    }
+  }
+
+  Future<Null> resetPassword(String email) async {
+    _isLoading = true;
+    notifyListeners();
+    print('email: $email');
+    final Map<String, String> oobRequestBody = {
+      'kind': "identitytoolkit#relyingparty",
+      'requestType': "PASSWORD_RESET",
+      'email': email,
+    };
+    http.Response getOob;
+    try {
+      getOob = await http.post(
+        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getOobConfirmationCode?key=$apiKey',
+        body: json.encode(oobRequestBody),
+      );
+    } catch (error) {
+      print(error);
+      return;
+    }
+    print('Successfully sent reset password! OOB: ${getOob.body}');
+    _isLoading = false;
+    notifyListeners();
+  }
+
+  Future<Null> startFacebookLogin() async {
+    _isLoading = true;
+    notifyListeners();
+    final FacebookLogin facebookSignIn = new FacebookLogin();
+    final FacebookLoginResult result =
+        await facebookSignIn.logInWithReadPermissions(['email']);
+    switch (result.status) {
+      case FacebookLoginStatus.loggedIn:
+        final FacebookAccessToken accessToken = result.accessToken;
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
         final String userEmail = prefs.getString('userEmail');
-        final String userId = prefs.getString('userId');
-        final bool darkTheme = prefs.getBool('darkTheme');
-        _authenticatedUser = User(id: userId, email: userEmail, token: token, darkTheme: darkTheme);
-        _userSubject.add(true);
-        notifyListeners();
-      }
-    }
-
-    Future<Null> resetPassword(String email) async {
-      _isLoading = true;
-      notifyListeners();
-      print('email: $email');
-      final Map<String, String> oobRequestBody = {
-        'kind': "identitytoolkit#relyingparty",
-        'requestType': "PASSWORD_RESET",
-        'email': email,
-      };
-      http.Response getOob;
-      try {
-        getOob = await http.post(
-          'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getOobConfirmationCode?key=$apiKey',
-          body: json.encode(oobRequestBody),
-        );
-      } catch (error) {
-        print(error);
-        return;
-      }
-      print('Successfully sent reset password! OOB: ${getOob.body}');
-      _isLoading = false;
-      notifyListeners();
-    }
-
-    Future<Null> startFacebookLogin() async {
-      _isLoading = true;
-      notifyListeners();
-      final FacebookLogin facebookSignIn = new FacebookLogin();
-      final FacebookLoginResult result =
-          await facebookSignIn.logInWithReadPermissions(['email']);
-      switch (result.status) {
-        case FacebookLoginStatus.loggedIn:
-          final FacebookAccessToken accessToken = result.accessToken;
-          final SharedPreferences prefs = await SharedPreferences.getInstance();
-          final String userEmail = prefs.getString('userEmail');
-          var graphResponse = await http.get(
-              'https://graph.facebook.com/v2.12/me?fields=name,email&access_token=${result.accessToken.token}');
-          var profile = json.decode(graphResponse.body);
-          print('''
+        var graphResponse = await http.get(
+            'https://graph.facebook.com/v2.12/me?fields=name,email&access_token=${result.accessToken.token}');
+        var profile = json.decode(graphResponse.body);
+        print('''
          Logged in!
          device-storage: $userEmail
          accessToken: $accessToken
@@ -160,86 +160,89 @@ mixin UserModel on ConnectedUserAlarmModel {
          Permissions: ${accessToken.permissions}
          Declined permissions: ${accessToken.declinedPermissions}
          ''');
-          final Map<String, dynamic> authData = {
-            'email': profile['email'],
-            'password': profile['id'],
-            'returnSecureToken': true,
-          };
-          http.Response response;
+        final Map<String, dynamic> authData = {
+          'email': profile['email'],
+          'password': profile['id'],
+          'returnSecureToken': true,
+        };
+        http.Response response;
+        response = await http.post(
+          'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=$apiKey',
+          body: json.encode(authData),
+          headers: {'Content-Type': 'application/json'},
+        );
+        final Map<String, dynamic> firstResponseData =
+            json.decode(response.body);
+        if (firstResponseData['error'] != null) {
+          print('user not found. attempting to sign up ----------');
           response = await http.post(
-            'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=$apiKey',
+            'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=$apiKey',
             body: json.encode(authData),
             headers: {'Content-Type': 'application/json'},
           );
-          final Map<String, dynamic> firstResponseData =
-              json.decode(response.body);
-          if (firstResponseData['error'] != null) {
-            print('user not found. attempting to sign up ----------');
-            response = await http.post(
-              'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=$apiKey',
-              body: json.encode(authData),
-              headers: {'Content-Type': 'application/json'},
-            );
-          }
-          final Map<String, dynamic> responseData = json.decode(response.body);
-          print('RESPONSE DATA $responseData');
-          print(responseData['refreshToken']);
-          if (responseData.containsKey('idToken')) {
-            _userSubject.add(true);
-            final SharedPreferences prefs = await SharedPreferences
-                .getInstance(); //gets required instance of device storage
-            prefs.setString('userEmail', responseData['email']);
-            prefs.setString('userId', responseData['idToken']);
-            prefs.setString('token', responseData['refreshToken']);
-            _isLoading = false;
-            notifyListeners();
-          } else {
-            print('something went wrong with the response $responseData');
-            _isLoading = false;
-            notifyListeners();
-          }
-          break;
-        case FacebookLoginStatus.cancelledByUser:
-          print('Login cancelled by the user.');
+        }
+        final Map<String, dynamic> responseData = json.decode(response.body);
+        print('RESPONSE DATA $responseData');
+        print(responseData['refreshToken']);
+        if (responseData.containsKey('idToken')) {
+          _userSubject.add(true);
+          final SharedPreferences prefs = await SharedPreferences
+              .getInstance(); //gets required instance of device storage
+          prefs.setString('userEmail', responseData['email']);
+          prefs.setString('userId', responseData['idToken']);
+          prefs.setString('token', responseData['refreshToken']);
           _isLoading = false;
           notifyListeners();
-          break;
-        case FacebookLoginStatus.error:
-          print('Something went wrong with the login process.\n'
-              'Here\'s the error Facebook gave us: ${result.errorMessage}');
-          break;
-      }
-    }
-
-    Future<Null> fetchUserSettings() async {
-      _isLoading = true;
-      notifyListeners();
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-      final email = prefs.getString('userEmail');
-      final theme = prefs.getBool('darkTheme');
-      _authenticatedUser = new User(
-        id: _authenticatedUser.id,
-        email: email,
-        token: _authenticatedUser.token,
-        darkTheme: theme,
-      );
-      _isLoading = false;
-      notifyListeners();
-    }
-
-    Future<Null> saveUserSettings(Map<String, dynamic> settings) async {
-      _isLoading = true;
-      notifyListeners();
-      final SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('userEmail', settings['email']);
-      prefs.setBool('darkTheme', settings['darkTheme']);
-      _authenticatedUser = new User(
-        id: _authenticatedUser.id,
-        email: _authenticatedUser.email,
-        token: _authenticatedUser.token,
-        darkTheme: _authenticatedUser.darkTheme,
-      );
-      _isLoading = false;
-      notifyListeners();
+        } else {
+          print('something went wrong with the response $responseData');
+          _isLoading = false;
+          notifyListeners();
+        }
+        break;
+      case FacebookLoginStatus.cancelledByUser:
+        print('Login cancelled by the user.');
+        _isLoading = false;
+        notifyListeners();
+        break;
+      case FacebookLoginStatus.error:
+        print('Something went wrong with the login process.\n'
+            'Here\'s the error Facebook gave us: ${result.errorMessage}');
+        break;
     }
   }
+
+  Future<Null> fetchUserSettings() async {
+    _isLoading = true;
+    notifyListeners();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final email = prefs.getString('userEmail');
+    final theme = prefs.getBool('darkTheme');
+    print("USER IN FETCHSETTINGS $_authenticatedUser");
+    _authenticatedUser = new User(
+      id: _authenticatedUser.id,
+      email: email,
+      token: _authenticatedUser.token,
+      darkTheme: theme,
+    );
+    _isLoading = false;
+    notifyListeners();
+    return;
+  }
+
+  Future<Null> saveUserSettings(Map<String, dynamic> settings) async {
+    _isLoading = true;
+    notifyListeners();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('userEmail', settings['email']);
+    prefs.setBool('darkTheme', settings['darkTheme']);
+    print(_authenticatedUser);
+    _authenticatedUser = new User(
+      id: _authenticatedUser.id,
+      email: _authenticatedUser.email,
+      token: _authenticatedUser.token,
+      darkTheme: _authenticatedUser.darkTheme,
+    );
+    _isLoading = false;
+    notifyListeners();
+  }
+}

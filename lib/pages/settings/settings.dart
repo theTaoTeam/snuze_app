@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:async';
+import 'dart:io';
 
 import 'package:scoped_model/scoped_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:snuze/pages/settings/update_payment_form.dart';
 import 'package:snuze/scoped-models/main.dart';
@@ -18,7 +20,7 @@ class _SettingsPageState extends State<SettingsPage> {
   final MainModel _model = new MainModel();
   bool _sentPassword = false;
   Map<String, dynamic> userSettings = {
-    'email': 'clamptron@gmail.com',
+    'email': '',
     'darkTheme': false,
   };
   Map<String, dynamic> _newCardInfo = {
@@ -28,24 +30,18 @@ class _SettingsPageState extends State<SettingsPage> {
     'cvc': '',
   };
   @override
-  void initState() {
-    _fetchUserSettings();
+  void initState(){
+    
+    print('userSettings: $userSettings');
     super.initState();
   }
 
-  void _fetchUserSettings() async {
-    final storedUserSettings = await _model.fetchUserSettings();
-    print(storedUserSettings);
+  _fetchUserSettings() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      storedUserSettings.forEach((key, val) {
-        if (userSettings[key] == null) {
-          userSettings[key] = false;
-        } else {
-          userSettings[key] = val;
-        }
-      });
+      userSettings['email'] = prefs.getString('email');
+      userSettings['darkTheme'] = prefs.getBool('darkTheme');
     });
-    print('settings: $userSettings');
   }
 
   Widget _buildSectionTitle(String title) {
@@ -53,7 +49,7 @@ class _SettingsPageState extends State<SettingsPage> {
       child: Text(
         title,
         style: TextStyle(
-            color: Color(0xFF434343),
+            color: Theme.of(context).dividerColor,
             fontSize: 23,
             fontWeight: FontWeight.w700),
       ),
@@ -67,13 +63,14 @@ class _SettingsPageState extends State<SettingsPage> {
         Container(
           child: Text(
             'dark theme',
-            style: TextStyle(fontSize: 15),
+            style:
+                TextStyle(fontSize: 15, color: Theme.of(context).disabledColor),
           ),
         ),
         Container(
           child: CupertinoSwitch(
             value: userSettings['darkTheme'],
-            activeColor: Color(0xFFFE2562),
+            activeColor: Theme.of(context).primaryColor,
             onChanged: (bool val) {
               print(val);
               setState(() {
@@ -91,13 +88,17 @@ class _SettingsPageState extends State<SettingsPage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Container(
-          child: Text('email'),
+          child: Text(
+            'email',
+            style: TextStyle(color: Theme.of(context).disabledColor),
+          ),
         ),
         Container(
           width: 200,
           child: TextField(
             decoration: InputDecoration(
               labelText: userSettings['email'],
+              labelStyle: TextStyle(color: Theme.of(context).disabledColor),
               border: InputBorder.none,
             ),
             onChanged: (String val) {
@@ -119,7 +120,7 @@ class _SettingsPageState extends State<SettingsPage> {
         child: Container(
           margin: isFullWidth ? EdgeInsets.all(0) : EdgeInsets.only(left: 80),
           height: 1,
-          color: Color(0xFFA1A1A1),
+          color: Theme.of(context).dividerColor,
         ),
       ),
     );
@@ -133,7 +134,7 @@ class _SettingsPageState extends State<SettingsPage> {
             child: Text(
               'reset password?',
             ),
-            textColor: Color(0xFFFE2562),
+            textColor: Theme.of(context).primaryColor,
             onPressed: () {
               print('pressed reset password');
               _model.resetPassword(userSettings['email']);
@@ -153,7 +154,7 @@ class _SettingsPageState extends State<SettingsPage> {
             child: Text(
               'update card info',
             ),
-            textColor: Color(0xFFFE2562),
+            textColor: Theme.of(context).primaryColor,
             onPressed: () {
               print('update card info pressed');
             },
@@ -171,7 +172,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   void _saveSettings() {
     _model.saveUserSettings(userSettings);
-    Navigator.pop(context);
+    // Navigator.pop(context);
   }
 
   @override
@@ -181,15 +182,16 @@ class _SettingsPageState extends State<SettingsPage> {
     return ScopedModelDescendant<MainModel>(
         builder: (BuildContext context, Widget child, MainModel model) {
       return Scaffold(
-        backgroundColor: Color(0xFFFFFFFF),
+        backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
           title: Text(
             'settings',
-            style: TextStyle(fontSize: 23),
+            style:
+                TextStyle(fontSize: 23, color: Theme.of(context).dividerColor),
           ),
           centerTitle: true,
           elevation: 0.0,
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).backgroundColor,
           iconTheme: IconThemeData(
             color: Colors.white, //change your color here
           ),
@@ -199,7 +201,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 'done',
                 style: TextStyle(fontSize: 15),
               ),
-              textColor: Color(0xFFFE2562),
+              textColor: Theme.of(context).primaryColor,
               onPressed: () {
                 print('save setting pressed');
                 _saveSettings();
@@ -211,6 +213,9 @@ class _SettingsPageState extends State<SettingsPage> {
           child: SingleChildScrollView(
             reverse: true,
             child: Container(
+              margin: Platform.isIOS
+                  ? EdgeInsets.only(bottom: 150)
+                  : EdgeInsets.only(bottom: 50),
               width: targetWidth,
               alignment: Alignment.topCenter,
               child: Column(
@@ -237,7 +242,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                     child: Text(
                                       "we've sent you an email!",
                                     ),
-                                    textColor: Color(0xFFFE2562),
+                                    textColor: Theme.of(context).primaryColor,
                                     onPressed: () {},
                                   ),
                                 )

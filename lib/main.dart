@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:scoped_model/scoped_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:snuze/styles/themes/themes.dart';
 
 import './scoped-models/main.dart';
 
@@ -43,23 +43,20 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    bool darkTheme =
+        _model.user == null ? false : _model.user.darkTheme;
     return ScopedModel<MainModel>(
       model: _model,
       child: MaterialApp(
-        theme: ThemeData(
-          backgroundColor: Colors.white,
-          brightness: Brightness.light,
-          primaryColor: Colors.white,
-          accentColor: Colors.red,
-        ),
+        theme: darkTheme ? buildDarkTheme() : buildLightTheme(),
         routes: {
+          // '/': (BuildContext context) =>
+          //     !_isAuthenticated ? AuthPage() : MainPage(_model),
           '/': (BuildContext context) =>
-              !_isAuthenticated ? AuthPage() : MainPage(_model),
-          '/signup': (BuildContext context) =>
-              SignUpPage(),
+              !_isAuthenticated ? AuthPage() : SettingsPage(),
+          '/signup': (BuildContext context) => SignUpPage(),
           '/home': (BuildContext context) => MainPage(_model),
-          '/settings': (BuildContext context) =>
-              SettingsPage(),
+          '/settings': (BuildContext context) => SettingsPage(),
         },
         onUnknownRoute: (RouteSettings settings) {
           return MaterialPageRoute(

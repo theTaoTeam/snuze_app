@@ -24,6 +24,11 @@ class _AuthPageState extends State<AuthPage> {
   final TextEditingController _passwordTextController = TextEditingController();
   AuthMode _authMode = AuthMode.Login;
 
+  @override
+  void initState() {
+    super.initState();
+  }
+
   Widget _buildTitleText(double targetWidth) {
     if (_hasForgotPass) {
       return Container(
@@ -32,7 +37,7 @@ class _AuthPageState extends State<AuthPage> {
           child: Text(
             "Forgot your pasword? Oh well, we'll send you an email.",
             style: TextStyle(
-              color: Colors.white,
+              color: Theme.of(context).backgroundColor,
               fontSize: 40,
               fontWeight: FontWeight.w900,
             ),
@@ -112,7 +117,8 @@ class _AuthPageState extends State<AuthPage> {
       _authMode,
     );
     if (successInformation['success']) {
-      Navigator.pushReplacementNamed(context, '/home');
+      print('navigating to next page');
+      Navigator.pushReplacementNamed(context, '/settings');
     } else {
       showDialog(
         context: context,
@@ -248,6 +254,7 @@ class _AuthPageState extends State<AuthPage> {
                                                     BorderRadius.circular(25)),
                                             textColor: Colors.red,
                                             color: Colors.white,
+                                            splashColor: Color(0xFFFE2562),
                                             child: Text(
                                               'login',
                                               style: TextStyle(fontSize: 20),
@@ -279,9 +286,9 @@ class _AuthPageState extends State<AuthPage> {
                                                 style: TextStyle(fontSize: 20),
                                               ),
                                               onPressed: () {
-                                                  print(
-                                                      'login with facebook pressed!');
-                                                  model.startFacebookLogin();
+                                                print(
+                                                    'login with facebook pressed!');
+                                                model.startFacebookLogin();
                                               },
                                             )),
                                         SizedBox(
@@ -352,6 +359,7 @@ class _AuthPageState extends State<AuthPage> {
                                       borderRadius: BorderRadius.circular(25)),
                                   textColor: Colors.red,
                                   color: Colors.white,
+                                  splashColor: Color(0xFFFE2562),
                                   child: Text('Reset Password'),
                                   onPressed: () {
                                     _resetPass(_forgotPasswordEmail);

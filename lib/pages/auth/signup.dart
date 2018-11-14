@@ -198,9 +198,11 @@ class _SignUpPageState extends State<SignUpPage> {
                               ])
                             : Column(
                                 children: <Widget>[
-                                  SizedBox(height: 20,),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
                                   Container(
-                                    width: targetWidth, 
+                                    width: targetWidth,
                                     height: 40,
                                     child: RaisedButton(
                                       highlightElevation: 0,
@@ -209,6 +211,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                               BorderRadius.circular(25)),
                                       textColor: Colors.red,
                                       color: Colors.white,
+                                      splashColor: Color(0xFFFE2562),
                                       child: Text(
                                         'get snuzing',
                                         style: TextStyle(fontSize: 20),

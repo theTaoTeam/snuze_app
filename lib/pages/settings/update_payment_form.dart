@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:io';
 import 'package:flutter/cupertino.dart';
 
 class UpdatePaymentForm extends StatelessWidget {
@@ -7,12 +6,12 @@ class UpdatePaymentForm extends StatelessWidget {
 
   UpdatePaymentForm({this.onCardChange});
 
-  Widget _buildCCNumberField() {
+  Widget _buildCCNumberField(BuildContext context) {
     return Container(
         child: TextFormField(
       decoration: InputDecoration(
         labelText: 'XXXXXXXXXXXXXXXX',
-        labelStyle: new TextStyle(color: Color(0xFFDFDFDF)),
+        labelStyle: new TextStyle(color: Theme.of(context).disabledColor),
         filled: true,
         fillColor: Color.fromRGBO(255, 255, 255, 0.2),
         border: InputBorder.none,
@@ -30,13 +29,13 @@ class UpdatePaymentForm extends StatelessWidget {
     ));
   }
 
-  Widget _buildExpMonthField() {
+  Widget _buildExpMonthField(BuildContext context) {
     return Container(
         width: 52,
         child: TextFormField(
           decoration: InputDecoration(
             labelText: 'MM',
-            labelStyle: new TextStyle(color: Color(0xFFDFDFDF)),
+            labelStyle: new TextStyle(color: Theme.of(context).disabledColor),
             filled: true,
             fillColor: Color.fromRGBO(255, 255, 255, 0.2),
             border: InputBorder.none,
@@ -58,13 +57,13 @@ class UpdatePaymentForm extends StatelessWidget {
         ));
   }
 
-  Widget _buildExpYearField() {
+  Widget _buildExpYearField(BuildContext context) {
     return Container(
         width: 70,
         child: TextFormField(
           decoration: InputDecoration(
             labelText: 'YYYY',
-            labelStyle: new TextStyle(color: Color(0xFFDFDFDF)),
+            labelStyle: new TextStyle(color: Theme.of(context).disabledColor),
             filled: true,
             fillColor: Color.fromRGBO(255, 255, 255, 0.2),
             border: InputBorder.none,
@@ -88,13 +87,13 @@ class UpdatePaymentForm extends StatelessWidget {
         ));
   }
 
-  Widget _buildCvcField() {
+  Widget _buildCvcField(BuildContext context) {
     return Container(
         width: 113,
         child: TextFormField(
           decoration: InputDecoration(
             labelText: 'CVC',
-            labelStyle: new TextStyle(color: Color(0xFFDFDFDF)),
+            labelStyle: new TextStyle(color: Theme.of(context).disabledColor),
             filled: true,
             fillColor: Color.fromRGBO(255, 255, 255, 0.2),
             border: InputBorder.none,
@@ -112,14 +111,15 @@ class UpdatePaymentForm extends StatelessWidget {
         ));
   }
 
-  Widget _buildDivider(double targetWidth, bool isFullWidth) {
+  Widget _buildDivider(double targetWidth, bool isFullWidth, BuildContext context) {
     return SizedBox(
       width: targetWidth,
       height: 20.0,
       child: Center(
         child: Container(
+          margin: isFullWidth ? EdgeInsets.all(0) : EdgeInsets.only(left: 80),
           height: 1,
-          color: Color(0xFFA1A1A1),
+          color: Theme.of(context).dividerColor,
         ),
       ),
     );
@@ -132,14 +132,14 @@ class UpdatePaymentForm extends StatelessWidget {
     return Column(
       children: <Widget>[
         SizedBox(height: 5),
-        _buildCCNumberField(),
-        _buildDivider(targetWidth, true),
+        _buildCCNumberField(context),
+        _buildDivider(targetWidth, true, context),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Container(child: _buildCvcField(),),
+            Container(child: _buildCvcField(context),),
             SizedBox(height: 10.0),
-            Row(children: <Widget>[_buildExpMonthField(),_buildExpYearField(),],),
+            Row(children: <Widget>[_buildExpMonthField(context),_buildExpYearField(context),],),
             SizedBox(height: 10.0),
           ],
         ),

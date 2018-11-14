@@ -59,7 +59,6 @@ class CreditCardForm extends StatelessWidget {
 
   Widget _buildExpYearField() {
     return Container(
-        margin: new EdgeInsets.fromLTRB(5, 0, 20, 0),
         width: 66,
         child: TextFormField(
           decoration: InputDecoration(
@@ -90,7 +89,6 @@ class CreditCardForm extends StatelessWidget {
 
   Widget _buildCvcField() {
     return Container(
-        margin: Platform.isIOS ? EdgeInsets.only(left: 25) : EdgeInsets.only(left: 52),
         width: 113,
         child: TextFormField(
           decoration: InputDecoration(

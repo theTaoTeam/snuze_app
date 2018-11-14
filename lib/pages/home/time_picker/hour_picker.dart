@@ -17,6 +17,7 @@ class HourPicker extends StatelessWidget {
     return Flexible(
       fit: FlexFit.loose,
       child: CupertinoPicker(
+        backgroundColor: Colors.transparent,
         onSelectedItemChanged: (int newValue) {
           print(newValue);
           onHourChange(<String,dynamic>{

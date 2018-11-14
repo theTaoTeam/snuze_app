@@ -12,16 +12,17 @@ class AlarmManager extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double deviceWidth = MediaQuery.of(context).size.width;
-    final double targetWidth = deviceWidth > 550.0 ? 400.0 : deviceWidth * 0.65;
+    final double _targetWidth = deviceWidth > 550.0 ? 400.0 : deviceWidth * 0.65;
     return Container(
       decoration: BoxDecoration(color: Colors.white),
       padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          TimePicker(),
-          AlarmSettings(),
+          TimePicker(targetWidth: _targetWidth,),
+          AlarmSettings(targetWidth: _targetWidth,),
           SizedBox(),
-          HomeNav(targetWidth),
+          HomeNav(targetWidth: _targetWidth,),
         ],
       ),
     );

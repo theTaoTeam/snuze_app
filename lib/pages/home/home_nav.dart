@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class HomeNav extends StatelessWidget {
   final double targetWidth;
 
-  HomeNav(this.targetWidth);
+  HomeNav({this.targetWidth});
 
   @override
     Widget build(BuildContext context) {

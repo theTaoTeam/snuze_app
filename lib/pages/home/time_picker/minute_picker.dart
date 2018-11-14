@@ -10,10 +10,13 @@ class MinutePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final FixedExtentScrollController scrollController = FixedExtentScrollController(initialItem: this.minute);
+    final FixedExtentScrollController scrollController =
+        FixedExtentScrollController(initialItem: this.minute);
     return Flexible(
       fit: FlexFit.loose,
       child: CupertinoPicker(
+        backgroundColor: Colors.transparent,
+        useMagnifier: true,
         onSelectedItemChanged: (int newValue) {
           onMinuteChange(<String, dynamic>{"minute": newValue});
         },

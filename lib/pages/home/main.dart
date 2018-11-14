@@ -4,29 +4,32 @@ import 'package:flutter/cupertino.dart';
 import './alarm_manager.dart';
 import 'package:snuze/scoped-models/main.dart';
 
-
-class MainPage extends StatefulWidget {
+class MainPage extends StatelessWidget {
   final MainModel model;
 
   MainPage(this.model);
-  @override
-    State<StatefulWidget> createState() {
-      return _MainPageState();
-    }
-}
-class _MainPageState extends State<MainPage> {
-  // @override
-  // initState() {
-  //   widget.model.fetchUserAlarm();
-  //   super.initState();
-  // }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Snüze',
+          'snüze', style: TextStyle(color: Theme.of(context).highlightColor),
         ),
+        elevation: 0,
+        backgroundColor: Theme.of(context).backgroundColor,
+        actions: <Widget>[
+          FlatButton(
+            child: Icon(Icons.settings),
+            highlightColor: Colors.transparent,
+            textColor: Theme.of(context).highlightColor,
+            color: Theme.of(context).backgroundColor,
+            onPressed: () {
+              model.getUserTheme(model.user.darkTheme);
+              Navigator.pushNamed(context, '/settings');
+            },
+          )
+        ],
         centerTitle: true,
       ),
       body: AlarmManager(),

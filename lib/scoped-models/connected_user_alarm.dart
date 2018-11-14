@@ -78,7 +78,7 @@ mixin UserModel on ConnectedUserAlarmModel {
         id: responseData['localId'],
         email: email,
         token: responseData['refreshToken'],
-        darkTheme: mode == AuthMode.Signup ? false : prefs.getBool('darkTheme'),
+        darkTheme: prefs.getBool('darkTheme') == null ? false : prefs.getBool('darkTheme'),
       );
       _userSubject.add(true);
 
@@ -116,7 +116,7 @@ mixin UserModel on ConnectedUserAlarmModel {
     }
   }
 
-  Future<Map<String, String>> resetPassword(String email) async {
+  Future<Null> resetPassword(String email) async {
     _isLoading = true;
     notifyListeners();
   
@@ -215,6 +215,21 @@ mixin UserModel on ConnectedUserAlarmModel {
             'Here\'s the error Facebook gave us: ${result.errorMessage}');
         break;
     }
+  }
+
+  void logout() async {
+    _isLoading = true;
+    notifyListeners();
+    _userSubject.add(false);
+    _authenticatedUser = null;
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('token');
+    prefs.remove('userEmail');
+    prefs.remove('userId');
+    prefs.remove('darkTheme');
+    _isLoading = false;
+    notifyListeners();
+
   }
 
   Future<Null> fetchUserSettings() async {

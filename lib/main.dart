@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 // import 'package:flutter/rendering.dart';
 
 import 'package:scoped_model/scoped_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:snuze/styles/themes/themes.dart';
 
-import './scoped-models/main.dart';
+// import "package:snuze/models/alarm.dart";
+import 'package:snuze/scoped-models/main.dart';
 
 import 'package:snuze/pages/home/main.dart';
 import 'package:snuze/pages/auth/auth.dart';
@@ -34,6 +34,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     _model.autoAuthenticate();
     _model.userSubject.listen((bool isAuthenticated) {
+      print('User subject change: $isAuthenticated');
       //used to listen for different auth states. boolean
       setState(() {
         _isAuthenticated = isAuthenticated;
@@ -46,6 +47,7 @@ class _MyAppState extends State<MyApp> {
         _darkTheme = newTheme;
       });
     });
+    _model.fetchAlarm();
     super.initState();
   }
 
@@ -59,11 +61,11 @@ class _MyAppState extends State<MyApp> {
         routes: {
           '/': (BuildContext context) =>
               !_isAuthenticated ? AuthPage() : MainPage(_model),
-          // '/': (BuildContext context) =>
-          //     !_isAuthenticated ? AuthPage() : SettingsPage(model: _model),
           '/signup': (BuildContext context) => SignUpPage(),
-          '/home': (BuildContext context) => MainPage(_model),
-          '/settings': (BuildContext context) => SettingsPage(model: _model),
+          '/home': (BuildContext context) =>
+              !_isAuthenticated ? AuthPage() : MainPage(_model),
+          '/settings': (BuildContext context) =>
+              !_isAuthenticated ? AuthPage() : SettingsPage(model: _model),
         },
         onUnknownRoute: (RouteSettings settings) {
           return MaterialPageRoute(

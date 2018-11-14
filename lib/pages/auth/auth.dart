@@ -60,7 +60,6 @@ class _AuthPageState extends State<AuthPage> {
         labelStyle: new TextStyle(color: Colors.white),
         filled: true,
         fillColor: Color.fromRGBO(255, 255, 255, 0.2),
-        border: InputBorder.none,
       ),
       style: new TextStyle(height: .3),
       keyboardType: TextInputType.emailAddress,
@@ -84,7 +83,6 @@ class _AuthPageState extends State<AuthPage> {
         labelStyle: new TextStyle(color: Colors.white),
         filled: true,
         fillColor: Color.fromRGBO(255, 255, 255, 0.2),
-        border: InputBorder.none,
       ),
       style: new TextStyle(height: .3),
       obscureText: true,
@@ -247,9 +245,10 @@ class _AuthPageState extends State<AuthPage> {
                                             shape: RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(25)),
-                                            textColor: Colors.red,
+                                            textColor: Color(0xFFFE2562),
                                             color: Colors.white,
-                                            splashColor: Color(0xFFFE2562),
+                                            splashColor: Color(0xFFFE355A),
+                                            highlightColor: Colors.transparent,
                                             child: Text(
                                               'login',
                                               style: TextStyle(fontSize: 20),
@@ -274,6 +273,9 @@ class _AuthPageState extends State<AuthPage> {
                                               color: Color.fromRGBO(
                                                   255, 255, 255, 0),
                                               textColor: Colors.white,
+                                              splashColor: Color(0xFFFE355A),
+                                              highlightColor:
+                                                  Colors.transparent,
                                               highlightedBorderColor:
                                                   Colors.transparent,
                                               child: Text(
@@ -300,10 +302,10 @@ class _AuthPageState extends State<AuthPage> {
                                             color: Color.fromRGBO(
                                                 255, 255, 255, 0),
                                             textColor: Colors.white,
+                                            splashColor: Color(0xFFFE355A),
+                                            highlightColor: Colors.transparent,
                                             highlightedBorderColor:
                                                 Colors.transparent,
-                                            highlightColor: Color.fromRGBO(
-                                                255, 255, 255, 0.2),
                                             highlightElevation: 3,
                                             child: Text(
                                               'create an account',
@@ -318,6 +320,7 @@ class _AuthPageState extends State<AuthPage> {
                                         ),
                                         FlatButton(
                                           textColor: Colors.white,
+                                          highlightColor: Colors.transparent,
                                           child: Text(
                                             'forgot password?',
                                             style: TextStyle(fontSize: 17),
@@ -353,8 +356,9 @@ class _AuthPageState extends State<AuthPage> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(25)),
                                   textColor: Colors.red,
+                                  splashColor: Color(0xFFFE355A),
+                                  highlightColor: Colors.transparent,
                                   color: Colors.white,
-                                  splashColor: Color(0xFFFE2562),
                                   child: Text('Reset Password'),
                                   onPressed: () {
                                     _resetPass(_forgotPasswordEmail);
@@ -366,6 +370,7 @@ class _AuthPageState extends State<AuthPage> {
                               ),
                               FlatButton(
                                 textColor: Colors.white,
+                                highlightColor: Colors.transparent,
                                 child: Text(
                                   'cancel',
                                   style: TextStyle(fontSize: 17),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import './alarm_manager.dart';
-import '../../scoped-models/main.dart';
+import 'package:snuze/scoped-models/main.dart';
 
 class MainPage extends StatelessWidget {
   final MainModel model;
@@ -14,12 +14,16 @@ class MainPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Snüze',
+          'snüze', style: TextStyle(color: Theme.of(context).highlightColor),
         ),
+        elevation: 0,
+        backgroundColor: Theme.of(context).backgroundColor,
         actions: <Widget>[
           FlatButton(
             child: Icon(Icons.settings),
+            highlightColor: Colors.transparent,
             textColor: Theme.of(context).highlightColor,
+            color: Theme.of(context).backgroundColor,
             onPressed: () {
               model.getUserTheme(model.user.darkTheme);
               Navigator.pushNamed(context, '/settings');

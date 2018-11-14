@@ -20,7 +20,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   scoped_model: ^0.3.0
-  http: ^0.11.3+17
+  http: ^0.12.0
   shared_preferences: ^0.4.3 #for accesing device storage
   rxdart: ^0.19.0 #PublishSubject
   flutter_facebook_login: ^1.1.1
@@ -29,6 +29,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  build_runner: ^1.0.0
+  json_serializable: ^2.0.0
 
 
 # For information on the generic Dart part of this file, see the

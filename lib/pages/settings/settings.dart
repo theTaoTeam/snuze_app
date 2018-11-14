@@ -38,8 +38,8 @@ class _SettingsPageState extends State<SettingsPage> {
   void initState() {
     super.initState();
     setState(() {
-      userSettings['email'] = widget.model.user.email;
-      userSettings['darkTheme'] = widget.model.user.darkTheme;
+      userSettings['email'] = model.user.email;
+      userSettings['darkTheme'] = model.user.darkTheme;
     });
     print('userSettings after setState: $userSettings');
   }
@@ -184,11 +184,6 @@ class _SettingsPageState extends State<SettingsPage> {
     print(_newCardInfo);
   }
 
-  void _saveSettings() {
-    model.saveUserSettings(userSettings);
-    Navigator.pop(context);
-  }
-
   @override
   Widget build(BuildContext context) {
     final double deviceWidth = MediaQuery.of(context).size.width;
@@ -200,6 +195,16 @@ class _SettingsPageState extends State<SettingsPage> {
           'settings',
           style: TextStyle(fontSize: 23, color: Theme.of(context).dividerColor),
         ),
+        actions: <Widget>[
+          FlatButton(
+            highlightColor: Colors.transparent,
+            child: Text('logout', style: TextStyle(color: Theme.of(context).primaryColor),),
+            color: Theme.of(context).backgroundColor,
+            onPressed: () {
+              model.logout();
+            },
+          )
+        ],
         centerTitle: true,
         elevation: 0.0,
         backgroundColor: Theme.of(context).backgroundColor,

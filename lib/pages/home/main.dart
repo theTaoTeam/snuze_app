@@ -4,22 +4,11 @@ import 'package:flutter/cupertino.dart';
 import './alarm_manager.dart';
 import '../../scoped-models/main.dart';
 
-
-class MainPage extends StatefulWidget {
+class MainPage extends StatelessWidget {
   final MainModel model;
 
   MainPage(this.model);
-  @override
-    State<StatefulWidget> createState() {
-      return _MainPageState();
-    }
-}
-class _MainPageState extends State<MainPage> {
-  // @override
-  // initState() {
-  //   widget.model.fetchUserAlarm();
-  //   super.initState();
-  // }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +16,16 @@ class _MainPageState extends State<MainPage> {
         title: Text(
           'Snüze',
         ),
+        actions: <Widget>[
+          FlatButton(
+            child: Icon(Icons.settings),
+            textColor: Theme.of(context).highlightColor,
+            onPressed: () {
+              model.getUserTheme(model.user.darkTheme);
+              Navigator.pushNamed(context, '/settings');
+            },
+          )
+        ],
         centerTitle: true,
       ),
       body: AlarmManager(),

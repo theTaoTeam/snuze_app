@@ -8,7 +8,7 @@ ThemeData buildLightTheme() {
     accentColor: Color(0xFFA1A1A1) ,//dark grey
     disabledColor: Color(0xFFDFDFDF), //light grey
     toggleableActiveColor: Color(0xFFFE2562), //pink
-    highlightColor: Color(0xFFFFFFFF), //white
+    highlightColor: Color(0xFF434343), //white
     backgroundColor: Color(0xFFFFFFFF), //white
     dividerColor: Color(0xFF434343), //black
     brightness: Brightness.light,
@@ -23,8 +23,8 @@ ThemeData buildDarkTheme() {
     disabledColor: Color(0xFFDFDFDF) ,//dark grey
     toggleableActiveColor: Color(0xFFFE2562), //pink
     highlightColor: Color(0xFFFFFFFF), //white
-    backgroundColor: Color(0xFF434343), //white
-    dividerColor: Color(0xFFFFFFFF), //black
+    backgroundColor: Color(0xFF434343), //black
+    dividerColor: Color(0xFFFFFFFF), //white
     // brightness: Brightness.light,
   );
 }

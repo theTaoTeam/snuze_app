@@ -118,11 +118,14 @@ class CreditCardForm extends StatelessWidget {
         _buildCCNumberField(),
         SizedBox(height: 10.0),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            _buildExpMonthField(),
-            SizedBox(height: 10.0),
-            _buildExpYearField(),
-            SizedBox(height: 10.0),
+            Row(
+              children: <Widget>[
+                _buildExpMonthField(),
+                _buildExpYearField(),
+              ],
+            ),
             _buildCvcField(),
           ],
         ),

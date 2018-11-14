@@ -24,11 +24,6 @@ class _AuthPageState extends State<AuthPage> {
   final TextEditingController _passwordTextController = TextEditingController();
   AuthMode _authMode = AuthMode.Login;
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
   Widget _buildTitleText(double targetWidth) {
     if (_hasForgotPass) {
       return Container(
@@ -118,7 +113,7 @@ class _AuthPageState extends State<AuthPage> {
     );
     if (successInformation['success']) {
       print('navigating to next page');
-      Navigator.pushReplacementNamed(context, '/settings');
+      Navigator.pushReplacementNamed(context, '/');
     } else {
       showDialog(
         context: context,

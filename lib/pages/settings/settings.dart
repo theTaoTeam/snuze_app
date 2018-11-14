@@ -3,22 +3,27 @@ import 'package:flutter/cupertino.dart';
 import 'dart:async';
 import 'dart:io';
 
-import 'package:scoped_model/scoped_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:snuze/pages/settings/update_payment_form.dart';
 import 'package:snuze/scoped-models/main.dart';
 
 class SettingsPage extends StatefulWidget {
+  final MainModel model;
+
+  SettingsPage({this.model});
+
   @override
   State<StatefulWidget> createState() {
-    return _SettingsPageState();
+    return _SettingsPageState(model: model);
   }
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  final MainModel _model = new MainModel();
+  final MainModel model;
+
+  _SettingsPageState({this.model});
+
   bool _sentPassword = false;
+  bool _missingEmail = false;
   Map<String, dynamic> userSettings = {
     'email': '',
     'darkTheme': false,
@@ -30,18 +35,13 @@ class _SettingsPageState extends State<SettingsPage> {
     'cvc': '',
   };
   @override
-  void initState(){
-    
-    print('userSettings: $userSettings');
+  void initState() {
     super.initState();
-  }
-
-  _fetchUserSettings() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      userSettings['email'] = prefs.getString('email');
-      userSettings['darkTheme'] = prefs.getBool('darkTheme');
+      userSettings['email'] = widget.model.user.email;
+      userSettings['darkTheme'] = widget.model.user.darkTheme;
     });
+    print('userSettings after setState: $userSettings');
   }
 
   Widget _buildSectionTitle(String title) {
@@ -74,8 +74,9 @@ class _SettingsPageState extends State<SettingsPage> {
             onChanged: (bool val) {
               print(val);
               setState(() {
-                userSettings['darkTheme'] = !userSettings['darkTheme'];
+                userSettings['darkTheme'] = val;
               });
+              model.saveUserSettings(userSettings);
             },
           ),
         ),
@@ -96,15 +97,21 @@ class _SettingsPageState extends State<SettingsPage> {
         Container(
           width: 200,
           child: TextField(
+            style: TextStyle(color: Theme.of(context).highlightColor),
             decoration: InputDecoration(
-              labelText: userSettings['email'],
-              labelStyle: TextStyle(color: Theme.of(context).disabledColor),
+              labelText: _missingEmail
+                  ? 'please enter an email first'
+                  : model.user.email,
+              labelStyle: _missingEmail
+                  ? TextStyle(color: Theme.of(context).primaryColor)
+                  : TextStyle(color: Theme.of(context).disabledColor),
               border: InputBorder.none,
             ),
             onChanged: (String val) {
               setState(() {
                 userSettings['email'] = val;
               });
+              model.saveUserSettings(userSettings);
             },
           ),
         ),
@@ -137,14 +144,21 @@ class _SettingsPageState extends State<SettingsPage> {
             textColor: Theme.of(context).primaryColor,
             onPressed: () {
               print('pressed reset password');
-              _model.resetPassword(userSettings['email']);
-              setState(() {
-                _sentPassword = true;
-              });
-              Timer(Duration(seconds: 5), () {
-                setState(() {
-                  _sentPassword = false;
-                });
+              model.resetPassword(userSettings['email']).then((message) {
+                if (userSettings['email'] == '') {
+                  setState(() {
+                    _missingEmail = true;
+                  });
+                } else {
+                  setState(() {
+                    _sentPassword = true;
+                  });
+                  Timer(Duration(seconds: 5), () {
+                    setState(() {
+                      _sentPassword = false;
+                    });
+                  });
+                }
               });
             },
           )
@@ -171,108 +185,89 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   void _saveSettings() {
-    _model.saveUserSettings(userSettings);
-    // Navigator.pop(context);
+    model.saveUserSettings(userSettings);
+    Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
     final double deviceWidth = MediaQuery.of(context).size.width;
     final double targetWidth = deviceWidth > 550.0 ? 500.0 : deviceWidth * 0.75;
-    return ScopedModelDescendant<MainModel>(
-        builder: (BuildContext context, Widget child, MainModel model) {
-      return Scaffold(
-        backgroundColor: Theme.of(context).backgroundColor,
-        appBar: AppBar(
-          title: Text(
-            'settings',
-            style:
-                TextStyle(fontSize: 23, color: Theme.of(context).dividerColor),
-          ),
-          centerTitle: true,
-          elevation: 0.0,
-          backgroundColor: Theme.of(context).backgroundColor,
-          iconTheme: IconThemeData(
-            color: Colors.white, //change your color here
-          ),
-          actions: <Widget>[
-            FlatButton(
-              child: Text(
-                'done',
-                style: TextStyle(fontSize: 15),
-              ),
-              textColor: Theme.of(context).primaryColor,
-              onPressed: () {
-                print('save setting pressed');
-                _saveSettings();
-              },
-            )
-          ],
+    return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
+      appBar: AppBar(
+        title: Text(
+          'settings',
+          style: TextStyle(fontSize: 23, color: Theme.of(context).dividerColor),
         ),
-        body: Center(
-          child: SingleChildScrollView(
-            reverse: true,
-            child: Container(
-              margin: Platform.isIOS
-                  ? EdgeInsets.only(bottom: 150)
-                  : EdgeInsets.only(bottom: 50),
-              width: targetWidth,
-              alignment: Alignment.topCenter,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      Container(
-                        child: _buildDarkThemeRow(),
-                      ),
-                      _buildDivider(targetWidth, false),
-                      Container(
-                        child: _buildEmailRow(),
-                      ),
-                      _buildDivider(targetWidth, false),
-                      Center(
-                          child: _sentPassword
-                              ? AnimatedOpacity(
-                                  opacity: 1,
-                                  duration: Duration(milliseconds: 500),
-                                  child: FlatButton(
-                                    highlightColor: Colors.transparent,
-                                    splashColor: Colors.transparent,
-                                    child: Text(
-                                      "we've sent you an email!",
-                                    ),
-                                    textColor: Theme.of(context).primaryColor,
-                                    onPressed: () {},
+        centerTitle: true,
+        elevation: 0.0,
+        backgroundColor: Theme.of(context).backgroundColor,
+        iconTheme: IconThemeData(
+          color: Theme.of(context).highlightColor, //change your color here
+        ),
+      ),
+      body: Center(
+        child: SingleChildScrollView(
+          reverse: true,
+          child: Container(
+            margin: Platform.isIOS
+                ? EdgeInsets.only(bottom: 150)
+                : EdgeInsets.only(bottom: 50),
+            width: targetWidth,
+            alignment: Alignment.topCenter,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    Container(
+                      child: _buildDarkThemeRow(),
+                    ),
+                    _buildDivider(targetWidth, false),
+                    Container(
+                      child: _buildEmailRow(),
+                    ),
+                    _buildDivider(targetWidth, false),
+                    Center(
+                        child: _sentPassword
+                            ? AnimatedOpacity(
+                                opacity: 1,
+                                duration: Duration(milliseconds: 500),
+                                child: FlatButton(
+                                  highlightColor: Colors.transparent,
+                                  splashColor: Colors.transparent,
+                                  child: Text(
+                                    "we've sent you an email!",
                                   ),
-                                )
-                              : _buildActionButton('reset')),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Column(
-                    children: <Widget>[
-                      Container(
-                        child: _buildSectionTitle('payment method'),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                          child:
-                              UpdatePaymentForm(onCardChange: updateCardInfo)),
-                      _buildDivider(targetWidth, true),
-                      Center(child: _buildActionButton('update')),
-                    ],
-                  ),
-                ],
-              ),
+                                  textColor: Theme.of(context).highlightColor,
+                                  onPressed: () {},
+                                ),
+                              )
+                            : _buildActionButton('reset')),
+                  ],
+                ),
+                SizedBox(
+                  height: 40,
+                ),
+                Column(
+                  children: <Widget>[
+                    Container(
+                      child: _buildSectionTitle('payment method'),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    UpdatePaymentForm(onCardChange: updateCardInfo),
+                    _buildDivider(targetWidth, true),
+                    Center(child: _buildActionButton('update')),
+                  ],
+                ),
+              ],
             ),
           ),
         ),
-      );
-    });
+      ),
+    );
   }
 }

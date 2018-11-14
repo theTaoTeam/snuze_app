@@ -137,10 +137,8 @@ class UpdatePaymentForm extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Container(child: _buildCvcField(context),),
-            SizedBox(height: 10.0),
             Row(children: <Widget>[_buildExpMonthField(context),_buildExpYearField(context),],),
-            SizedBox(height: 10.0),
+            _buildCvcField(context),
           ],
         ),
       ],

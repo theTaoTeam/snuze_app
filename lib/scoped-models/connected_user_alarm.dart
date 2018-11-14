@@ -19,12 +19,17 @@ mixin UserModel on ConnectedUserAlarmModel {
   User _authenticatedUser;
   bool _isLoading = false;
   PublishSubject<bool> _userSubject = PublishSubject();
+  PublishSubject<bool> _themeSubject = PublishSubject();
   User get user {
     return _authenticatedUser;
   }
 
   PublishSubject<bool> get userSubject {
     return _userSubject;
+  }
+
+  PublishSubject<bool> get themeSubject {
+    return _themeSubject;
   }
 
   bool get isLoading {
@@ -76,7 +81,7 @@ mixin UserModel on ConnectedUserAlarmModel {
         darkTheme: mode == AuthMode.Signup ? false : prefs.getBool('darkTheme'),
       );
       _userSubject.add(true);
-    
+
       prefs.setString(
           'token', responseData['refreshToken']); //sets token in device storage
       prefs.setString('userEmail', email);
@@ -111,10 +116,10 @@ mixin UserModel on ConnectedUserAlarmModel {
     }
   }
 
-  Future<Null> resetPassword(String email) async {
+  Future<Map<String, String>> resetPassword(String email) async {
     _isLoading = true;
     notifyListeners();
-    print('email: $email');
+  
     final Map<String, String> oobRequestBody = {
       'kind': "identitytoolkit#relyingparty",
       'requestType': "PASSWORD_RESET",
@@ -127,12 +132,13 @@ mixin UserModel on ConnectedUserAlarmModel {
         body: json.encode(oobRequestBody),
       );
     } catch (error) {
-      print(error);
-      return;
+      print('OOB error: $error');
     }
-    print('Successfully sent reset password! OOB: ${getOob.body}');
+    print(getOob.body[0]);
+
     _isLoading = false;
     notifyListeners();
+
   }
 
   Future<Null> startFacebookLogin() async {
@@ -231,17 +237,28 @@ mixin UserModel on ConnectedUserAlarmModel {
 
   Future<Null> saveUserSettings(Map<String, dynamic> settings) async {
     _isLoading = true;
+    _themeSubject.add(settings['darkTheme']);
     notifyListeners();
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('userEmail', settings['email']);
     prefs.setBool('darkTheme', settings['darkTheme']);
-    print(_authenticatedUser);
-    _authenticatedUser = new User(
+    // print(_authenticatedUser);
+    _authenticatedUser = User(
       id: _authenticatedUser.id,
-      email: _authenticatedUser.email,
+      email: settings['email'],
       token: _authenticatedUser.token,
-      darkTheme: _authenticatedUser.darkTheme,
+      darkTheme: settings['darkTheme'],
     );
+    _isLoading = false;
+    notifyListeners();
+  }
+
+  void getUserTheme(bool darkTheme) {
+    _isLoading = true;
+    notifyListeners();
+    print('theme subject: $_themeSubject');
+    _themeSubject.add(darkTheme);
+
     _isLoading = false;
     notifyListeners();
   }

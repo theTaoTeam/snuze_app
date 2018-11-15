@@ -66,18 +66,17 @@ class _AuthPageState extends State<AuthPage> {
       style: new TextStyle(height: .3),
       keyboardType: TextInputType.emailAddress,
       validator: (String value) {
-        print('before: $value');
-        value.toLowerCase();
-        print(value);
-        if (value.isEmpty ||
-            !RegExp(r"^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$")
-                .hasMatch(value)) {
+        print('Clamptron@Gmail.com'.toLowerCase());
+        final String newVal = value.toLowerCase();
+        if (newVal.isEmpty ||
+            !RegExp(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+                .hasMatch(newVal)) {
           return 'Double check your email';
         }
       },
       onSaved: (String value) {
-
-        _formData['email'] = value;
+        final String newVal = value.toLowerCase();        
+        _formData['email'] = newVal;
       },
     );
   }

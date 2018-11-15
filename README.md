@@ -7,4 +7,11 @@
         -FIREBASE_API_KEY
     5. Run `flutter packages pub run build_runner build` to build json serializable models.
     6. Run pod install from the ios directory.
-    6. Run using xcode/android studio using the xcworkspace file not xcproj because we're using cocoapods.
+    7. Run using xcode/android studio. Since we're using native  using the xcworkspace file not xcproj because we're using cocoapods.
+## Commitizen
+    We use commitizen to format our commit messages. To use commitizen with this repository please use the following steps:
+    1. Install commitizen globally using `npm i -g commitizen`.
+    2. Run `npm install` from the root folder.
+    3. Use `git add` like normal.
+    4. When committing, use `git cz`.
+    5. Use the prompts to write your commit message.

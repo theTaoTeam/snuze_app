@@ -27,14 +27,15 @@ class _AuthPageState extends State<AuthPage> {
   Widget _buildTitleText(double targetWidth) {
     if (_hasForgotPass) {
       return Container(
-          width: targetWidth - 100,
+          // width: targetWidth,
           margin: EdgeInsets.only(right: 100),
           child: Text(
-            "Forgot your password? Oh well, we'll send you an email!",
+            "Forgot your password? Oh well, we'll send you an email",
             style: TextStyle(
               color: Colors.white,
-              fontSize: 40,
+              fontSize: 36,
               fontWeight: FontWeight.w900,
+            
             ),
             textAlign: TextAlign.left,
           ));
@@ -195,7 +196,7 @@ class _AuthPageState extends State<AuthPage> {
                   Color(0xFFFFB52E),
                 ]),
           ),
-          padding: EdgeInsets.all(20.0),
+          padding: EdgeInsets.fromLTRB(30,0,30,50),
           child: Center(
             child: SingleChildScrollView(
               reverse: true,

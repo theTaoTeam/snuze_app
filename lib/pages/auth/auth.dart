@@ -30,9 +30,9 @@ class _AuthPageState extends State<AuthPage> {
           width: targetWidth - 100,
           margin: EdgeInsets.only(right: 100),
           child: Text(
-            "Forgot your pasword? Oh well, we'll send you an email.",
+            "Forgot your password? Oh well, we'll send you an email.",
             style: TextStyle(
-              color: Theme.of(context).backgroundColor,
+              color: Colors.white,
               fontSize: 40,
               fontWeight: FontWeight.w900,
             ),

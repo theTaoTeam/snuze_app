@@ -217,7 +217,7 @@ class _SettingsPageState extends State<SettingsPage> {
           reverse: true,
           child: Container(
             margin: Platform.isIOS
-                ? EdgeInsets.only(bottom: 150)
+                ? EdgeInsets.only(bottom: 100)
                 : EdgeInsets.only(bottom: 50),
             width: targetWidth,
             alignment: Alignment.topCenter,

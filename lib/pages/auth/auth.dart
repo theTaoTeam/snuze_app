@@ -61,17 +61,22 @@ class _AuthPageState extends State<AuthPage> {
         labelStyle: new TextStyle(color: Colors.white),
         filled: true,
         fillColor: Color.fromRGBO(255, 255, 255, 0.2),
+      
       ),
       style: new TextStyle(height: .3),
       keyboardType: TextInputType.emailAddress,
       validator: (String value) {
+        print('before: $value');
+        value.toLowerCase();
+        print(value);
         if (value.isEmpty ||
-            !RegExp(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+            !RegExp(r"^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,4})$")
                 .hasMatch(value)) {
           return 'Double check your email';
         }
       },
       onSaved: (String value) {
+
         _formData['email'] = value;
       },
     );

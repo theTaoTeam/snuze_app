@@ -106,7 +106,7 @@ class _SignUpPageState extends State<SignUpPage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('An Error Occurred!'),
+            title: Text('Aw Geeze!'),
             content: Text(successInformation['message']),
             actions: <Widget>[
               FlatButton(

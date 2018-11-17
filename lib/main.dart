@@ -10,6 +10,7 @@ import 'package:snuze/scoped-models/main.dart';
 import 'package:snuze/pages/home/main.dart';
 import 'package:snuze/pages/auth/auth.dart';
 import 'package:snuze/pages/auth/signup.dart';
+import 'package:snuze/pages/auth/forgot_password.dart';
 import 'package:snuze/pages/settings/settings.dart';
 
 void main() {
@@ -32,7 +33,7 @@ class _MyAppState extends State<MyApp> {
   bool _darkTheme = false;
   @override
   void initState() {
-    _model.autoAuthenticate();
+    // _model.autoAuthenticate();
     _model.userSubject.listen((bool isAuthenticated) {
       print('User subject change: $isAuthenticated');
       //used to listen for different auth states. boolean
@@ -62,6 +63,7 @@ class _MyAppState extends State<MyApp> {
           '/': (BuildContext context) =>
               !_isAuthenticated ? AuthPage() : MainPage(_model),
           '/signup': (BuildContext context) => SignUpPage(),
+          '/forgotpassword': (BuildContext context) => ForgotPasswordPage(),
           '/home': (BuildContext context) =>
               !_isAuthenticated ? AuthPage() : MainPage(_model),
           '/settings': (BuildContext context) =>

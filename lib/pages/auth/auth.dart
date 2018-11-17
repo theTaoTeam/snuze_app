@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
+import 'dart:async';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:snuze/models/auth.dart';
 import 'package:snuze/scoped-models/main.dart';
@@ -18,40 +20,24 @@ class _AuthPageState extends State<AuthPage> {
     'email': null,
     'password': null,
   };
-  var _hasForgotPass = false;
-  Map<String, String> _forgotPasswordEmail = {'email': null};
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordTextController = TextEditingController();
   AuthMode _authMode = AuthMode.Login;
+  bool _forgotPasswordEmailSent = false;
+  String _forgotPasswordMessage;
 
   Widget _buildTitleText(double targetWidth) {
-    if (_hasForgotPass) {
-      return Container(
-          // width: targetWidth,
-          margin: EdgeInsets.only(right: 100),
-          child: Text(
-            "Forgot your password? Oh well, we'll send you an email",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 36,
-              fontWeight: FontWeight.w900,
-            
-            ),
-            textAlign: TextAlign.left,
-          ));
-    } else {
-      return Container(
-          // width: targetWidth - 100,
-          child: Text(
-        "snüze",
-        style: TextStyle(
+    return Container(
+        // width: targetWidth - 100,
+        child: Text(
+      "snüze",
+      style: TextStyle(
           color: Colors.white,
-          fontSize: Platform.isAndroid ? 110 : 100,
+          fontSize: Platform.isAndroid ? 110 : 90,
           fontWeight: FontWeight.w900,
-        ),
-        textAlign: TextAlign.center,
-      ));
-    }
+          fontFamily: 'Montserrat-bold'),
+      textAlign: TextAlign.center,
+    ));
   }
 
   Widget _buildEmailTextField() {
@@ -61,9 +47,8 @@ class _AuthPageState extends State<AuthPage> {
         labelStyle: new TextStyle(color: Colors.white),
         filled: true,
         fillColor: Color.fromRGBO(255, 255, 255, 0.2),
-      
       ),
-      style: new TextStyle(height: .3),
+      style: new TextStyle(height: .3, fontFamily: 'Montserrat'),
       keyboardType: TextInputType.emailAddress,
       validator: (String value) {
         print('Clamptron@Gmail.com'.toLowerCase());
@@ -75,7 +60,7 @@ class _AuthPageState extends State<AuthPage> {
         }
       },
       onSaved: (String value) {
-        final String newVal = value.toLowerCase();        
+        final String newVal = value.toLowerCase();
         _formData['email'] = newVal;
       },
     );
@@ -89,7 +74,7 @@ class _AuthPageState extends State<AuthPage> {
         filled: true,
         fillColor: Color.fromRGBO(255, 255, 255, 0.2),
       ),
-      style: new TextStyle(height: .3),
+      style: new TextStyle(height: .3, fontFamily: 'Montserrat'),
       obscureText: true,
       controller: _passwordTextController,
       validator: (String value) {
@@ -138,43 +123,23 @@ class _AuthPageState extends State<AuthPage> {
     }
   }
 
-  Widget _buildForgotPassEmailField() {
-    return TextFormField(
-      decoration: InputDecoration(
-        labelText: 'email',
-        labelStyle: new TextStyle(color: Colors.white),
-        filled: true,
-        fillColor: Color.fromRGBO(255, 255, 255, 0.2),
-        border: InputBorder.none,
-      ),
-      style: new TextStyle(height: .3),
-      keyboardType: TextInputType.emailAddress,
-      validator: (String value) {
-        if (value.isEmpty ||
-            !RegExp(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
-                .hasMatch(value)) {
-          return 'Double check your email';
-        }
-      },
-      onSaved: (String value) {
-        _forgotPasswordEmail['email'] = value;
-      },
-    );
-  }
-
   void _navigateToSignUpPage() {
     Navigator.pushNamed(context, '/signup');
   }
 
-  void _resetPass(Map<String, String> forgotPasswordData) {
-    if (!_formKey.currentState.validate()) {
-      return;
+  void _navigateToForgotPasswordPage(BuildContext context) async {
+    final result = await Navigator.pushNamed(context, '/forgotpassword');
+    if (result != null) {
+      setState(() {
+        _forgotPasswordEmailSent = true;
+        _forgotPasswordMessage = result;
+      });
+      Timer(Duration(seconds: 5), () {
+        setState(() {
+          _forgotPasswordEmailSent = false;
+        });
+      });
     }
-    _formKey.currentState.save();
-    _model.resetPassword(forgotPasswordData['email']);
-    setState(() {
-      _hasForgotPass = false;
-    });
   }
 
   @override
@@ -200,195 +165,159 @@ class _AuthPageState extends State<AuthPage> {
                   Color(0xFFFFB52E),
                 ]),
           ),
-          padding: EdgeInsets.fromLTRB(30,0,30,50),
+          padding: EdgeInsets.fromLTRB(30, 30, 30, 50),
           child: Center(
             child: SingleChildScrollView(
               reverse: true,
               child: Container(
                   margin: new EdgeInsets.fromLTRB(0, 50, 0, 0),
                   width: targetWidth,
-                  child: !_hasForgotPass
-                      ? Form(
-                          key: _formKey,
-                          child: Column(
-                            children: <Widget>[
-                              _buildTitleText(targetWidth),
-                              SizedBox(
-                                height: 40,
+                  child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: <Widget>[
+                          _buildTitleText(targetWidth),
+                          SizedBox(
+                            height: 40,
+                          ),
+                          _forgotPasswordEmailSent
+                              ? Text(
+                                  _forgotPasswordMessage,
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: 'Montserrat'),
+                                )
+                              : Container(),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          _buildEmailTextField(),
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          _buildPasswordTextField(),
+                          SizedBox(
+                            height: 30.0,
+                            child: Center(
+                              child: Container(
+                                height: 1,
+                                color: Colors.white,
                               ),
-                              _buildEmailTextField(),
-                              SizedBox(
-                                height: 10.0,
-                              ),
-                              _buildPasswordTextField(),
-                              SizedBox(
-                                height: 30.0,
-                                child: Center(
-                                  child: Container(
-                                    height: 1,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              model.isLoading
-                                  ? Column(children: <Widget>[
-                                      CircularProgressIndicator(
-                                          valueColor:
-                                              AlwaysStoppedAnimation<Color>(
-                                                  Colors.white)),
-                                      SizedBox(
-                                        height: 5,
-                                      )
-                                    ])
-                                  : Column(
-                                      children: <Widget>[
-                                        Container(
-                                          width: targetWidth,
-                                          height: 40,
-                                          child: RaisedButton(
-                                            highlightElevation: 0,
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(25)),
-                                            textColor: Color(0xFFFE2562),
-                                            color: Colors.white,
-                                            splashColor: Color(0xFFFE355A),
-                                            highlightColor: Colors.transparent,
-                                            child: Text(
-                                              'login',
-                                              style: TextStyle(fontSize: 20),
-                                            ),
-                                            onPressed: () =>
-                                                _submitForm(model.authenticate),
+                            ),
+                          ),
+                          model.isLoading
+                              ? Column(children: <Widget>[
+                                  CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          Colors.white)),
+                                  SizedBox(
+                                    height: 5,
+                                  )
+                                ])
+                              : Column(
+                                  children: <Widget>[
+                                    Container(
+                                      width: targetWidth,
+                                      height: 40,
+                                      child: RaisedButton(
+                                        highlightElevation: 0,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(25)),
+                                        textColor: Color(0xFFFE2562),
+                                        color: Colors.white,
+                                        splashColor: Color(0xFFFE355A),
+                                        highlightColor: Colors.transparent,
+                                        child: Text(
+                                          'login',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontFamily: 'Montserrat'),
+                                        ),
+                                        onPressed: () =>
+                                            _submitForm(model.authenticate),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    Container(
+                                        color: Color.fromRGBO(255, 255, 255, 0),
+                                        width: targetWidth,
+                                        height: 40,
+                                        child: OutlineButton(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(25),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: 15,
-                                        ),
-                                        Container(
-                                            color: Color.fromRGBO(
-                                                255, 255, 255, 0),
-                                            width: targetWidth,
-                                            height: 40,
-                                            child: OutlineButton(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(25),
-                                              ),
-                                              color: Color.fromRGBO(
-                                                  255, 255, 255, 0),
-                                              textColor: Colors.white,
-                                              splashColor: Color(0xFFFE355A),
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              highlightedBorderColor:
-                                                  Colors.transparent,
-                                              child: Text(
-                                                'login with facebook',
-                                                style: TextStyle(fontSize: 20),
-                                              ),
-                                              onPressed: () {
-                                                print(
-                                                    'login with facebook pressed!');
-                                                model.startFacebookLogin();
-                                              },
-                                            )),
-                                        SizedBox(
-                                          height: 15,
-                                        ),
-                                        Container(
-                                          width: targetWidth,
-                                          height: 40,
-                                          child: OutlineButton(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                            ),
-                                            color: Color.fromRGBO(
-                                                255, 255, 255, 0),
-                                            textColor: Colors.white,
-                                            splashColor: Color(0xFFFE355A),
-                                            highlightColor: Colors.transparent,
-                                            highlightedBorderColor:
-                                                Colors.transparent,
-                                            highlightElevation: 3,
-                                            child: Text(
-                                              'create an account',
-                                              style: TextStyle(fontSize: 20),
-                                            ),
-                                            onPressed: () {
-                                              setState(() {
-                                                _navigateToSignUpPage();
-                                              });
-                                            },
-                                          ),
-                                        ),
-                                        FlatButton(
+                                          color:
+                                              Color.fromRGBO(255, 255, 255, 0),
                                           textColor: Colors.white,
+                                          splashColor: Color(0xFFFE355A),
                                           highlightColor: Colors.transparent,
+                                          highlightedBorderColor:
+                                              Colors.transparent,
                                           child: Text(
-                                            'forgot password?',
-                                            style: TextStyle(fontSize: 17),
+                                            'login with facebook',
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontFamily: 'Montserrat'),
                                           ),
                                           onPressed: () {
-                                            print('Forgot Password pressed!');
-                                            setState(() {
-                                              _hasForgotPass = true;
-                                            });
+                                            print(
+                                                'login with facebook pressed!');
+                                            model.startFacebookLogin();
                                           },
-                                        ),
-                                      ],
+                                        )),
+                                    SizedBox(
+                                      height: 15,
                                     ),
-                            ],
-                          ))
-                      : Form(
-                          key: _formKey,
-                          child: Column(
-                            children: <Widget>[
-                              _buildTitleText(targetWidth),
-                              SizedBox(
-                                height: 30,
-                              ),
-                              _buildForgotPassEmailField(),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Container(
-                                width: targetWidth,
-                                height: 40,
-                                child: RaisedButton(
-                                  highlightElevation: 0,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(25)),
-                                  textColor: Colors.red,
-                                  splashColor: Color(0xFFFE355A),
-                                  highlightColor: Colors.transparent,
-                                  color: Colors.white,
-                                  child: Text('Reset Password'),
-                                  onPressed: () {
-                                    _resetPass(_forgotPasswordEmail);
-                                  },
+                                    Container(
+                                      width: targetWidth,
+                                      height: 40,
+                                      child: OutlineButton(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                        ),
+                                        color: Color.fromRGBO(255, 255, 255, 0),
+                                        textColor: Colors.white,
+                                        splashColor: Color(0xFFFE355A),
+                                        highlightColor: Colors.transparent,
+                                        highlightedBorderColor:
+                                            Colors.transparent,
+                                        highlightElevation: 3,
+                                        child: Text(
+                                          'create an account',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontFamily: 'Montserrat'),
+                                        ),
+                                        onPressed: () {
+                                          setState(() {
+                                            _navigateToSignUpPage();
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                    FlatButton(
+                                      textColor: Colors.white,
+                                      highlightColor: Colors.transparent,
+                                      child: Text(
+                                        'forgot password?',
+                                        style: TextStyle(
+                                            fontSize: 17,
+                                            fontFamily: 'Montserrat'),
+                                      ),
+                                      onPressed: () {
+                                        print('Forgot Password pressed!');
+                                        _navigateToForgotPasswordPage(context);
+                                      },
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              SizedBox(
-                                height: 1,
-                              ),
-                              FlatButton(
-                                textColor: Colors.white,
-                                highlightColor: Colors.transparent,
-                                child: Text(
-                                  'cancel',
-                                  style: TextStyle(fontSize: 17),
-                                ),
-                                onPressed: () {
-                                  setState(() {
-                                    _hasForgotPass = false;
-                                  });
-                                },
-                              ),
-                            ],
-                          ),
-                        )),
+                        ],
+                      ))),
             ),
           ),
         ),

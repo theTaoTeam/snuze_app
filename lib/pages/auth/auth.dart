@@ -47,11 +47,13 @@ class _AuthPageState extends State<AuthPage> {
         labelStyle: new TextStyle(color: Colors.white),
         filled: true,
         fillColor: Color.fromRGBO(255, 255, 255, 0.2),
+        errorStyle: TextStyle(color: Colors.white),
+
       ),
       style: new TextStyle(height: .3, fontFamily: 'Montserrat'),
       keyboardType: TextInputType.emailAddress,
       validator: (String value) {
-        print('Clamptron@Gmail.com'.toLowerCase());
+        // print('Clamptron@Gmail.com'.toLowerCase());
         final String newVal = value.toLowerCase();
         if (newVal.isEmpty ||
             !RegExp(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
@@ -73,6 +75,7 @@ class _AuthPageState extends State<AuthPage> {
         labelStyle: new TextStyle(color: Colors.white),
         filled: true,
         fillColor: Color.fromRGBO(255, 255, 255, 0.2),
+        errorStyle: TextStyle(color: Colors.white),
       ),
       style: new TextStyle(height: .3, fontFamily: 'Montserrat'),
       obscureText: true,

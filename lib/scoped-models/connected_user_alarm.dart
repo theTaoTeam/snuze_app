@@ -95,7 +95,7 @@ mixin UserModel on ConnectedUserAlarmModel {
       message = 'The password is invalid.';
     }
 
-    print('USER: ${_authenticatedUser.email}');
+    // print('USER: ${_authenticatedUser.email}');
     _isLoading = false;
     notifyListeners();
     return {'success': !hasError, 'message': message};

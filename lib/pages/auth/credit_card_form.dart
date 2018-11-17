@@ -14,12 +14,13 @@ class CreditCardForm extends StatelessWidget {
         labelStyle: new TextStyle(color: Colors.white),
         filled: true,
         fillColor: Color.fromRGBO(255, 255, 255, 0.2),
+        errorStyle: TextStyle(color: Colors.white),
       ),
       style: new TextStyle(height: .3, fontFamily: 'Montserrat'),
       keyboardType: TextInputType.number,
       validator: (String value) {
         if (value.isEmpty || value.length != 16) {
-          return 'please enter a valid credit card number';
+          return 'invalid credit card number';
         }
       },
       onSaved: (String value) {
@@ -30,19 +31,20 @@ class CreditCardForm extends StatelessWidget {
 
   Widget _buildExpMonthField() {
     return Container(
-        width: 57,
+        width: 70,
         child: TextFormField(
           decoration: InputDecoration(
             labelText: 'MM',
             labelStyle: new TextStyle(color: Colors.white),
             filled: true,
             fillColor: Color.fromRGBO(255, 255, 255, 0.2),
+            errorStyle: TextStyle(color: Colors.white),
           ),
           style: new TextStyle(height: .3, fontFamily: 'Montserrat'),
           keyboardType: TextInputType.number,
           validator: (String value) {
             if (value.isEmpty || value.length != 2) {
-              return 'please enter a valid exp month';
+              return 'invalid';
             }
           },
           onSaved: (String value) {
@@ -64,12 +66,13 @@ class CreditCardForm extends StatelessWidget {
             labelStyle: new TextStyle(color: Colors.white),
             filled: true,
             fillColor: Color.fromRGBO(255, 255, 255, 0.2),
+            errorStyle: TextStyle(color: Colors.white),
           ),
           style: new TextStyle(height: .3, fontFamily: 'Montserrat'),
           keyboardType: TextInputType.number,
           validator: (String value) {
             if (value.isEmpty || value.length != 4) {
-              return 'please enter a valid exp year';
+              return 'invalid';
             }
           },
           onSaved: (String value) {
@@ -91,12 +94,13 @@ class CreditCardForm extends StatelessWidget {
             labelStyle: new TextStyle(color: Colors.white),
             filled: true,
             fillColor: Color.fromRGBO(255, 255, 255, 0.2),
+            errorStyle: TextStyle(color: Colors.white),
           ),
           style: new TextStyle(height: .3, fontFamily: 'Montserrat'),
           keyboardType: TextInputType.number,
           validator: (String value) {
             if (value.isEmpty || value.length != 3) {
-              return 'please enter a valid cvc';
+              return 'invalid';
             }
           },
           onSaved: (String value) {

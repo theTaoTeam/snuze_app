@@ -47,6 +47,7 @@ class _SignUpPageState extends State<SignUpPage> {
         labelStyle: new TextStyle(color: Colors.white),
         filled: true,
         fillColor: Color.fromRGBO(255, 255, 255, 0.2),
+        errorStyle: TextStyle(color: Colors.white),
       ),
       style: new TextStyle(height: .3, fontFamily: 'Montserrat'),
       keyboardType: TextInputType.emailAddress,
@@ -70,6 +71,7 @@ class _SignUpPageState extends State<SignUpPage> {
         labelStyle: new TextStyle(color: Colors.white),
         filled: true,
         fillColor: Color.fromRGBO(255, 255, 255, 0.2),
+        errorStyle: TextStyle(color: Colors.white),
       ),
       style: new TextStyle(height: .3, fontFamily: 'Montserrat'),
       obscureText: true,
@@ -107,7 +109,7 @@ class _SignUpPageState extends State<SignUpPage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('An Error Occurred!'),
+            title: Text('Aw Geeze!'),
             content: Text(successInformation['message']),
             actions: <Widget>[
               FlatButton(

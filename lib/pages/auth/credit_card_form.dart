@@ -16,7 +16,7 @@ class CreditCardForm extends StatelessWidget {
         fillColor: Color.fromRGBO(255, 255, 255, 0.2),
         errorStyle: TextStyle(color: Colors.white),
       ),
-      style: new TextStyle(height: .3),
+      style: new TextStyle(height: .3, fontFamily: 'Montserrat'),
       keyboardType: TextInputType.number,
       validator: (String value) {
         if (value.isEmpty || value.length != 16) {
@@ -40,7 +40,7 @@ class CreditCardForm extends StatelessWidget {
             fillColor: Color.fromRGBO(255, 255, 255, 0.2),
             errorStyle: TextStyle(color: Colors.white),
           ),
-          style: new TextStyle(height: .3),
+          style: new TextStyle(height: .3, fontFamily: 'Montserrat'),
           keyboardType: TextInputType.number,
           validator: (String value) {
             if (value.isEmpty || value.length != 2) {
@@ -68,9 +68,7 @@ class CreditCardForm extends StatelessWidget {
             fillColor: Color.fromRGBO(255, 255, 255, 0.2),
             errorStyle: TextStyle(color: Colors.white),
           ),
-          style: new TextStyle(
-            height: .3,
-          ),
+          style: new TextStyle(height: .3, fontFamily: 'Montserrat'),
           keyboardType: TextInputType.number,
           validator: (String value) {
             if (value.isEmpty || value.length != 4) {
@@ -98,7 +96,7 @@ class CreditCardForm extends StatelessWidget {
             fillColor: Color.fromRGBO(255, 255, 255, 0.2),
             errorStyle: TextStyle(color: Colors.white),
           ),
-          style: new TextStyle(height: .3),
+          style: new TextStyle(height: .3, fontFamily: 'Montserrat'),
           keyboardType: TextInputType.number,
           validator: (String value) {
             if (value.isEmpty || value.length != 3) {

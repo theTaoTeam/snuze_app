@@ -26,14 +26,15 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Widget _buildTitleText(double targetWidth) {
     return Container(
-        width: targetWidth - 100,
-        margin: EdgeInsets.only(right: 100),
+        width: targetWidth,
+        margin: EdgeInsets.only(right: 30),
         child: Text(
           "We're going to need a few things...",
           style: TextStyle(
             color: Colors.white,
             fontSize: 40,
             fontWeight: FontWeight.w900,
+            fontFamily: 'Montserrat-bold'
           ),
           textAlign: TextAlign.left,
         ));
@@ -46,8 +47,9 @@ class _SignUpPageState extends State<SignUpPage> {
         labelStyle: new TextStyle(color: Colors.white),
         filled: true,
         fillColor: Color.fromRGBO(255, 255, 255, 0.2),
+        errorStyle: TextStyle(color: Colors.white),
       ),
-      style: new TextStyle(height: .3),
+      style: new TextStyle(height: .3, fontFamily: 'Montserrat'),
       keyboardType: TextInputType.emailAddress,
       validator: (String value) {
         if (value.isEmpty ||
@@ -69,8 +71,9 @@ class _SignUpPageState extends State<SignUpPage> {
         labelStyle: new TextStyle(color: Colors.white),
         filled: true,
         fillColor: Color.fromRGBO(255, 255, 255, 0.2),
+        errorStyle: TextStyle(color: Colors.white),
       ),
-      style: new TextStyle(height: .3),
+      style: new TextStyle(height: .3, fontFamily: 'Montserrat'),
       obscureText: true,
       controller: _passwordTextController,
       validator: (String value) {
@@ -106,7 +109,7 @@ class _SignUpPageState extends State<SignUpPage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('An Error Occurred!'),
+            title: Text('Aw Geeze!'),
             content: Text(successInformation['message']),
             actions: <Widget>[
               FlatButton(
@@ -161,12 +164,11 @@ class _SignUpPageState extends State<SignUpPage> {
                   Color(0xFFFFB52E),
                 ]),
           ),
-          padding: EdgeInsets.all(5.0),
           child: Center(
             child: SingleChildScrollView(
               reverse: true,
               child: Container(
-                margin: EdgeInsets.only(bottom: 35),
+                margin: EdgeInsets.only(bottom: 75),
                 width: targetWidth,
                 child: Form(
                     key: _formKey,
@@ -212,7 +214,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       splashColor: Color(0xFFFE2562),
                                       child: Text(
                                         'get snuzing',
-                                        style: TextStyle(fontSize: 20),
+                                        style: TextStyle(fontSize: 20, fontFamily: 'Montserrat'),
                                       ),
                                       onPressed: () =>
                                           _submitForm(model.authenticate),

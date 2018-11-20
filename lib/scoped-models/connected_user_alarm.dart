@@ -97,7 +97,7 @@ mixin UserModel on ConnectedUserAlarmModel {
       message = 'The password is invalid.';
     }
 
-    print('USER: ${_authenticatedUser.email}');
+    // print('USER: ${_authenticatedUser.email}');
     _isLoading = false;
     notifyListeners();
     return {'success': !hasError, 'message': message};
@@ -121,7 +121,8 @@ mixin UserModel on ConnectedUserAlarmModel {
   Future<Null> resetPassword(String email) async {
     _isLoading = true;
     notifyListeners();
-  
+    print('About to send email to: $email');
+
     final Map<String, String> oobRequestBody = {
       'kind': "identitytoolkit#relyingparty",
       'requestType': "PASSWORD_RESET",
@@ -136,7 +137,6 @@ mixin UserModel on ConnectedUserAlarmModel {
     } catch (error) {
       print('OOB error: $error');
     }
-    print(getOob.body[0]);
 
     _isLoading = false;
     notifyListeners();

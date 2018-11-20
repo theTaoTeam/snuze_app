@@ -80,6 +80,8 @@ mixin UserModel on ConnectedUserAlarmModel {
         token: responseData['refreshToken'],
         darkTheme: prefs.getBool('darkTheme') == null ? false : prefs.getBool('darkTheme'),
       );
+      print("*" * 80);
+      print(_authenticatedUser.id);
       _userSubject.add(true);
 
       prefs.setString(

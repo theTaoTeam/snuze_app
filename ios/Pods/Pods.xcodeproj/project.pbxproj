@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0004A8AB5DED83915E800C1FC6AE0730 /* FBSDKAccessTokenCacheV3_21.m in Sources */ = {isa = PBXBuildFile; fileRef = 353DD27E508153F59A2D066F0E87DFB1 /* FBSDKAccessTokenCacheV3_21.m */; };
-		010BE17A401A14EAD9913589798E88BD /* flutter_facebook_login-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D42C7C308188A1E71DE114F67297A27 /* flutter_facebook_login-dummy.m */; };
+		010BE17A401A14EAD9913589798E88BD /* flutter_facebook_login-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B23693D71369FCA9AF6FB94A4850119F /* flutter_facebook_login-dummy.m */; };
 		01AC82E11DC94B5D7F0A20078B62D7AA /* FBSDKErrorRecoveryConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 1964DADE981AC37215CF33A1E3635014 /* FBSDKErrorRecoveryConfiguration.m */; };
 		0382B3C9570C81F6CA4601432691EEA7 /* FBSDKErrorConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = B8CE761750E2ED74BD016CE0E598E819 /* FBSDKErrorConfiguration.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		038C3A407D753703B8F3B7425021810D /* FBSDKURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FFE7A9510854CBC173C443EA0808FC /* FBSDKURLConnection.m */; };
@@ -21,7 +21,6 @@
 		077E7D184730F9B5A89C662DBECB4176 /* FBSDKAppEventsUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F9B075AA6E0C77ABB25F612B0825C71 /* FBSDKAppEventsUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		07DE055B55329CCE9715DDB056372069 /* FBSDKTimeSpentData.h in Headers */ = {isa = PBXBuildFile; fileRef = 420F233A2E2DC2B7E211788985B5D868 /* FBSDKTimeSpentData.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		081475915C1147FB592018FFD3206811 /* FBSDKProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = EF14F75CB8EFB4BFD673EA3A880F3E9E /* FBSDKProfile.m */; };
-		09C798D2D86D588C27E40C93DC4DC0E3 /* SharedPreferencesPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = F6D8B71651B1BD01FBB77BF9CB0503EA /* SharedPreferencesPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0AC55BA0E18765CC127076C2B5C92E52 /* FBSDKDialogConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E6AF6EF7C209BCFBA9B4F5780FC4E8B /* FBSDKDialogConfiguration.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		0B24C50A6DA3F6A174AD595C483869AA /* FBSDKBridgeAPIProtocolNativeV1.m in Sources */ = {isa = PBXBuildFile; fileRef = 359917F092E78E587655C741EC679C3F /* FBSDKBridgeAPIProtocolNativeV1.m */; };
 		0B427C7A43AC1294EA654417056E8758 /* FBSDKSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 3559A3F9E5517DE965A9ED375A70888D /* FBSDKSettings.m */; };
@@ -50,13 +49,12 @@
 		20DA71C331EA6AA93B33AA508D185AA1 /* FBSDKCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 74ED5D53A4E42EB481676A4D49E78299 /* FBSDKCrypto.m */; };
 		20F9B2FFC36C60D6E478BCBE37EA313C /* FBSDKBridgeAPIProtocolNativeV1.h in Headers */ = {isa = PBXBuildFile; fileRef = DEB9D50FDCE16E443E5E02204140FC11 /* FBSDKBridgeAPIProtocolNativeV1.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		212BBA5F7DADA9C37B4F7E088EE71EBE /* FBSDKCopying.h in Headers */ = {isa = PBXBuildFile; fileRef = 1ED8FA635CDE2BDAFA4117D46829E336 /* FBSDKCopying.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		23819C2267F6FF96163775D7347856D6 /* FacebookLoginPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B759C1EFDF343003DCA8C7F29ADA5D8 /* FacebookLoginPlugin.m */; };
 		23A6DE7D6D202D8560FC842794E22657 /* BFWebViewAppLinkResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BBD1A5AC6397E509907DEEBA3F886F2 /* BFWebViewAppLinkResolver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		23B09BC6B4FF0F0517C5C07D0C7F827F /* FBSDKLoginButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 15496ABF44E88461910A233462C95024 /* FBSDKLoginButton.m */; };
 		23D5B77FA26051F361FDC1415F247802 /* FBSDKDeviceLoginCodeInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 74CFA0358CEDB676A8F1B52A158BB20B /* FBSDKDeviceLoginCodeInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27EAF5073557E40C9465CE9A07E26343 /* FBSDKAppEventsUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = E1053C7A6BDC0DBF0A07CF8BF3F2CCF8 /* FBSDKAppEventsUtility.m */; };
+		284DBC10DB26A3DC70AB72430339AC65 /* FacebookLoginPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CB55B7763E553F9F1B71CC7896CC0E1 /* FacebookLoginPlugin.m */; };
 		2AAC068253BE850E06F799EE89865537 /* FBSDKImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9AF5C3300B3737048A5F7A1D0F4DCE /* FBSDKImageDownloader.m */; };
-		2B81F059F2B1B399A45EB02CA5048B87 /* SharedPreferencesPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5DF1C7AE89EA171B735CA089C5A6E8 /* SharedPreferencesPlugin.m */; };
 		2EAC3E470B6BCAE5E1C3AC98FB60A42A /* FBSDKColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D209BB7685F4F7869A51055CF4757C /* FBSDKColor.m */; };
 		2F6F21DB88C6E98367F4221C886D74C0 /* FBSDKEventBindingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 285D4F8F050C0E2DCBFC04F9C638CE4C /* FBSDKEventBindingManager.m */; };
 		31C087A4FBE8E65DEBCCDCE560F9DF8F /* FBSDKViewImpressionTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 26A7FC41CE5E56BC298A7531D4FB6730 /* FBSDKViewImpressionTracker.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -96,7 +94,6 @@
 		53B01C89A457A28B0CF499066D56EFF8 /* FBSDKDeviceRequestsHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = A13F368D48D3AA8C5E19967BBA038107 /* FBSDKDeviceRequestsHelper.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		53BEC447893494106513E051412587CF /* FBSDKAccessTokenCacheV4.h in Headers */ = {isa = PBXBuildFile; fileRef = A7FF5A1DC27ACAAA00924FA130299E94 /* FBSDKAccessTokenCacheV4.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		53D002F68843C04A73289FA40F6E99D7 /* FBSDKError.m in Sources */ = {isa = PBXBuildFile; fileRef = F931E8528B3807C08284CC6C208B6455 /* FBSDKError.m */; };
-		54E5AC03B107A05CA4FEEB4A9CE63D77 /* FacebookLoginPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 9882018CF257F0CE4FF204CD863EE228 /* FacebookLoginPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		54F3AD55F12E504BD1DA1D7FE19585DB /* FBSDKTriStateBOOL.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E28BC181179614CD1172712B69F6B7 /* FBSDKTriStateBOOL.m */; };
 		552425306F001DED105639C8DB9D3878 /* FBSDKAudioResourceLoader.h in Headers */ = {isa = PBXBuildFile; fileRef = 910564E44F78C553EF5C6BF164D4543A /* FBSDKAudioResourceLoader.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		55C0DD0BCA163900F8AAEB4EE875F325 /* FBSDKColor.h in Headers */ = {isa = PBXBuildFile; fileRef = E64EB2DF9DF245619DAFB824E3DEBF82 /* FBSDKColor.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -160,7 +157,7 @@
 		7F3810D9E3EDEDFB54B5F4DCED0CB790 /* FBSDKLoginError.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EEA30D1E952737C5203B06AB49F9CA /* FBSDKLoginError.m */; };
 		8087C94F05396B2C14955E2437C6FF31 /* FBSDKLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = F95CD296AE75C04402B75429C3C3DE47 /* FBSDKLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		80F618A6241DF6776C0EF8B9FCB23EF2 /* BFExecutor.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B5062702F46D547957961E229477651 /* BFExecutor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8145865A6250CC8055E3DBAEDEE5E0D4 /* shared_preferences-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E26C3C7708BEF9EB0613A8CDA598573F /* shared_preferences-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8145865A6250CC8055E3DBAEDEE5E0D4 /* shared_preferences-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 67F7D488FAE2116E60AA859208A89476 /* shared_preferences-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82950D0473E7A34700EFB221CF812BC4 /* BFAppLinkNavigation.h in Headers */ = {isa = PBXBuildFile; fileRef = 629C6A6CB7CBB0F3A1A39DD71BFB00C6 /* BFAppLinkNavigation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82C699AF8693DC1EAF082B18E5BA8AD9 /* FBSDKLoginManagerLoginResult.h in Headers */ = {isa = PBXBuildFile; fileRef = C4C95F40DFC270C7D05FC8C1D819989A /* FBSDKLoginManagerLoginResult.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8395D43CDC78B208B39E42B65B42653D /* FBSDKGraphRequestMetadata.h in Headers */ = {isa = PBXBuildFile; fileRef = 7DD8892B67FE9CAD534E7F3B7DD5EE85 /* FBSDKGraphRequestMetadata.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -171,6 +168,7 @@
 		872275F50BBECA2BA9E513AE99D8E35C /* FBSDKCloseIcon.h in Headers */ = {isa = PBXBuildFile; fileRef = B18C0ABAB1F5DAEA08A99E75D8C47DCE /* FBSDKCloseIcon.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		87A03A5635D733075FB7080166F12288 /* FBSDKLoginManagerLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A9B78E8A3FFCFC512B1BBEDDD443536 /* FBSDKLoginManagerLogger.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		87B2123DDD511E1088D67790A07B14C9 /* FBSDKCodelessParameterComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = AE96FD841A0CE24102E5A62F9FAE6145 /* FBSDKCodelessParameterComponent.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		87B3D2F5720E9B6751103021A2F38C19 /* SharedPreferencesPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A972BE6820945B771ECE049122F20F /* SharedPreferencesPlugin.m */; };
 		881DB5E6B7DDD7ED3FB4AB0E0F5813B4 /* FBSDKGraphRequestConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 78B6AC16DF8DB64F10C6793FFE206798 /* FBSDKGraphRequestConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		88C103DAB59007BAC1EBEF346ACB2419 /* FBSDKIcon.h in Headers */ = {isa = PBXBuildFile; fileRef = 5738F6946822F8AF2A0050C9F21871F6 /* FBSDKIcon.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		88ED1B1452A3F5831FFE5F9D6E09EA62 /* FBSDKButton.h in Headers */ = {isa = PBXBuildFile; fileRef = B2FBC5B534B9D386F09DF4ED8C27A651 /* FBSDKButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -204,6 +202,7 @@
 		A7357177F5EC887FC77AFE79B7A79A56 /* FBSDKAppLinkResolver.h in Headers */ = {isa = PBXBuildFile; fileRef = A4F56F8B27687B84F46519C2C84B82F1 /* FBSDKAppLinkResolver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A8A8732B703D43036FD1D5D9C97B822C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0ABC3E7EA72F92F274EAA87060AAA0A /* Foundation.framework */; };
 		A9D6B8FF4D07CF436ACC6CCC22AA5EA0 /* BFAppLinkReturnToRefererController.h in Headers */ = {isa = PBXBuildFile; fileRef = 33071E1A44666DC4473659B8340CA32C /* BFAppLinkReturnToRefererController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AAAA50DBDDB44B4EDC3C2364E7FA8A0A /* FacebookLoginPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 80008D791335A3462F8B384E91886440 /* FacebookLoginPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB96A5DFBB7566D41B5FF016550E203E /* FBSDKCoreKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9785567D31B02C642474AC9AC1FC26EC /* FBSDKCoreKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AD478D0AB228DB8A9FBEB7D97C840830 /* FBSDKLoginUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 534BD63073194D85342C32B8DEE439C5 /* FBSDKLoginUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		AF406F232C36936E0325294049217D7C /* BFAppLinkResolving.h in Headers */ = {isa = PBXBuildFile; fileRef = 226A1BCCEA4C6AE356D4555167800212 /* BFAppLinkResolving.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -215,6 +214,7 @@
 		B34FB7F06F7CD2CC1B86D53E41377ABB /* FBSDKBoltsMeasurementEventListener.m in Sources */ = {isa = PBXBuildFile; fileRef = A88AC5086A40E07B37801B7DB8BF91C9 /* FBSDKBoltsMeasurementEventListener.m */; };
 		B3572D2901E2C82D5089D38B3A3C9257 /* FBSDKAccessTokenCacheV3_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 3963F3BFF166AD9B700F452C09B57325 /* FBSDKAccessTokenCacheV3_17.m */; };
 		B3F19035B428C772824898A8D3035968 /* FBSDKIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 78C9B1477C5739BCA79ABFBFB11E46D9 /* FBSDKIcon.m */; };
+		B71D8C0E1AF7E9005A732AF62AC8D9E0 /* SharedPreferencesPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = CA12A7E2BFA0EEA1F8002CFE1D6496FD /* SharedPreferencesPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B7CA51F49B448DAFD575CBB9453250ED /* BFMeasurementEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = C2E6550926A11C07E70F83ADB4A86FAB /* BFMeasurementEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B82325A41BF10B935BFE0D787A0FE38C /* FBSDKSwizzler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2143AE8D226F00ACF94BDB9BF21D5A /* FBSDKSwizzler.m */; };
 		BA3209CDD7228EE956A04D90BAF1D004 /* FBSDKProfile+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 65592DA2D4405A4C477923D896483555 /* FBSDKProfile+Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -224,12 +224,12 @@
 		BF9A41EE142C6AC1639798FED811EB70 /* FBSDKServerConfiguration+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EE12C68B277E53472CB6ED57C45AD8B /* FBSDKServerConfiguration+Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C0502C36E59A07201162F4A2C26596BC /* FBSDKGraphRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 69F98EF6291B65417F1168BFC1FAED50 /* FBSDKGraphRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C2A55A8A30526A8EC49A6D6BE9327447 /* FBSDKEventBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 17AB28F9E6A3309FCD7A54B0A0ED5B95 /* FBSDKEventBinding.m */; };
-		C40CCDBC289B6FED50E4A7884F51280C /* shared_preferences-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9EBE948B76C789B608C2DFBB0480EB /* shared_preferences-dummy.m */; };
+		C40CCDBC289B6FED50E4A7884F51280C /* shared_preferences-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 142EF096FECC073E027CEA519789D6EA /* shared_preferences-dummy.m */; };
 		C50507117B7C1B45EC3769DF30698E02 /* FBSDKServerConfigurationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 614B450BB988257BE4B7C36A6BC94EA8 /* FBSDKServerConfigurationManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C56D1978281597D29DAFA01F01F334C9 /* FBSDKErrorRecoveryAttempter.h in Headers */ = {isa = PBXBuildFile; fileRef = A674F3A84EE48B4DE183EFE2611A531D /* FBSDKErrorRecoveryAttempter.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C64E75AEB6197663C5A76B1877118660 /* FacebookSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FD32363A21EADF7CE001954D0D0A0165 /* FacebookSDKStrings.bundle */; };
 		C68CAA398B9F398D83865F278C4A26A9 /* BFCancellationToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 328B67F8250BE20B122526C85A4C208C /* BFCancellationToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C6BA56458F5820AFE0185054B6B4A5BB /* flutter_facebook_login-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 92D2F5E003AC355AFB7C1D14F575092C /* flutter_facebook_login-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C6BA56458F5820AFE0185054B6B4A5BB /* flutter_facebook_login-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 26C2CFB9FF942895E81830328BBD6BA8 /* flutter_facebook_login-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C88EC6AFB9979F054C87554BC7A1C98F /* FBSDKTypeUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 88956C3FD11FE7028771F001E3873D7D /* FBSDKTypeUtility.m */; };
 		C99BC705B9348592E353ADE5D52A9F8A /* FBSDKServerConfigurationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1455E0463917E310610D8F85796B9DF0 /* FBSDKServerConfigurationManager.m */; };
 		CB5ABA14E51FEE6F75C06387B9FCB5FE /* FBSDKWebDialogView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A05DAFF52C72A210129DF1099B7A1CF /* FBSDKWebDialogView.m */; };
@@ -378,6 +378,7 @@
 		035186BF4765CA721551948E0F22351F /* FBSDKGraphRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKGraphRequest.m; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKGraphRequest.m; sourceTree = "<group>"; };
 		07653B10B2E496270B9A7377EBF85A9C /* BFMeasurementEvent_Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BFMeasurementEvent_Internal.h; path = Bolts/iOS/Internal/BFMeasurementEvent_Internal.h; sourceTree = "<group>"; };
 		0797BDE9E73827868E226CF3CE7FF06A /* FBSDKBridgeAPIProtocolWebV1.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKBridgeAPIProtocolWebV1.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/ProtocolVersions/FBSDKBridgeAPIProtocolWebV1.h; sourceTree = "<group>"; };
+		07A972BE6820945B771ECE049122F20F /* SharedPreferencesPlugin.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SharedPreferencesPlugin.m; path = "../../../../../../../../../.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.4.3/ios/Classes/SharedPreferencesPlugin.m"; sourceTree = "<group>"; };
 		08318C40943AD5E99566538A428C2E9C /* FBSDKBridgeAPIResponse.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKBridgeAPIResponse.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPIResponse.h; sourceTree = "<group>"; };
 		08D209BB7685F4F7869A51055CF4757C /* FBSDKColor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKColor.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKColor.m; sourceTree = "<group>"; };
 		0B72CFB33DD93FF12A3D00180D8C8F7C /* BFAppLinkReturnToRefererView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BFAppLinkReturnToRefererView.h; path = Bolts/iOS/BFAppLinkReturnToRefererView.h; sourceTree = "<group>"; };
@@ -389,6 +390,7 @@
 		133BBD1803E01EC93A5661E2AACF39DB /* FBSDKAppEventsDeviceInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKAppEventsDeviceInfo.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/FBSDKAppEventsDeviceInfo.m; sourceTree = "<group>"; };
 		139880F48FD378F346F649FE673624F5 /* Pods-Runner-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Runner-umbrella.h"; sourceTree = "<group>"; };
 		13FEAB162E42F225E5F3674A2E782B0B /* FBSDKAccessToken.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKAccessToken.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKAccessToken.h; sourceTree = "<group>"; };
+		142EF096FECC073E027CEA519789D6EA /* shared_preferences-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "shared_preferences-dummy.m"; sourceTree = "<group>"; };
 		1455E0463917E310610D8F85796B9DF0 /* FBSDKServerConfigurationManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKServerConfigurationManager.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKServerConfigurationManager.m; sourceTree = "<group>"; };
 		145BACB238B1D0EB8807C69074415B96 /* FBSDKDialogConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKDialogConfiguration.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKDialogConfiguration.m; sourceTree = "<group>"; };
 		15496ABF44E88461910A233462C95024 /* FBSDKLoginButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKLoginButton.m; path = FBSDKLoginKit/FBSDKLoginKit/FBSDKLoginButton.m; sourceTree = "<group>"; };
@@ -401,7 +403,6 @@
 		1B5062702F46D547957961E229477651 /* BFExecutor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BFExecutor.h; path = Bolts/Common/BFExecutor.h; sourceTree = "<group>"; };
 		1C5AD2FA5E2CCB8F3F354B0679F7F7AF /* FBSDKTooltipView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKTooltipView.m; path = FBSDKLoginKit/FBSDKLoginKit/FBSDKTooltipView.m; sourceTree = "<group>"; };
 		1ED8FA635CDE2BDAFA4117D46829E336 /* FBSDKCopying.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKCopying.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKCopying.h; sourceTree = "<group>"; };
-		1F1B2F02230729D0B80C9234AFB8634D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = "../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_login-1.1.1/LICENSE"; sourceTree = "<group>"; };
 		20202B6BCAC63C90B18999500CD9EE7E /* FBSDKGraphRequestDataAttachment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKGraphRequestDataAttachment.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKGraphRequestDataAttachment.h; sourceTree = "<group>"; };
 		205B24A838AFECBD4F96532D401A0270 /* FBSDKMath.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKMath.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKMath.h; sourceTree = "<group>"; };
 		20FC1D1912F5E74450502956C6C10224 /* FBSDKLoginConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKLoginConstants.m; path = FBSDKLoginKit/FBSDKLoginKit/FBSDKLoginConstants.m; sourceTree = "<group>"; };
@@ -416,16 +417,17 @@
 		24F87173ADB72AE34A5EDB86976ED9B3 /* FBSDKEventBindingManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKEventBindingManager.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/Codeless/FBSDKEventBindingManager.h; sourceTree = "<group>"; };
 		25963B1FD616A5FC1E3C7D2FE2428E90 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26A7FC41CE5E56BC298A7531D4FB6730 /* FBSDKViewImpressionTracker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKViewImpressionTracker.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKViewImpressionTracker.h; sourceTree = "<group>"; };
+		26C2CFB9FF942895E81830328BBD6BA8 /* flutter_facebook_login-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "flutter_facebook_login-umbrella.h"; sourceTree = "<group>"; };
 		27CA892BD869AC9A030B83FE4A1367E2 /* FBSDKDynamicFrameworkLoader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKDynamicFrameworkLoader.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal_NoARC/FBSDKDynamicFrameworkLoader.m; sourceTree = "<group>"; };
 		27F411397910472CC1DA01D0A776C559 /* FBSDKAccessTokenExpirer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKAccessTokenExpirer.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKAccessTokenExpirer.m; sourceTree = "<group>"; };
 		283B7D5F44E76ADFB74BF39BF3420567 /* FBSDKApplicationDelegate+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKApplicationDelegate+Internal.h"; path = "FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKApplicationDelegate+Internal.h"; sourceTree = "<group>"; };
 		285D4F8F050C0E2DCBFC04F9C638CE4C /* FBSDKEventBindingManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKEventBindingManager.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/Codeless/FBSDKEventBindingManager.m; sourceTree = "<group>"; };
 		285F87D60653421176C53CDCBEC7428B /* Bolts-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Bolts-dummy.m"; sourceTree = "<group>"; };
-		2B5DF1C7AE89EA171B735CA089C5A6E8 /* SharedPreferencesPlugin.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SharedPreferencesPlugin.m; path = "../../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.4.3/ios/Classes/SharedPreferencesPlugin.m"; sourceTree = "<group>"; };
 		2C5EA64C39897F8332B0C6A164E8BF64 /* FBSDKDynamicFrameworkLoader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKDynamicFrameworkLoader.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKDynamicFrameworkLoader.h; sourceTree = "<group>"; };
 		2CF6B0222DF24846882C2E745CC4EC99 /* FBSDKWebDialogView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKWebDialogView.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/WebDialog/FBSDKWebDialogView.h; sourceTree = "<group>"; };
 		2D0E7F126DB30636905693BF4ECB7705 /* FBSDKGraphRequestBody.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKGraphRequestBody.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKGraphRequestBody.h; sourceTree = "<group>"; };
 		2DD6889DB9B3F1273991130018237552 /* FBSDKBase64.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKBase64.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/Base64/FBSDKBase64.h; sourceTree = "<group>"; };
+		2DF7CE09CFCD26591204417CD3C83332 /* shared_preferences.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = shared_preferences.podspec; path = "../../../../../../../../.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.4.3/ios/shared_preferences.podspec"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		2F9B075AA6E0C77ABB25F612B0825C71 /* FBSDKAppEventsUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKAppEventsUtility.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/FBSDKAppEventsUtility.h; sourceTree = "<group>"; };
 		2FC863BD7F65C5B3BD02DF98A06D335B /* BFAppLinkReturnToRefererController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BFAppLinkReturnToRefererController.m; path = Bolts/iOS/BFAppLinkReturnToRefererController.m; sourceTree = "<group>"; };
 		303BCE89DE688A23C550B2ACA2EC8CA1 /* FBSDKBridgeAPIProtocolType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKBridgeAPIProtocolType.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPIProtocolType.h; sourceTree = "<group>"; };
@@ -441,9 +443,10 @@
 		37FFE7A9510854CBC173C443EA0808FC /* FBSDKURLConnection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKURLConnection.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKURLConnection.m; sourceTree = "<group>"; };
 		392B2A271EA94A051A4B896F0A1AC9F0 /* FBSDKUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKUtility.m; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKUtility.m; sourceTree = "<group>"; };
 		3963F3BFF166AD9B700F452C09B57325 /* FBSDKAccessTokenCacheV3_17.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKAccessTokenCacheV3_17.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKAccessTokenCacheV3_17.m; sourceTree = "<group>"; };
-		39FB3CC7B9301725A468A4B22C677B84 /* flutter_facebook_login-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "flutter_facebook_login-prefix.pch"; sourceTree = "<group>"; };
 		3A3299ED50A4C89291ED3DB239564BC1 /* FBSDKBridgeAPIProtocolWebV1.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKBridgeAPIProtocolWebV1.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/ProtocolVersions/FBSDKBridgeAPIProtocolWebV1.m; sourceTree = "<group>"; };
+		3A881FB68F2A8ADB874995BD475C80E7 /* shared_preferences.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = shared_preferences.modulemap; sourceTree = "<group>"; };
 		3B0BE0F14868583C8DA5B94C3D589A92 /* Pods-Runner.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Runner.modulemap"; sourceTree = "<group>"; };
+		3B76B8B902C4192327B1CD398CD204C8 /* flutter_facebook_login-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "flutter_facebook_login-prefix.pch"; sourceTree = "<group>"; };
 		3BB92505B8A404B3229CBFC1ACCF6CC8 /* FBSDKLoginManagerLoginResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKLoginManagerLoginResult.m; path = FBSDKLoginKit/FBSDKLoginKit/FBSDKLoginManagerLoginResult.m; sourceTree = "<group>"; };
 		3D041428AADEDBA8158A7BCC48CBF702 /* FBSDKLoginKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSDKLoginKit-umbrella.h"; sourceTree = "<group>"; };
 		3E203FACE3983465B4C81DEEDA088411 /* FBSDKSystemAccountStoreAdapter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKSystemAccountStoreAdapter.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKSystemAccountStoreAdapter.h; sourceTree = "<group>"; };
@@ -458,19 +461,18 @@
 		4252FD39C5A6000F2EF66F9EFC77F1E9 /* FBSDKBridgeAPIProtocolWebV2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKBridgeAPIProtocolWebV2.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/ProtocolVersions/FBSDKBridgeAPIProtocolWebV2.h; sourceTree = "<group>"; };
 		42D0FB95E5B9EC4BD80A186540FECAF2 /* FBSDKGraphRequest+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKGraphRequest+Internal.h"; path = "FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKGraphRequest+Internal.h"; sourceTree = "<group>"; };
 		441A50F7BCFE64EB8021CE411E45D122 /* FBSDKLoginKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSDKLoginKit-prefix.pch"; sourceTree = "<group>"; };
-		4420E686DA69F93CDA3D64DFA9D539D6 /* shared_preferences.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = shared_preferences.xcconfig; sourceTree = "<group>"; };
 		4437C8701E373E922DE4B7C111DE4F12 /* FBSDKDeviceLoginError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKDeviceLoginError.h; path = FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKDeviceLoginError.h; sourceTree = "<group>"; };
 		44451B1A2C59821BC6C124C1F31183DA /* FBSDKCodelessPathComponent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKCodelessPathComponent.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/Codeless/FBSDKCodelessPathComponent.m; sourceTree = "<group>"; };
 		48698EFC4394A45C5A62894FAE6EA70C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AC699608662B205AE94006357C7757D /* FBSDKConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKConstants.m; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKConstants.m; sourceTree = "<group>"; };
 		4C6DEEF6D4A366A929A52DCBBEF6FED8 /* FBSDKDeviceLoginManagerResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKDeviceLoginManagerResult.h; path = FBSDKLoginKit/FBSDKLoginKit/FBSDKDeviceLoginManagerResult.h; sourceTree = "<group>"; };
 		4D669E0FFD4688B73D09E7192FFF9DDC /* BFCancellationTokenSource.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BFCancellationTokenSource.m; path = Bolts/Common/BFCancellationTokenSource.m; sourceTree = "<group>"; };
-		4E2CD6900377FC3B7F4B950B458BDE47 /* Flutter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Flutter.framework; path = ../../../../../../../flutter/bin/cache/artifacts/engine/ios/Flutter.framework; sourceTree = "<group>"; };
 		4E74FB3034A86ACEBA1864E0A47484A5 /* FBSDKLoginConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKLoginConstants.h; path = FBSDKLoginKit/FBSDKLoginKit/FBSDKLoginConstants.h; sourceTree = "<group>"; };
 		50059C19B7A658CBBAE7EAB934D27188 /* FBSDKTestUsersManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKTestUsersManager.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKTestUsersManager.h; sourceTree = "<group>"; };
 		51672D78E688BEFE9B8C602B485CFD41 /* FBSDKGraphRequestMetadata.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKGraphRequestMetadata.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKGraphRequestMetadata.m; sourceTree = "<group>"; };
 		51B129DE2E9C38B47B0263264B786743 /* BFTask.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BFTask.m; path = Bolts/Common/BFTask.m; sourceTree = "<group>"; };
 		527419E50DD846154C0563C78F2230D2 /* FBSDKButton+Subclass.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKButton+Subclass.h"; path = "FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKButton+Subclass.h"; sourceTree = "<group>"; };
+		52765D61C24C7525372A4C5D42D67BB1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = "../../../../../../../../.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_login-1.1.1/LICENSE"; sourceTree = "<group>"; };
 		5311110B0617FEF76DBF7D24FCA697B7 /* FBSDKKeychainStore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKKeychainStore.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKKeychainStore.m; sourceTree = "<group>"; };
 		534BD63073194D85342C32B8DEE439C5 /* FBSDKLoginUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKLoginUtility.h; path = FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKLoginUtility.h; sourceTree = "<group>"; };
 		551DDD36A0087FC14AFFEA5748E57E0E /* FBSDKBoltsMeasurementEventListener.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKBoltsMeasurementEventListener.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppLink/FBSDKBoltsMeasurementEventListener.h; sourceTree = "<group>"; };
@@ -480,7 +482,6 @@
 		583869139494BD0D5DDFE431D2EF23CA /* FBSDKBridgeAPICrypto.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKBridgeAPICrypto.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPICrypto.m; sourceTree = "<group>"; };
 		58B636C3423E86CDDCB90F7FC4044D95 /* FBSDKServerConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKServerConfiguration.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKServerConfiguration.m; sourceTree = "<group>"; };
 		5A9B78E8A3FFCFC512B1BBEDDD443536 /* FBSDKLoginManagerLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKLoginManagerLogger.h; path = FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKLoginManagerLogger.h; sourceTree = "<group>"; };
-		5B759C1EFDF343003DCA8C7F29ADA5D8 /* FacebookLoginPlugin.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FacebookLoginPlugin.m; path = "../../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_login-1.1.1/ios/Classes/FacebookLoginPlugin.m"; sourceTree = "<group>"; };
 		5C2143AE8D226F00ACF94BDB9BF21D5A /* FBSDKSwizzler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKSwizzler.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKSwizzler.m; sourceTree = "<group>"; };
 		5C33BF8CB79B1AF5B9166ECD14280DAD /* FBSDKDeviceLoginManagerResult.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKDeviceLoginManagerResult.m; path = FBSDKLoginKit/FBSDKLoginKit/FBSDKDeviceLoginManagerResult.m; sourceTree = "<group>"; };
 		5D0A682DB06EB49E7B219B798D13C26D /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
@@ -500,11 +501,12 @@
 		65592DA2D4405A4C477923D896483555 /* FBSDKProfile+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKProfile+Internal.h"; path = "FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKProfile+Internal.h"; sourceTree = "<group>"; };
 		66D2BB2878E3AD64C1E4B440D297E97E /* FBSDKAccessTokenCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKAccessTokenCache.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKAccessTokenCache.m; sourceTree = "<group>"; };
 		6728970F6605657F71D0120B71DE15D7 /* FBSDKURLSessionTask.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKURLSessionTask.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKURLSessionTask.h; sourceTree = "<group>"; };
+		677877A4DC258F88C7BFBD6B12D9FDCC /* flutter_facebook_login.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = flutter_facebook_login.modulemap; sourceTree = "<group>"; };
+		67F7D488FAE2116E60AA859208A89476 /* shared_preferences-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "shared_preferences-umbrella.h"; sourceTree = "<group>"; };
 		69C3FA77313F8F9FC19BC40E8F819AEB /* FBSDKKeychainStoreViaBundleID.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKKeychainStoreViaBundleID.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKKeychainStoreViaBundleID.h; sourceTree = "<group>"; };
 		69F98EF6291B65417F1168BFC1FAED50 /* FBSDKGraphRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKGraphRequest.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKGraphRequest.h; sourceTree = "<group>"; };
 		6A05DAFF52C72A210129DF1099B7A1CF /* FBSDKWebDialogView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKWebDialogView.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/WebDialog/FBSDKWebDialogView.m; sourceTree = "<group>"; };
 		6D29F407378869ECF108DBC0947C442E /* BFAppLinkTarget.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BFAppLinkTarget.h; path = Bolts/iOS/BFAppLinkTarget.h; sourceTree = "<group>"; };
-		6E38EECAA109CB7F04B1748394A2691D /* flutter_facebook_login.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = flutter_facebook_login.podspec; path = "../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_login-1.1.1/ios/flutter_facebook_login.podspec"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		7080C592286F9CFB681F9166FEF7F87D /* FBSDKDeviceLoginError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKDeviceLoginError.m; path = FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKDeviceLoginError.m; sourceTree = "<group>"; };
 		719C529244EC53632159397A8BE1DD57 /* FBSDKAccessTokenCacheV3.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKAccessTokenCacheV3.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKAccessTokenCacheV3.m; sourceTree = "<group>"; };
 		731DCB2A96FCE1D07CBB33EA0119ED5E /* FBSDKLoginManager+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKLoginManager+Internal.h"; path = "FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKLoginManager+Internal.h"; sourceTree = "<group>"; };
@@ -522,6 +524,7 @@
 		78C9B1477C5739BCA79ABFBFB11E46D9 /* FBSDKIcon.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKIcon.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKIcon.m; sourceTree = "<group>"; };
 		7A08DD2B590D96AE42D3098795741980 /* FBSDKLoginCompletion+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKLoginCompletion+Internal.h"; path = "FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKLoginCompletion+Internal.h"; sourceTree = "<group>"; };
 		7C35239E08F03ED6D12405779B7EBF15 /* FBSDKCrypto.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKCrypto.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/Cryptography/FBSDKCrypto.h; sourceTree = "<group>"; };
+		7CB55B7763E553F9F1B71CC7896CC0E1 /* FacebookLoginPlugin.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FacebookLoginPlugin.m; path = "../../../../../../../../../.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_login-1.1.1/ios/Classes/FacebookLoginPlugin.m"; sourceTree = "<group>"; };
 		7CD56225C3CB82C6A297B71AC3EB0479 /* BFCancellationTokenRegistration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BFCancellationTokenRegistration.h; path = Bolts/Common/BFCancellationTokenRegistration.h; sourceTree = "<group>"; };
 		7DD710D4DDD6D4CB686A0CFF3B4AAB64 /* FBSDKTestUsersManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKTestUsersManager.m; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKTestUsersManager.m; sourceTree = "<group>"; };
 		7DD8892B67FE9CAD534E7F3B7DD5EE85 /* FBSDKGraphRequestMetadata.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKGraphRequestMetadata.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKGraphRequestMetadata.h; sourceTree = "<group>"; };
@@ -530,27 +533,25 @@
 		7F0F7CBC14670A59623A0B9BF4F6CA1F /* FBSDKCoreKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FBSDKCoreKit-dummy.m"; sourceTree = "<group>"; };
 		7F1FAF652C97B71A60565B7FAC1A77D2 /* FBSDKBridgeAPIRequest+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKBridgeAPIRequest+Private.h"; path = "FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPIRequest+Private.h"; sourceTree = "<group>"; };
 		7FFDBAEA364E20B42C7CF561006A6C9B /* FBSDKKeychainStoreViaBundleID.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKKeychainStoreViaBundleID.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKKeychainStoreViaBundleID.m; sourceTree = "<group>"; };
+		80008D791335A3462F8B384E91886440 /* FacebookLoginPlugin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FacebookLoginPlugin.h; path = "../../../../../../../../../.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_login-1.1.1/ios/Classes/FacebookLoginPlugin.h"; sourceTree = "<group>"; };
 		807E957BAC18034F347248985B1B1A8B /* FBSDKSettings.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKSettings.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKSettings.h; sourceTree = "<group>"; };
-		80F0FDD9F0C7C8163D9DA6E7FEA8845D /* flutter_facebook_login.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = flutter_facebook_login.xcconfig; sourceTree = "<group>"; };
-		834A31C442FBE60FAEEAF03CF931FD48 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81F458E6F7152EA54F09C29E7D4B9BBA /* shared_preferences-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "shared_preferences-prefix.pch"; sourceTree = "<group>"; };
 		83FBDCA339880FABB8686E0D93452CBC /* FBSDKUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKUtility.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKUtility.h; sourceTree = "<group>"; };
 		846C5111E3F17A1C3EE328AD3557EEA4 /* FBSDKGraphRequestBody.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKGraphRequestBody.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKGraphRequestBody.m; sourceTree = "<group>"; };
 		85D6FF30171A17CA2220D7DC54F7E761 /* FBSDKLoginManagerLoginResult+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKLoginManagerLoginResult+Internal.h"; path = "FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKLoginManagerLoginResult+Internal.h"; sourceTree = "<group>"; };
 		87422BC9008B6788E3CCD9EE361D1DCB /* FBSDKErrorRecoveryAttempter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKErrorRecoveryAttempter.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/ErrorRecovery/FBSDKErrorRecoveryAttempter.m; sourceTree = "<group>"; };
 		88956C3FD11FE7028771F001E3873D7D /* FBSDKTypeUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKTypeUtility.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKTypeUtility.m; sourceTree = "<group>"; };
+		8A8CF73A33102F6806F58E544928FED1 /* Flutter.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Flutter.podspec; path = "../../../../../../../.flutter-sdk/flutter/bin/cache/artifacts/engine/ios/Flutter.podspec"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8C29EFC75B821733293E29C315050778 /* FBSDKAppEventsStateManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKAppEventsStateManager.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/FBSDKAppEventsStateManager.m; sourceTree = "<group>"; };
-		8D42C7C308188A1E71DE114F67297A27 /* flutter_facebook_login-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "flutter_facebook_login-dummy.m"; sourceTree = "<group>"; };
 		8E3C3E6EB20AB84527518638C375A56C /* shared_preferences.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = shared_preferences.framework; path = shared_preferences.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E54922257131DCF9568A63C4B210817 /* Pods-Runner-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Runner-resources.sh"; sourceTree = "<group>"; };
 		8E6AF6EF7C209BCFBA9B4F5780FC4E8B /* FBSDKDialogConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKDialogConfiguration.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKDialogConfiguration.h; sourceTree = "<group>"; };
-		8F66F0BD85DA8F3D109A8E004ABB6D4D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = "../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.4.3/LICENSE"; sourceTree = "<group>"; };
 		90357D5A1524FAD42CAF92B98B649D3F /* FBSDKURLSessionTask.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKURLSessionTask.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKURLSessionTask.m; sourceTree = "<group>"; };
 		906813D7E8FE8DC2BE09CD4AF040193D /* FBSDKAppEvents.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKAppEvents.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKAppEvents.h; sourceTree = "<group>"; };
 		910564E44F78C553EF5C6BF164D4543A /* FBSDKAudioResourceLoader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKAudioResourceLoader.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKAudioResourceLoader.h; sourceTree = "<group>"; };
 		9196D11E2E1FBB2D2A4893082C16D558 /* FBSDKServerConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKServerConfiguration.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKServerConfiguration.h; sourceTree = "<group>"; };
 		9274A2DA5D135C822BBB7AF728716782 /* FBSDKApplicationDelegate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKApplicationDelegate.m; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKApplicationDelegate.m; sourceTree = "<group>"; };
 		9298B587EB790DDF3E9AF1813FB2D4EF /* FBSDKAppLinkResolver.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKAppLinkResolver.m; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKAppLinkResolver.m; sourceTree = "<group>"; };
-		92D2F5E003AC355AFB7C1D14F575092C /* flutter_facebook_login-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "flutter_facebook_login-umbrella.h"; sourceTree = "<group>"; };
 		9386C505CB9FE1FB528934BBA8D3825E /* FBSDKAccessTokenCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKAccessTokenCache.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKAccessTokenCache.h; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		94EEED57A148C6A87AC471FF99E16A31 /* FBSDKGraphRequestPiggybackManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKGraphRequestPiggybackManager.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKGraphRequestPiggybackManager.m; sourceTree = "<group>"; };
@@ -558,7 +559,6 @@
 		96433AFBDFD2C2F49A0937170E2F098D /* FBSDKLoginKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FBSDKLoginKit.modulemap; sourceTree = "<group>"; };
 		9785567D31B02C642474AC9AC1FC26EC /* FBSDKCoreKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKCoreKit.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKCoreKit.h; sourceTree = "<group>"; };
 		98134620482A8EF1E54D9F4BF2664875 /* _FBSDKLoginRecoveryAttempter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = _FBSDKLoginRecoveryAttempter.h; path = FBSDKLoginKit/FBSDKLoginKit/Internal/_FBSDKLoginRecoveryAttempter.h; sourceTree = "<group>"; };
-		9882018CF257F0CE4FF204CD863EE228 /* FacebookLoginPlugin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FacebookLoginPlugin.h; path = "../../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_login-1.1.1/ios/Classes/FacebookLoginPlugin.h"; sourceTree = "<group>"; };
 		98BF54AA017FCDA667F5705CC533BE96 /* FBSDKWebDialog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKWebDialog.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/WebDialog/FBSDKWebDialog.h; sourceTree = "<group>"; };
 		9B5C48BB21114492B4DB65343DFE174F /* FBSDKAudioResourceLoader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKAudioResourceLoader.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKAudioResourceLoader.m; sourceTree = "<group>"; };
 		9BBD1A5AC6397E509907DEEBA3F886F2 /* BFWebViewAppLinkResolver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BFWebViewAppLinkResolver.h; path = Bolts/iOS/BFWebViewAppLinkResolver.h; sourceTree = "<group>"; };
@@ -568,6 +568,7 @@
 		9F24F88DBE251022E69F5286CE2D386B /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Bolts.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0F97D0ACE7777AFCC41119D7269DD2E /* FBSDKDeviceLoginManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKDeviceLoginManager.h; path = FBSDKLoginKit/FBSDKLoginKit/FBSDKDeviceLoginManager.h; sourceTree = "<group>"; };
 		A13F368D48D3AA8C5E19967BBA038107 /* FBSDKDeviceRequestsHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKDeviceRequestsHelper.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKDeviceRequestsHelper.h; sourceTree = "<group>"; };
+		A1FA2E40407BA5DB6A27D1FC4EFDBF3F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = "../../../../../../../.flutter-sdk/flutter/bin/cache/artifacts/engine/ios/LICENSE"; sourceTree = "<group>"; };
 		A29D14AA8F0A8E986DD5B14F1824A953 /* FBSDKLoginManagerLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKLoginManagerLogger.m; path = FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKLoginManagerLogger.m; sourceTree = "<group>"; };
 		A36F1B81D89ABEE862BCE70441198F4B /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3D37666D426D26436A3B26B915476E8 /* FBSDKLoginManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKLoginManager.h; path = FBSDKLoginKit/FBSDKLoginKit/FBSDKLoginManager.h; sourceTree = "<group>"; };
@@ -582,8 +583,8 @@
 		A8436A5DA001006B2D4F791B845612EB /* BFTaskCompletionSource.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BFTaskCompletionSource.m; path = Bolts/Common/BFTaskCompletionSource.m; sourceTree = "<group>"; };
 		A88AC5086A40E07B37801B7DB8BF91C9 /* FBSDKBoltsMeasurementEventListener.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKBoltsMeasurementEventListener.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppLink/FBSDKBoltsMeasurementEventListener.m; sourceTree = "<group>"; };
 		A8B2D8103EE9D273DEAFE79548F90EB8 /* FBSDKError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKError.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKError.h; sourceTree = "<group>"; };
-		AA044EC7ECA7C8E252A998D822091B86 /* Flutter.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Flutter.podspec; path = ../../../../../../../flutter/bin/cache/artifacts/engine/ios/Flutter.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		AB21B7FE62FDD34F5828D7570A39FEB6 /* shared_preferences-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "shared_preferences-prefix.pch"; sourceTree = "<group>"; };
+		A9FF7B5324A00D2222CBE83E46DE5246 /* shared_preferences.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = shared_preferences.xcconfig; sourceTree = "<group>"; };
+		AB9FD4768A6A3136318B1086F8C5A6DB /* flutter_facebook_login.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = flutter_facebook_login.xcconfig; sourceTree = "<group>"; };
 		ABA3C384D36D061B8785E2EAEC651F91 /* Bolts.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Bolts.modulemap; sourceTree = "<group>"; };
 		AC1E6FA777B0FC1227824122E8DDA6C4 /* Bolts.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Bolts.h; path = Bolts/Common/Bolts.h; sourceTree = "<group>"; };
 		ADC7ACD54604FE751C783E39A531010C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -595,6 +596,7 @@
 		B18C0ABAB1F5DAEA08A99E75D8C47DCE /* FBSDKCloseIcon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKCloseIcon.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKCloseIcon.h; sourceTree = "<group>"; };
 		B1AF2FFE4827C2737F20F54348890D2A /* FBSDKGraphRequestDataAttachment.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKGraphRequestDataAttachment.m; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKGraphRequestDataAttachment.m; sourceTree = "<group>"; };
 		B1F9DD931CC856C411C5DECADA3FB038 /* BFAppLinkReturnToRefererView_Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BFAppLinkReturnToRefererView_Internal.h; path = Bolts/iOS/Internal/BFAppLinkReturnToRefererView_Internal.h; sourceTree = "<group>"; };
+		B23693D71369FCA9AF6FB94A4850119F /* flutter_facebook_login-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "flutter_facebook_login-dummy.m"; sourceTree = "<group>"; };
 		B2FBC5B534B9D386F09DF4ED8C27A651 /* FBSDKButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKButton.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKButton.h; sourceTree = "<group>"; };
 		B4BF3346397789D920B6A3E1962E4C79 /* FBSDKAppEventsStateManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKAppEventsStateManager.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/FBSDKAppEventsStateManager.h; sourceTree = "<group>"; };
 		B5E4C84967FEE0F35BAC0668E472C005 /* FBSDKAppEvents.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKAppEvents.m; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKAppEvents.m; sourceTree = "<group>"; };
@@ -602,10 +604,12 @@
 		B6D5B919808A9E56EE0A73220AF6C8E1 /* FBSDKPaymentObserver.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKPaymentObserver.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/FBSDKPaymentObserver.m; sourceTree = "<group>"; };
 		B701E44AB2B0EB4EC849C0F74D1CABCA /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBSDKCoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B81E99787B4E48E6443CE514999DA089 /* FBSDKBridgeAPIRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKBridgeAPIRequest.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPIRequest.m; sourceTree = "<group>"; };
+		B88F48AE5F50A95AA836585603FC9FFE /* Flutter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Flutter.framework; path = "../../../../../../../.flutter-sdk/flutter/bin/cache/artifacts/engine/ios/Flutter.framework"; sourceTree = "<group>"; };
 		B8CE761750E2ED74BD016CE0E598E819 /* FBSDKErrorConfiguration.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKErrorConfiguration.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/ServerConfiguration/FBSDKErrorConfiguration.h; sourceTree = "<group>"; };
 		BB04B6C337E0176D861C33B4B5F7E682 /* FBSDKGraphRequestConnection+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKGraphRequestConnection+Internal.h"; path = "FBSDKCoreKit/FBSDKCoreKit/Internal/Network/FBSDKGraphRequestConnection+Internal.h"; sourceTree = "<group>"; };
 		BCD3764CD1D56B022A9082D32AED650C /* FBSDKUIUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKUIUtility.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKUIUtility.h; sourceTree = "<group>"; };
 		BD2E5DB967219A44A2395EB742883D20 /* FBSDKBridgeAPIProtocolWebV2.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKBridgeAPIProtocolWebV2.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/ProtocolVersions/FBSDKBridgeAPIProtocolWebV2.m; sourceTree = "<group>"; };
+		BFC5F4B1593E70425ADB5A94BE5240E8 /* flutter_facebook_login.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = flutter_facebook_login.podspec; path = "../../../../../../../../.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_login-1.1.1/ios/flutter_facebook_login.podspec"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C13390BDF91000AF0E441DE6FD39E457 /* FBSDKAppLinkUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKAppLinkUtility.m; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKAppLinkUtility.m; sourceTree = "<group>"; };
 		C1FE3EF8A803CCAC25C146CEA59076CB /* FBSDKWebDialog.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKWebDialog.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/WebDialog/FBSDKWebDialog.m; sourceTree = "<group>"; };
 		C2E6550926A11C07E70F83ADB4A86FAB /* BFMeasurementEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BFMeasurementEvent.h; path = Bolts/iOS/BFMeasurementEvent.h; sourceTree = "<group>"; };
@@ -618,9 +622,9 @@
 		C87284E5FBDBA29840424EC8B47776C8 /* Pods-Runner-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Runner-acknowledgements.markdown"; sourceTree = "<group>"; };
 		C8ADE0AD3E042C16146819864F13A790 /* FBSDKViewHierarchy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKViewHierarchy.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/Codeless/FBSDKViewHierarchy.h; sourceTree = "<group>"; };
 		C93702045587A64F34EA5D8C35FE03D9 /* FBSDKBridgeAPIResponse.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKBridgeAPIResponse.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPIResponse.m; sourceTree = "<group>"; };
+		CA12A7E2BFA0EEA1F8002CFE1D6496FD /* SharedPreferencesPlugin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SharedPreferencesPlugin.h; path = "../../../../../../../../../.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.4.3/ios/Classes/SharedPreferencesPlugin.h"; sourceTree = "<group>"; };
 		CADE7B96BA02F4AD6418286256FCC47C /* FBSDKLoginUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKLoginUtility.m; path = FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKLoginUtility.m; sourceTree = "<group>"; };
 		CC44800C5771BA8666A240F9A09C43F5 /* FBSDKDeviceLoginManagerResult+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKDeviceLoginManagerResult+Internal.h"; path = "FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKDeviceLoginManagerResult+Internal.h"; sourceTree = "<group>"; };
-		CD9EBE948B76C789B608C2DFBB0480EB /* shared_preferences-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "shared_preferences-dummy.m"; sourceTree = "<group>"; };
 		CDCB178B8AEFECB39B8D4E30AA143CB2 /* Bolts.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Bolts.m; path = Bolts/Common/Bolts.m; sourceTree = "<group>"; };
 		CE27783810E845009A8095F35CD67EB7 /* _FBSDKLoginRecoveryAttempter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = _FBSDKLoginRecoveryAttempter.m; path = FBSDKLoginKit/FBSDKLoginKit/Internal/_FBSDKLoginRecoveryAttempter.m; sourceTree = "<group>"; };
 		CE7A3B2DBE17E3D0F0FC75446BDA0825 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -636,17 +640,16 @@
 		D95F21137CEB0FBB7EA2E24AB9590029 /* FBSDKTimeSpentData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKTimeSpentData.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/FBSDKTimeSpentData.m; sourceTree = "<group>"; };
 		D9C1B3F1225A7A6DEF3133EFF48E9F43 /* FBSDKSettings+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKSettings+Internal.h"; path = "FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKSettings+Internal.h"; sourceTree = "<group>"; };
 		D9D6B89237ABFCAFE6CEC819E2C35F85 /* FBSDKSystemAccountStoreAdapter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKSystemAccountStoreAdapter.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKSystemAccountStoreAdapter.m; sourceTree = "<group>"; };
+		DA400B68A5F08A468E85702A3900A2A1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA82F4FC5ADF2CDD635399B1E52464A4 /* BFTaskCompletionSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BFTaskCompletionSource.h; path = Bolts/Common/BFTaskCompletionSource.h; sourceTree = "<group>"; };
+		DAFF9CC71E04A4CCC6125D41316764B4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB35A9845801A30813C4EAFA2142ABA2 /* BFURL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BFURL.m; path = Bolts/iOS/BFURL.m; sourceTree = "<group>"; };
-		DB444FACF8723D69250296B289F070DA /* shared_preferences.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = shared_preferences.modulemap; sourceTree = "<group>"; };
 		DB9AF5C3300B3737048A5F7A1D0F4DCE /* FBSDKImageDownloader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKImageDownloader.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKImageDownloader.m; sourceTree = "<group>"; };
 		DD6AB5C9414ACF48EEA27172D5E1617A /* FBSDKCodelessParameterComponent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKCodelessParameterComponent.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/Codeless/FBSDKCodelessParameterComponent.m; sourceTree = "<group>"; };
 		DE80A50096624FAD00692235CDF00481 /* FBSDKViewHierarchy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKViewHierarchy.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/Codeless/FBSDKViewHierarchy.m; sourceTree = "<group>"; };
 		DEB9D50FDCE16E443E5E02204140FC11 /* FBSDKBridgeAPIProtocolNativeV1.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKBridgeAPIProtocolNativeV1.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/ProtocolVersions/FBSDKBridgeAPIProtocolNativeV1.h; sourceTree = "<group>"; };
 		E004546CA3E92DC4B91349B42D643794 /* FBSDKCoreKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSDKCoreKit.xcconfig; sourceTree = "<group>"; };
-		E03C604A9C69BAE99E5F8A3E5DEEBE0A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1053C7A6BDC0DBF0A07CF8BF3F2CCF8 /* FBSDKAppEventsUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKAppEventsUtility.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/FBSDKAppEventsUtility.m; sourceTree = "<group>"; };
-		E26C3C7708BEF9EB0613A8CDA598573F /* shared_preferences-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "shared_preferences-umbrella.h"; sourceTree = "<group>"; };
 		E27088EFA08D966AE5B006AA9FCC4B5A /* FBSDKMaleSilhouetteIcon.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKMaleSilhouetteIcon.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/UI/FBSDKMaleSilhouetteIcon.m; sourceTree = "<group>"; };
 		E27CC78823CB308C9C002633247F2A9D /* BFCancellationTokenSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BFCancellationTokenSource.h; path = Bolts/Common/BFCancellationTokenSource.h; sourceTree = "<group>"; };
 		E36C95073556CDE5C0D218956599B916 /* Pods-Runner-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Runner-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -655,6 +658,7 @@
 		E7BD4C55A69FA4A9743555610BF40B8A /* FBSDKTriStateBOOL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKTriStateBOOL.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKTriStateBOOL.h; sourceTree = "<group>"; };
 		E8423B14353F189D4312D34888B30758 /* FBSDKTooltipView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKTooltipView.h; path = FBSDKLoginKit/FBSDKLoginKit/FBSDKTooltipView.h; sourceTree = "<group>"; };
 		E868329B0620003C1E6271E690303E18 /* FBSDKContainerViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKContainerViewController.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKContainerViewController.m; sourceTree = "<group>"; };
+		E8ED2C3FB528E27277B656A41E52F550 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = "../../../../../../../../.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.4.3/LICENSE"; sourceTree = "<group>"; };
 		E9104FFCD9F21FC532030B666A29EE85 /* FBSDKLoginKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FBSDKLoginKit-dummy.m"; sourceTree = "<group>"; };
 		E9EEA30D1E952737C5203B06AB49F9CA /* FBSDKLoginError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKLoginError.m; path = FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKLoginError.m; sourceTree = "<group>"; };
 		EC43A7B02050814B9981258B296941A0 /* FBSDKLoginKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSDKLoginKit.xcconfig; sourceTree = "<group>"; };
@@ -665,9 +669,7 @@
 		F0ABC3E7EA72F92F274EAA87060AAA0A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		F1512D0E63BE29E45EF9937A7F2629C8 /* BFWebViewAppLinkResolver.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BFWebViewAppLinkResolver.m; path = Bolts/iOS/BFWebViewAppLinkResolver.m; sourceTree = "<group>"; };
 		F18C99ABC8B0A9011A852FC7833A3E49 /* FBSDKHybridAppEventsScriptMessageHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKHybridAppEventsScriptMessageHandler.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/FBSDKHybridAppEventsScriptMessageHandler.h; sourceTree = "<group>"; };
-		F30578E1798F8E53424ED3E6D929F50B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../../../../../../../flutter/bin/cache/artifacts/engine/ios/LICENSE; sourceTree = "<group>"; };
 		F312D84776D0690E8EAC4995EE1F8C39 /* FBSDKMutableCopying.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKMutableCopying.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKMutableCopying.h; sourceTree = "<group>"; };
-		F6D8B71651B1BD01FBB77BF9CB0503EA /* SharedPreferencesPlugin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SharedPreferencesPlugin.h; path = "../../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.4.3/ios/Classes/SharedPreferencesPlugin.h"; sourceTree = "<group>"; };
 		F73C0B5181938D64F141DBA20621C0E8 /* FBSDKProfile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKProfile.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKProfile.h; sourceTree = "<group>"; };
 		F83DBDC284C677297A4A633B7A9D1950 /* FBSDKApplicationDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKApplicationDelegate.h; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKApplicationDelegate.h; sourceTree = "<group>"; };
 		F88375251F1EFF199AE9F44525E46CC9 /* FBSDKDeviceLoginManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKDeviceLoginManager.m; path = FBSDKLoginKit/FBSDKLoginKit/FBSDKDeviceLoginManager.m; sourceTree = "<group>"; };
@@ -675,7 +677,6 @@
 		F931E8528B3807C08284CC6C208B6455 /* FBSDKError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKError.m; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKError.m; sourceTree = "<group>"; };
 		F95CD296AE75C04402B75429C3C3DE47 /* FBSDKLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKLogger.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/FBSDKLogger.h; sourceTree = "<group>"; };
 		F970DD790F98784258F03328C9ABF831 /* FBSDKProfilePictureView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKProfilePictureView.m; path = FBSDKCoreKit/FBSDKCoreKit/FBSDKProfilePictureView.m; sourceTree = "<group>"; };
-		FA75D1EE07F3C6393E9CB7975509945F /* flutter_facebook_login.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = flutter_facebook_login.modulemap; sourceTree = "<group>"; };
 		FA7ED2A312F04139F960547858364163 /* FBSDKBridgeAPIProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKBridgeAPIProtocol.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/BridgeAPI/FBSDKBridgeAPIProtocol.h; sourceTree = "<group>"; };
 		FB06013A1C23D4CBE3C32BF5F799A20B /* FBSDKAppEvents+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FBSDKAppEvents+Internal.h"; path = "FBSDKCoreKit/FBSDKCoreKit/Internal/AppEvents/FBSDKAppEvents+Internal.h"; sourceTree = "<group>"; };
 		FB1DC58A86289FFBCB723AFE7C037138 /* FBSDKLoginButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKLoginButton.h; path = FBSDKLoginKit/FBSDKLoginKit/FBSDKLoginButton.h; sourceTree = "<group>"; };
@@ -684,7 +685,6 @@
 		FC86E962E54A21437342699C3BE068A8 /* FBSDKAccessTokenCacheV3_21.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKAccessTokenCacheV3_21.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKAccessTokenCacheV3_21.h; sourceTree = "<group>"; };
 		FC9F75DCCCC7380653E39DCECC7E159E /* FBSDKAccessTokenExpirer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKAccessTokenExpirer.h; path = FBSDKCoreKit/FBSDKCoreKit/Internal/TokenCaching/FBSDKAccessTokenExpirer.h; sourceTree = "<group>"; };
 		FD32363A21EADF7CE001954D0D0A0165 /* FacebookSDKStrings.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; path = FacebookSDKStrings.bundle; sourceTree = "<group>"; };
-		FE78E761A9FD1AF2412DABAD3B02773A /* shared_preferences.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = shared_preferences.podspec; path = "../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.4.3/ios/shared_preferences.podspec"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		FEDB1ED0773B1C1C9EE9DCC6DC388FDD /* FBSDKLoginTooltipView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSDKLoginTooltipView.m; path = FBSDKLoginKit/FBSDKLoginKit/FBSDKLoginTooltipView.m; sourceTree = "<group>"; };
 		FF8EE14545774F9210E79779E873EE52 /* FBSDKLoginError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSDKLoginError.h; path = FBSDKLoginKit/FBSDKLoginKit/Internal/FBSDKLoginError.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -747,50 +747,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		02337350DF8C792ABFBB010E32692170 /* .. */ = {
+		0933EDF9DA4BC1430BDB943442D0BF5E /* .. */ = {
 			isa = PBXGroup;
 			children = (
-				6D036DE24652249F595C44434D158F19 /* .. */,
+				4F3BF6405B0EEAD57DBD75D0FFB66B07 /* .. */,
 			);
 			name = ..;
 			path = ..;
 			sourceTree = "<group>";
 		};
-		0341B158E16FA027F95DA9A093084323 /* shared_preferences */ = {
+		0AAD193DA3829FE72CBD19DB863EECB5 /* .. */ = {
 			isa = PBXGroup;
 			children = (
-				7FA48AF9E0C61B8DD3DC574A23035E84 /* ios */,
+				5D81D113CF9A0611CB27D8FE71B26484 /* .. */,
 			);
-			name = shared_preferences;
-			path = shared_preferences;
+			name = ..;
+			path = "../../../../../../../../.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.4.3/ios";
 			sourceTree = "<group>";
 		};
-		03510A1329ED8821E6F8D24BA0E8E6D0 /* Frameworks */ = {
+		0AF7EEF90F6346BA79A76B100EAF82AC /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				4E2CD6900377FC3B7F4B950B458BDE47 /* Flutter.framework */,
+				E8ED2C3FB528E27277B656A41E52F550 /* LICENSE */,
+				2DF7CE09CFCD26591204417CD3C83332 /* shared_preferences.podspec */,
 			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		06A54D4178B8BB6E7F593B2B771DA2BB /* shared_preferences */ = {
-			isa = PBXGroup;
-			children = (
-				5AAFFBCEB299A5D68AD25F45F34C41FD /* .. */,
-				1312196309D138A5FCBAA24B612554DC /* Pod */,
-				B244C88E96E972A643BBD332A5705D1D /* Support Files */,
-			);
-			name = shared_preferences;
-			path = ../.symlinks/plugins/shared_preferences/ios;
-			sourceTree = "<group>";
-		};
-		0ED5078BA80BBCAB7E7D061985E9115B /* ios */ = {
-			isa = PBXGroup;
-			children = (
-				D86449E061C1D3BB9946EB7B8B1412F9 /* Classes */,
-			);
-			name = ios;
-			path = ios;
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		110D6A3A8995C1F60AF25A7DFA201E69 /* Resources */ = {
@@ -801,31 +782,13 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		11277AC8880BC0153FA46BEA9C748AD7 /* snuze */ = {
+		14F369846E249545EDDC4F7DB81A3E9A /* .. */ = {
 			isa = PBXGroup;
 			children = (
-				244087F63E685A55B4DFC3427289B9B5 /* snuze_app */,
+				0933EDF9DA4BC1430BDB943442D0BF5E /* .. */,
 			);
-			name = snuze;
-			path = snuze;
-			sourceTree = "<group>";
-		};
-		1312196309D138A5FCBAA24B612554DC /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				8F66F0BD85DA8F3D109A8E004ABB6D4D /* LICENSE */,
-				FE78E761A9FD1AF2412DABAD3B02773A /* shared_preferences.podspec */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		1315BE89CEC093D6A6B00E6FBCDF5D6E /* .symlinks */ = {
-			isa = PBXGroup;
-			children = (
-				1E0595E4BE711E8FCD692D5ACA7AD85E /* plugins */,
-			);
-			name = .symlinks;
-			path = .symlinks;
+			name = ..;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		15B1534EC16DEEA7FAFC43BF87B82233 /* Pods */ = {
@@ -838,22 +801,64 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		1E0595E4BE711E8FCD692D5ACA7AD85E /* plugins */ = {
+		1B7FBA223FB05F23CAB7A946BBCA9973 /* .symlinks */ = {
 			isa = PBXGroup;
 			children = (
-				0341B158E16FA027F95DA9A093084323 /* shared_preferences */,
+				B9DB54F9D3CFED0FD81C97F6FDEB0C07 /* plugins */,
 			);
-			name = plugins;
-			path = plugins;
+			name = .symlinks;
+			path = .symlinks;
 			sourceTree = "<group>";
 		};
-		244087F63E685A55B4DFC3427289B9B5 /* snuze_app */ = {
+		2751B4B8EEEE23C0824CB33F0FD4CA0E /* .symlinks */ = {
 			isa = PBXGroup;
 			children = (
-				EECC61AB904C34F9F2B65617D2A82B05 /* ios */,
+				32F5C8FDFDD99E509C582900EE6868D4 /* plugins */,
 			);
-			name = snuze_app;
-			path = snuze_app;
+			name = .symlinks;
+			path = .symlinks;
+			sourceTree = "<group>";
+		};
+		28C4614D4935BC576D34B10994FE96D4 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				CA12A7E2BFA0EEA1F8002CFE1D6496FD /* SharedPreferencesPlugin.h */,
+				07A972BE6820945B771ECE049122F20F /* SharedPreferencesPlugin.m */,
+			);
+			name = Classes;
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		29275C2E2659D323FF26BE1F269FB9EB /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				DAFF9CC71E04A4CCC6125D41316764B4 /* Info.plist */,
+				3A881FB68F2A8ADB874995BD475C80E7 /* shared_preferences.modulemap */,
+				A9FF7B5324A00D2222CBE83E46DE5246 /* shared_preferences.xcconfig */,
+				142EF096FECC073E027CEA519789D6EA /* shared_preferences-dummy.m */,
+				81F458E6F7152EA54F09C29E7D4B9BBA /* shared_preferences-prefix.pch */,
+				67F7D488FAE2116E60AA859208A89476 /* shared_preferences-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../../../../Pods/Target Support Files/shared_preferences";
+			sourceTree = "<group>";
+		};
+		29842B77DC349A28EEB3057AC8D85520 /* flutter_facebook_login */ = {
+			isa = PBXGroup;
+			children = (
+				4461C67E6089A6A89D465B86C384440B /* ios */,
+			);
+			name = flutter_facebook_login;
+			path = flutter_facebook_login;
+			sourceTree = "<group>";
+		};
+		2BD29B76F09F6ED450C004768A5E7625 /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				83606151B593BED8CFFFB6D67C64F190 /* tao-team */,
+			);
+			name = ..;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		2CAC5D83CDA4292FBF789FDDAD6FE379 /* Frameworks */ = {
@@ -879,15 +884,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/FBSDKCoreKit";
-			sourceTree = "<group>";
-		};
-		30277EA6662CB64737CBCC20419F42B3 /* .. */ = {
-			isa = PBXGroup;
-			children = (
-				B432BD1BBE508AFBD56468950A72DA39 /* Desktop */,
-			);
-			name = ..;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		311C8C7AEB6B7B845882D7792EB1E94A /* FBSDKLoginKit */ = {
@@ -940,42 +936,28 @@
 			isa = PBXGroup;
 			children = (
 				F01B4B8A856DE9F7A1F4BE3374D040F7 /* Flutter */,
-				EABA832BB133EFEAD00B5A7330342712 /* flutter_facebook_login */,
-				06A54D4178B8BB6E7F593B2B771DA2BB /* shared_preferences */,
+				DD7C593F9B064A12CB8493FE90DCF308 /* flutter_facebook_login */,
+				F11839DF096482DA0CCFEBA8F0AC6561 /* shared_preferences */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		31ED9CB4302A466C32AB83E47DC18735 /* .. */ = {
+		32F5C8FDFDD99E509C582900EE6868D4 /* plugins */ = {
 			isa = PBXGroup;
 			children = (
-				513F902EC116F9E18D31E5494CF2DEC4 /* Desktop */,
+				29842B77DC349A28EEB3057AC8D85520 /* flutter_facebook_login */,
 			);
-			name = ..;
-			path = ..;
+			name = plugins;
+			path = plugins;
 			sourceTree = "<group>";
 		};
-		32FBCED4A1F37B485C61A3E2EB2347F3 /* Support Files */ = {
+		34C4F32FD9DA91F2FB90A7704A08100D /* tao-team */ = {
 			isa = PBXGroup;
 			children = (
-				FA75D1EE07F3C6393E9CB7975509945F /* flutter_facebook_login.modulemap */,
-				80F0FDD9F0C7C8163D9DA6E7FEA8845D /* flutter_facebook_login.xcconfig */,
-				8D42C7C308188A1E71DE114F67297A27 /* flutter_facebook_login-dummy.m */,
-				39FB3CC7B9301725A468A4B22C677B84 /* flutter_facebook_login-prefix.pch */,
-				92D2F5E003AC355AFB7C1D14F575092C /* flutter_facebook_login-umbrella.h */,
-				E03C604A9C69BAE99E5F8A3E5DEEBE0A /* Info.plist */,
+				F6493AE4DADAA01B3ABF1704F938A142 /* snuze */,
 			);
-			name = "Support Files";
-			path = "../../../../Pods/Target Support Files/flutter_facebook_login";
-			sourceTree = "<group>";
-		};
-		3427631AFD17CE848351E716F1BB303C /* .symlinks */ = {
-			isa = PBXGroup;
-			children = (
-				E934CD1D0AD9287BDDD85C47264973DD /* plugins */,
-			);
-			name = .symlinks;
-			path = .symlinks;
+			name = "tao-team";
+			path = "tao-team";
 			sourceTree = "<group>";
 		};
 		37697F1C117EF4F937056E0EA5FE4EDD /* Products */ = {
@@ -989,6 +971,24 @@
 				8E3C3E6EB20AB84527518638C375A56C /* shared_preferences.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		3B8905906C3A6B2BC296A010B86750DD /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				D12AE2CC9F43B7F367A2B42F778830BD /* .. */,
+			);
+			name = ..;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		3C6EBB62615DB8DEFEC8645F8FBAA3EC /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				BFC5F4B1593E70425ADB5A94BE5240E8 /* flutter_facebook_login.podspec */,
+				52765D61C24C7525372A4C5D42D67BB1 /* LICENSE */,
+			);
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		40251A4765495C7AED0243313E2323FC /* FBSDKCoreKit */ = {
@@ -1180,6 +1180,24 @@
 			path = FBSDKCoreKit;
 			sourceTree = "<group>";
 		};
+		41406194E9A555BD0D7C8CFA44D344B1 /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				2BD29B76F09F6ED450C004768A5E7625 /* .. */,
+			);
+			name = ..;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		4461C67E6089A6A89D465B86C384440B /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				841601318005152D818765D196BEE9E4 /* Classes */,
+			);
+			name = ios;
+			path = ios;
+			sourceTree = "<group>";
+		};
 		48E1FC10E526441C4F7DA63E597E3C22 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -1199,22 +1217,21 @@
 			path = Bolts;
 			sourceTree = "<group>";
 		};
-		513F902EC116F9E18D31E5494CF2DEC4 /* Desktop */ = {
+		4F3BF6405B0EEAD57DBD75D0FFB66B07 /* .. */ = {
 			isa = PBXGroup;
 			children = (
-				729890BC30B6903CF3055D0D7FFD34A4 /* snuze */,
-			);
-			name = Desktop;
-			path = Desktop;
-			sourceTree = "<group>";
-		};
-		53B162E430896B11CAEBA25F2046421A /* .. */ = {
-			isa = PBXGroup;
-			children = (
-				995B5B8CA4779C208F3DA8DBD8B9786C /* .. */,
+				41406194E9A555BD0D7C8CFA44D344B1 /* .. */,
 			);
 			name = ..;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		54A73F67246966A9CF8563420789D684 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B88F48AE5F50A95AA836585603FC9FFE /* Flutter.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		5738161489BFDB537008A73B36B57379 /* Support Files */ = {
@@ -1231,22 +1248,31 @@
 			path = "../Target Support Files/Bolts";
 			sourceTree = "<group>";
 		};
-		59172766C5DE8400D6F34402AA3D237E /* .. */ = {
+		5CE0D04EDBA8B8138023BD2DB982ABB2 /* app */ = {
 			isa = PBXGroup;
 			children = (
-				30277EA6662CB64737CBCC20419F42B3 /* .. */,
+				88673A30E4A93ED5683F3D72AF68F441 /* ios */,
+			);
+			name = app;
+			path = app;
+			sourceTree = "<group>";
+		};
+		5D81D113CF9A0611CB27D8FE71B26484 /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				C0A455F2FB81712F763B431C3395118F /* .. */,
 			);
 			name = ..;
 			path = ..;
 			sourceTree = "<group>";
 		};
-		5AAFFBCEB299A5D68AD25F45F34C41FD /* .. */ = {
+		6736F85622E61903D9F1BAA290AB6F48 /* .. */ = {
 			isa = PBXGroup;
 			children = (
-				02337350DF8C792ABFBB010E32692170 /* .. */,
+				F419C9F3C984C8C0EB872DDC9DA0B812 /* .. */,
 			);
 			name = ..;
-			path = "../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.4.3/ios";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		6CBB20722DB00E5CBD418BD14A07ACBF /* Tasks */ = {
@@ -1271,31 +1297,22 @@
 			name = Tasks;
 			sourceTree = "<group>";
 		};
-		6D036DE24652249F595C44434D158F19 /* .. */ = {
+		6CDCA47DE61C3A63B1B797012BC197A7 /* .. */ = {
 			isa = PBXGroup;
 			children = (
-				E523B85193220DD39208E808990F0830 /* .. */,
+				3B8905906C3A6B2BC296A010B86750DD /* .. */,
 			);
 			name = ..;
-			path = ..;
+			path = "../../../../../../../../.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_login-1.1.1/ios";
 			sourceTree = "<group>";
 		};
-		729890BC30B6903CF3055D0D7FFD34A4 /* snuze */ = {
+		6EAB2CCF230C481426659422B541A2BD /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				E2279F8590E35096150142E1125F6939 /* snuze_app */,
+				28C4614D4935BC576D34B10994FE96D4 /* Classes */,
 			);
-			name = snuze;
-			path = snuze;
-			sourceTree = "<group>";
-		};
-		7D3A350FE476A579F100ED96055BA795 /* flutter_facebook_login */ = {
-			isa = PBXGroup;
-			children = (
-				0ED5078BA80BBCAB7E7D061985E9115B /* ios */,
-			);
-			name = flutter_facebook_login;
-			path = flutter_facebook_login;
+			name = ios;
+			path = ios;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -1310,41 +1327,50 @@
 			);
 			sourceTree = "<group>";
 		};
-		7FA48AF9E0C61B8DD3DC574A23035E84 /* ios */ = {
+		83606151B593BED8CFFFB6D67C64F190 /* tao-team */ = {
 			isa = PBXGroup;
 			children = (
-				818BCD1CD592806FD9C041C342E7433D /* Classes */,
+				C5D870EF3BF30EAF8D04ABE5C80B2A2D /* snuze */,
 			);
-			name = ios;
-			path = ios;
+			name = "tao-team";
+			path = "tao-team";
 			sourceTree = "<group>";
 		};
-		818BCD1CD592806FD9C041C342E7433D /* Classes */ = {
+		841601318005152D818765D196BEE9E4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				F6D8B71651B1BD01FBB77BF9CB0503EA /* SharedPreferencesPlugin.h */,
-				2B5DF1C7AE89EA171B735CA089C5A6E8 /* SharedPreferencesPlugin.m */,
+				80008D791335A3462F8B384E91886440 /* FacebookLoginPlugin.h */,
+				7CB55B7763E553F9F1B71CC7896CC0E1 /* FacebookLoginPlugin.m */,
 			);
 			name = Classes;
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		995B5B8CA4779C208F3DA8DBD8B9786C /* .. */ = {
+		88673A30E4A93ED5683F3D72AF68F441 /* ios */ = {
 			isa = PBXGroup;
 			children = (
-				31ED9CB4302A466C32AB83E47DC18735 /* .. */,
-			);
-			name = ..;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		A0793CE0FF2B392D17E5F21100B15361 /* ios */ = {
-			isa = PBXGroup;
-			children = (
-				1315BE89CEC093D6A6B00E6FBCDF5D6E /* .symlinks */,
+				2751B4B8EEEE23C0824CB33F0FD4CA0E /* .symlinks */,
 			);
 			name = ios;
 			path = ios;
+			sourceTree = "<group>";
+		};
+		A066CF097A713E6AAAB79FB37B595912 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				1B7FBA223FB05F23CAB7A946BBCA9973 /* .symlinks */,
+			);
+			name = ios;
+			path = ios;
+			sourceTree = "<group>";
+		};
+		A629CC2841AB374408C49F9F47A7FF1B /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				34C4F32FD9DA91F2FB90A7704A08100D /* tao-team */,
+			);
+			name = ..;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		A69A2FCAC6587A24C6CB6041A2546AC6 /* Support Files */ = {
@@ -1361,73 +1387,67 @@
 			path = "../Target Support Files/FBSDKLoginKit";
 			sourceTree = "<group>";
 		};
-		AF9E95A0C1D5C6241EAB31BAFB3452CA /* Pod */ = {
+		B9DB54F9D3CFED0FD81C97F6FDEB0C07 /* plugins */ = {
 			isa = PBXGroup;
 			children = (
-				AA044EC7ECA7C8E252A998D822091B86 /* Flutter.podspec */,
-				F30578E1798F8E53424ED3E6D929F50B /* LICENSE */,
+				C4043D3A4B93F798D73AB85C9FA5317D /* shared_preferences */,
+			);
+			name = plugins;
+			path = plugins;
+			sourceTree = "<group>";
+		};
+		C0A455F2FB81712F763B431C3395118F /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				F93026443EDBB690B692CDB59D45A1A2 /* .. */,
+			);
+			name = ..;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		C4043D3A4B93F798D73AB85C9FA5317D /* shared_preferences */ = {
+			isa = PBXGroup;
+			children = (
+				6EAB2CCF230C481426659422B541A2BD /* ios */,
+			);
+			name = shared_preferences;
+			path = shared_preferences;
+			sourceTree = "<group>";
+		};
+		C5D870EF3BF30EAF8D04ABE5C80B2A2D /* snuze */ = {
+			isa = PBXGroup;
+			children = (
+				5CE0D04EDBA8B8138023BD2DB982ABB2 /* app */,
+			);
+			name = snuze;
+			path = snuze;
+			sourceTree = "<group>";
+		};
+		D0D3952391C89CBCA9D43570129C2464 /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				A629CC2841AB374408C49F9F47A7FF1B /* .. */,
+			);
+			name = ..;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		D12AE2CC9F43B7F367A2B42F778830BD /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				14F369846E249545EDDC4F7DB81A3E9A /* .. */,
+			);
+			name = ..;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		D17F1D2A6440CF57BA3422480AFC8B9C /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				8A8CF73A33102F6806F58E544928FED1 /* Flutter.podspec */,
+				A1FA2E40407BA5DB6A27D1FC4EFDBF3F /* LICENSE */,
 			);
 			name = Pod;
-			sourceTree = "<group>";
-		};
-		B0D43DF994C4EC207732D1936A43F574 /* .. */ = {
-			isa = PBXGroup;
-			children = (
-				C911419BC6AEB5CCB8C5D1D8170BC948 /* .. */,
-			);
-			name = ..;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		B244C88E96E972A643BBD332A5705D1D /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				834A31C442FBE60FAEEAF03CF931FD48 /* Info.plist */,
-				DB444FACF8723D69250296B289F070DA /* shared_preferences.modulemap */,
-				4420E686DA69F93CDA3D64DFA9D539D6 /* shared_preferences.xcconfig */,
-				CD9EBE948B76C789B608C2DFBB0480EB /* shared_preferences-dummy.m */,
-				AB21B7FE62FDD34F5828D7570A39FEB6 /* shared_preferences-prefix.pch */,
-				E26C3C7708BEF9EB0613A8CDA598573F /* shared_preferences-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../../../../Pods/Target Support Files/shared_preferences";
-			sourceTree = "<group>";
-		};
-		B432BD1BBE508AFBD56468950A72DA39 /* Desktop */ = {
-			isa = PBXGroup;
-			children = (
-				11277AC8880BC0153FA46BEA9C748AD7 /* snuze */,
-			);
-			name = Desktop;
-			path = Desktop;
-			sourceTree = "<group>";
-		};
-		C911419BC6AEB5CCB8C5D1D8170BC948 /* .. */ = {
-			isa = PBXGroup;
-			children = (
-				59172766C5DE8400D6F34402AA3D237E /* .. */,
-			);
-			name = ..;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		D86449E061C1D3BB9946EB7B8B1412F9 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				9882018CF257F0CE4FF204CD863EE228 /* FacebookLoginPlugin.h */,
-				5B759C1EFDF343003DCA8C7F29ADA5D8 /* FacebookLoginPlugin.m */,
-			);
-			name = Classes;
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		D8E6490A2D9A706707927E9F2B5A3257 /* .. */ = {
-			isa = PBXGroup;
-			children = (
-				F6C3FB044379CA916D9D85E25D02CE6E /* .. */,
-			);
-			name = ..;
-			path = "../../../../../../../../flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_login-1.1.1/ios";
 			sourceTree = "<group>";
 		};
 		DA0840DFE15176A5F4C5B23216E28407 /* AppLinks */ = {
@@ -1477,48 +1497,12 @@
 			path = "Target Support Files/Pods-Runner";
 			sourceTree = "<group>";
 		};
-		E2279F8590E35096150142E1125F6939 /* snuze_app */ = {
+		DD7C593F9B064A12CB8493FE90DCF308 /* flutter_facebook_login */ = {
 			isa = PBXGroup;
 			children = (
-				A0793CE0FF2B392D17E5F21100B15361 /* ios */,
-			);
-			name = snuze_app;
-			path = snuze_app;
-			sourceTree = "<group>";
-		};
-		E523B85193220DD39208E808990F0830 /* .. */ = {
-			isa = PBXGroup;
-			children = (
-				53B162E430896B11CAEBA25F2046421A /* .. */,
-			);
-			name = ..;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		E934CD1D0AD9287BDDD85C47264973DD /* plugins */ = {
-			isa = PBXGroup;
-			children = (
-				7D3A350FE476A579F100ED96055BA795 /* flutter_facebook_login */,
-			);
-			name = plugins;
-			path = plugins;
-			sourceTree = "<group>";
-		};
-		E99B495134A3389E32BC04E330152BBB /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				6E38EECAA109CB7F04B1748394A2691D /* flutter_facebook_login.podspec */,
-				1F1B2F02230729D0B80C9234AFB8634D /* LICENSE */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		EABA832BB133EFEAD00B5A7330342712 /* flutter_facebook_login */ = {
-			isa = PBXGroup;
-			children = (
-				D8E6490A2D9A706707927E9F2B5A3257 /* .. */,
-				E99B495134A3389E32BC04E330152BBB /* Pod */,
-				32FBCED4A1F37B485C61A3E2EB2347F3 /* Support Files */,
+				6CDCA47DE61C3A63B1B797012BC197A7 /* .. */,
+				3C6EBB62615DB8DEFEC8645F8FBAA3EC /* Pod */,
+				FC064FF9FBE3C8DA27D352D726BFDDC0 /* Support Files */,
 			);
 			name = flutter_facebook_login;
 			path = ../.symlinks/plugins/flutter_facebook_login/ios;
@@ -1532,41 +1516,75 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		EECC61AB904C34F9F2B65617D2A82B05 /* ios */ = {
-			isa = PBXGroup;
-			children = (
-				3427631AFD17CE848351E716F1BB303C /* .symlinks */,
-			);
-			name = ios;
-			path = ios;
-			sourceTree = "<group>";
-		};
 		F01B4B8A856DE9F7A1F4BE3374D040F7 /* Flutter */ = {
 			isa = PBXGroup;
 			children = (
-				03510A1329ED8821E6F8D24BA0E8E6D0 /* Frameworks */,
-				AF9E95A0C1D5C6241EAB31BAFB3452CA /* Pod */,
+				54A73F67246966A9CF8563420789D684 /* Frameworks */,
+				D17F1D2A6440CF57BA3422480AFC8B9C /* Pod */,
 			);
 			name = Flutter;
 			path = ../.symlinks/flutter/ios;
 			sourceTree = "<group>";
 		};
-		F6C3FB044379CA916D9D85E25D02CE6E /* .. */ = {
+		F11839DF096482DA0CCFEBA8F0AC6561 /* shared_preferences */ = {
 			isa = PBXGroup;
 			children = (
-				FBC1E717FD2898567B5614DBBA02FBB3 /* .. */,
+				0AAD193DA3829FE72CBD19DB863EECB5 /* .. */,
+				0AF7EEF90F6346BA79A76B100EAF82AC /* Pod */,
+				29275C2E2659D323FF26BE1F269FB9EB /* Support Files */,
+			);
+			name = shared_preferences;
+			path = ../.symlinks/plugins/shared_preferences/ios;
+			sourceTree = "<group>";
+		};
+		F419C9F3C984C8C0EB872DDC9DA0B812 /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				D0D3952391C89CBCA9D43570129C2464 /* .. */,
 			);
 			name = ..;
 			path = ..;
 			sourceTree = "<group>";
 		};
-		FBC1E717FD2898567B5614DBBA02FBB3 /* .. */ = {
+		F6493AE4DADAA01B3ABF1704F938A142 /* snuze */ = {
 			isa = PBXGroup;
 			children = (
-				B0D43DF994C4EC207732D1936A43F574 /* .. */,
+				F7337B58E1786FA4E4B6E55975D161F0 /* app */,
+			);
+			name = snuze;
+			path = snuze;
+			sourceTree = "<group>";
+		};
+		F7337B58E1786FA4E4B6E55975D161F0 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				A066CF097A713E6AAAB79FB37B595912 /* ios */,
+			);
+			name = app;
+			path = app;
+			sourceTree = "<group>";
+		};
+		F93026443EDBB690B692CDB59D45A1A2 /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				6736F85622E61903D9F1BAA290AB6F48 /* .. */,
 			);
 			name = ..;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		FC064FF9FBE3C8DA27D352D726BFDDC0 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				677877A4DC258F88C7BFBD6B12D9FDCC /* flutter_facebook_login.modulemap */,
+				AB9FD4768A6A3136318B1086F8C5A6DB /* flutter_facebook_login.xcconfig */,
+				B23693D71369FCA9AF6FB94A4850119F /* flutter_facebook_login-dummy.m */,
+				3B76B8B902C4192327B1CD398CD204C8 /* flutter_facebook_login-prefix.pch */,
+				26C2CFB9FF942895E81830328BBD6BA8 /* flutter_facebook_login-umbrella.h */,
+				DA400B68A5F08A468E85702A3900A2A1 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../../../../Pods/Target Support Files/flutter_facebook_login";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1577,7 +1595,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8145865A6250CC8055E3DBAEDEE5E0D4 /* shared_preferences-umbrella.h in Headers */,
-				09C798D2D86D588C27E40C93DC4DC0E3 /* SharedPreferencesPlugin.h in Headers */,
+				B71D8C0E1AF7E9005A732AF62AC8D9E0 /* SharedPreferencesPlugin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1623,7 +1641,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54E5AC03B107A05CA4FEEB4A9CE63D77 /* FacebookLoginPlugin.h in Headers */,
+				AAAA50DBDDB44B4EDC3C2364E7FA8A0A /* FacebookLoginPlugin.h in Headers */,
 				C6BA56458F5820AFE0185054B6B4A5BB /* flutter_facebook_login-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1952,7 +1970,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23819C2267F6FF96163775D7347856D6 /* FacebookLoginPlugin.m in Sources */,
+				284DBC10DB26A3DC70AB72430339AC65 /* FacebookLoginPlugin.m in Sources */,
 				010BE17A401A14EAD9913589798E88BD /* flutter_facebook_login-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2080,7 +2098,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C40CCDBC289B6FED50E4A7884F51280C /* shared_preferences-dummy.m in Sources */,
-				2B81F059F2B1B399A45EB02CA5048B87 /* SharedPreferencesPlugin.m in Sources */,
+				87B3D2F5720E9B6751103021A2F38C19 /* SharedPreferencesPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2190,7 +2208,7 @@
 		};
 		1808ACEC1A26CE04E4EBF9224A9C99B6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4420E686DA69F93CDA3D64DFA9D539D6 /* shared_preferences.xcconfig */;
+			baseConfigurationReference = A9FF7B5324A00D2222CBE83E46DE5246 /* shared_preferences.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -2318,7 +2336,7 @@
 		};
 		5743F7620CFF2CFBF380118BE4D060BB /* Profile */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4420E686DA69F93CDA3D64DFA9D539D6 /* shared_preferences.xcconfig */;
+			baseConfigurationReference = A9FF7B5324A00D2222CBE83E46DE5246 /* shared_preferences.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -2475,7 +2493,7 @@
 		};
 		7F1162FDA7EBDAFBBC3DDA2CBC199863 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4420E686DA69F93CDA3D64DFA9D539D6 /* shared_preferences.xcconfig */;
+			baseConfigurationReference = A9FF7B5324A00D2222CBE83E46DE5246 /* shared_preferences.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -2507,7 +2525,7 @@
 		};
 		8D42A6EA847FAFBB358C78D6CCBF527F /* Profile */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 80F0FDD9F0C7C8163D9DA6E7FEA8845D /* flutter_facebook_login.xcconfig */;
+			baseConfigurationReference = AB9FD4768A6A3136318B1086F8C5A6DB /* flutter_facebook_login.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -2607,7 +2625,7 @@
 		};
 		9D523C78CDD42B9BF7CB959295093A05 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 80F0FDD9F0C7C8163D9DA6E7FEA8845D /* flutter_facebook_login.xcconfig */;
+			baseConfigurationReference = AB9FD4768A6A3136318B1086F8C5A6DB /* flutter_facebook_login.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -2774,7 +2792,7 @@
 		};
 		E2F30667AC3A4FEDD969891A97E53566 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 80F0FDD9F0C7C8163D9DA6E7FEA8845D /* flutter_facebook_login.xcconfig */;
+			baseConfigurationReference = AB9FD4768A6A3136318B1086F8C5A6DB /* flutter_facebook_login.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";

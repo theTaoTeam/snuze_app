@@ -15,17 +15,20 @@ PODS:
     - Flutter
   - shared_preferences (0.0.1):
     - Flutter
+  - Stripe (11.5.0)
 
 DEPENDENCIES:
   - Flutter (from `.symlinks/flutter/ios`)
   - flutter_facebook_login (from `.symlinks/plugins/flutter_facebook_login/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
+  - Stripe
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Bolts
     - FBSDKCoreKit
     - FBSDKLoginKit
+    - Stripe
 
 EXTERNAL SOURCES:
   Flutter:
@@ -42,7 +45,8 @@ SPEC CHECKSUMS:
   Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
   flutter_facebook_login: e3d2f0a348889fe0f49c302bc044b8cc66c691be
   shared_preferences: 5a1d487c427ee18fcd3ea1f2a131569481834b53
+  Stripe: 10761682d20dc491c52287393c800db056c9748d
 
-PODFILE CHECKSUM: 0b042b93a3d541b3bccc43c0111667e5968701e2
+PODFILE CHECKSUM: 46db921262f56092b1872d28739f5402a281ff4b
 
 COCOAPODS: 1.5.3

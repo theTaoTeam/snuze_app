@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:snuze/helpers/stripe.dart';
 
 import 'package:snuze/models/auth.dart';
 import 'package:snuze/models/user.dart';
@@ -45,7 +45,15 @@ mixin UserModel on ConnectedUserAlarmModel {
     _isLoading = true;
     notifyListeners();
 
-    print("Credit Card info: $number, $expMonth, $expYear, $cvc");
+    // refactor this part later
+    Map<String, dynamic> cardInfo = {
+      'number': number,
+      'expMonth': expMonth,
+      'expYear': expYear,
+      'cvc': cvc
+    };
+    // print("Credit Card info: $number, $expMonth, $expYear, $cvc");
+    requestStripeToken(cardInfo);
     final Map<String, dynamic> authData = {
       'email': email,
       'password': password,

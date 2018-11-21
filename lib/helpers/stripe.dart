@@ -15,7 +15,7 @@ Future<String> requestStripeToken(Map<String, dynamic> cardInfo) async {
 
   try {
     final String token = await _stripeChannel.invokeMethod('createStripeToken', jsonArgs);
-    print('THIS IS THE TOKEN BIIIIIITCH');
+    print('THIS IS THE TOKEN!!!!');
     print(token);
     return token;
   } catch(err) {

@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:snuze/models/auth.dart';
 import 'package:snuze/scoped-models/main.dart';
+import '../../helpers/stripe.dart';
 
 class AuthPage extends StatefulWidget {
   @override
@@ -15,16 +16,27 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  final MainModel _model = new MainModel();
   final Map<String, dynamic> _formData = {
     'email': null,
     'password': null,
   };
+  Map<String, dynamic> cardInfo = {
+      'number': '4242424242424242',
+    'expMonth': 11,
+    'expYear': 2020,
+    'cvc': '123',
+    };
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordTextController = TextEditingController();
   AuthMode _authMode = AuthMode.Login;
   bool _forgotPasswordEmailSent = false;
   String _forgotPasswordMessage;
+
+  @override
+  void initState() {
+    requestStripeToken(cardInfo);
+    super.initState();
+  }
 
   Widget _buildTitleText(double targetWidth) {
     return Container(

@@ -7,6 +7,8 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
+
+import android.util.JsonReader;
 import android.util.Log;
 import android.content.Context;
 import android.widget.Toast;
@@ -34,9 +36,12 @@ public class MainActivity extends FlutterActivity {
         public void onMethodCall(MethodCall call, final Result result) {
 //        System.out.println(call);
           if (call.method.equals("createStripeToken")) {
-              System.out.println(call.arguments().toString());
-
-               Card card = new Card("4242424242424242", 11, 2020, "123");
+               Card card = new Card(
+                   call.argument("number").toString(),
+                   (Integer) call.argument("expMonth"),
+                   (Integer) call.argument("expYear"),
+                   call.argument("cvc").toString()
+               );
                if (!card.validateCard()) {
                    System.out.println("invalid card format");
                }

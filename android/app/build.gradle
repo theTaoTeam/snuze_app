@@ -60,4 +60,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
     implementation 'com.stripe:stripe-android:+'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.9.7'
 }

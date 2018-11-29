@@ -1,6 +1,7 @@
 package com.example.snuze;
 
 import android.os.Bundle;
+
 import io.flutter.app.FlutterActivity;
 import io.flutter.plugins.GeneratedPluginRegistrant;
 import io.flutter.plugin.common.MethodCall;
@@ -17,8 +18,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends FlutterActivity {
-  private static final String CHANNEL = "snuze.app/stripe";
-  Stripe stripe = new Stripe(this, "pk_test_YhN3AX1KBNqQQbDtGjctrCZd");
+
+    private static final String STRIPE_CHANNEL = "snuze.app/stripe";
+    private static final String ALARM_CHANNEL = "snuze.app/alarm";
+    Stripe stripe = new Stripe(this, "pk_test_YhN3AX1KBNqQQbDtGjctrCZd");
 
     public JSONObject newJSONObject(String string) {
         try {
@@ -45,43 +48,44 @@ public class MainActivity extends FlutterActivity {
         }
     }
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    GeneratedPluginRegistrant.registerWith(this);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        GeneratedPluginRegistrant.registerWith(this);
 
-    new MethodChannel(getFlutterView(), CHANNEL).setMethodCallHandler(
-      new MethodCallHandler() {
-        @Override
-        public void onMethodCall(MethodCall call, final Result result) {
-        System.out.println(call.arguments().toString());
-        JSONObject cardInfo = newJSONObject(call.arguments().toString());
-        System.out.println(cardInfo);
-          if (call.method.equals("createStripeToken")) {
-               Card card = createCard(cardInfo);
-               if (!card.validateCard()) {
-                   System.out.println("invalid card format");
-                   result.error("INVALID_CARD", "card not valid", null);
-               }
+        new MethodChannel(getFlutterView(), STRIPE_CHANNEL).setMethodCallHandler(
+                new MethodCallHandler() {
+                    @Override
+                    public void onMethodCall(MethodCall call, final Result result) {
+                        System.out.println(call.arguments().toString());
+                        JSONObject cardInfo = newJSONObject(call.arguments().toString());
+                        System.out.println(cardInfo);
+                        if (call.method.equals("createStripeToken")) {
+                            Card card = createCard(cardInfo);
+                            if (!card.validateCard()) {
+                                System.out.println("invalid card format");
+                                result.error("INVALID_CARD", "card not valid", null);
+                            }
 
-              stripe.createToken(
-                      card,
-                      new TokenCallback() {
-                          public void onSuccess(Token token) {
-                              result.success(token.getId().toString());
-                          }
-                          public void onError(Exception error) {
-                              result.error("STRIPE_TOKEN", "error creating stripe token", null);
-                          }
-                      }
-              );
+                            stripe.createToken(
+                                    card,
+                                    new TokenCallback() {
+                                        public void onSuccess(Token token) {
+                                            result.success(token.getId().toString());
+                                        }
+
+                                        public void onError(Exception error) {
+                                            result.error("STRIPE_TOKEN", "error creating stripe token", null);
+                                        }
+                                    }
+                            );
 
 
-          } else {
-            result.notImplemented();
-          }
-        }
-      }
-    );
-  }
+                        } else {
+                            result.notImplemented();
+                        }
+                    }
+                }
+        );
+    }
 }

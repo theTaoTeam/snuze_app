@@ -53,7 +53,7 @@ mixin UserModel on ConnectedUserAlarmModel {
       'cvc': cvc
     };
     // print("Credit Card info: $number, $expMonth, $expYear, $cvc");
-    requestStripeToken(cardInfo);
+    String token = await requestStripeToken(cardInfo);
     final Map<String, dynamic> authData = {
       'email': email,
       'password': password,

@@ -57,10 +57,8 @@ public class MainActivity extends FlutterActivity {
                 new MethodCallHandler() {
                     @Override
                     public void onMethodCall(MethodCall call, final Result result) {
-                        System.out.println(call.arguments().toString());
-                        JSONObject cardInfo = newJSONObject(call.arguments().toString());
-                        System.out.println(cardInfo);
                         if (call.method.equals("createStripeToken")) {
+                            JSONObject cardInfo = newJSONObject(call.arguments().toString());
                             Card card = createCard(cardInfo);
                             if (!card.validateCard()) {
                                 System.out.println("invalid card format");
@@ -83,6 +81,20 @@ public class MainActivity extends FlutterActivity {
 
                         } else {
                             result.notImplemented();
+                        }
+                    }
+                }
+        );
+        new MethodChannel(getFlutterView(), ALARM_CHANNEL).setMethodCallHandler(
+                new MethodCallHandler() {
+                    @Override
+                    public void onMethodCall(MethodCall call, Result result) {
+                        if (call.method.equals("setAlarm")) {
+                            System.out.println("SETTING ALARM");
+                            System.out.println(call.arguments().toString());
+                        } else if (call.method.equals("cancelAlarm")) {
+                            System.out.println("CANCELLING ALARM");
+                            System.out.println(call.arguments().toString());
                         }
                     }
                 }

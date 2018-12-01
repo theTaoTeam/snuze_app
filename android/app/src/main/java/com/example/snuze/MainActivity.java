@@ -1,6 +1,7 @@
 package com.example.snuze;
 
 import android.Manifest;
+import android.app.AlarmManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ public class MainActivity extends FlutterActivity {
     private static final String STRIPE_CHANNEL = "snuze.app/stripe";
     private static final String ALARM_CHANNEL = "snuze.app/alarm";
     private static final int MY_PERMISSIONS_REQUEST_SET_ALARM = 17;
+    private Intent alarmIntent;
     Stripe stripe = new Stripe(this, "pk_test_YhN3AX1KBNqQQbDtGjctrCZd");
 
     private JSONObject newJSONObject(String string) {
@@ -59,7 +61,8 @@ public class MainActivity extends FlutterActivity {
         try {
             Intent alarmIntent = new Intent(AlarmClock.ACTION_SET_ALARM);
             alarmIntent.putExtra(AlarmClock.EXTRA_HOUR, alarmInfo.getInt("hour"));
-            alarmIntent.putExtra(AlarmClock.EXTRA_HOUR, alarmInfo.getInt("minute"));
+            alarmIntent.putExtra(AlarmClock.EXTRA_MINUTES, alarmInfo.getInt("minute"));
+            alarmIntent.putExtra(AlarmClock.EXTRA_SKIP_UI, true);
             return alarmIntent;
         } catch (JSONException e) {
             System.out.println(e.getMessage());
@@ -67,9 +70,10 @@ public class MainActivity extends FlutterActivity {
         }
     }
 
-    private Intent dismissAlarmIntent() {
-        Intent alarmIntent = new Intent(AlarmClock.ACTION_DISMISS_ALARM);
-        return alarmIntent;
+    private Intent dismissAlarmIntent(Intent currentIntent) {
+        currentIntent.setAction(AlarmClock.ACTION_DISMISS_ALARM);
+        currentIntent.putExtra(AlarmClock.EXTRA_SKIP_UI, true);
+        return currentIntent;
     }
 
     @Override
@@ -79,14 +83,14 @@ public class MainActivity extends FlutterActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
+                    System.out.println("PERMISSION GRANTED");
                 } else {
+                    System.out.println("Permissions Not Granted");
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
                 }
                 return;
             }
-            // other 'case' lines to check for other
-            // permissions this app might request.
         }
     }
 
@@ -109,6 +113,7 @@ public class MainActivity extends FlutterActivity {
                         MY_PERMISSIONS_REQUEST_SET_ALARM);
             }
         } else {
+            System.out.println("PERMISSION GRANTED 117");
             // Permission already granted
         }
 
@@ -150,10 +155,10 @@ public class MainActivity extends FlutterActivity {
                     public void onMethodCall(MethodCall call, Result result) {
                         if (call.method.equals("setAlarm")) {
                             JSONObject alarmInfo = newJSONObject(call.arguments().toString());
-                            Intent alarmIntent = createAlarmIntent(alarmInfo);
+                            alarmIntent = createAlarmIntent(alarmInfo);
                             startActivity(alarmIntent);
                         } else if (call.method.equals("cancelAlarm")) {
-                            Intent alarmIntent = dismissAlarmIntent();
+                            alarmIntent = dismissAlarmIntent(alarmIntent);
                             startActivity(alarmIntent);
                         }
                     }

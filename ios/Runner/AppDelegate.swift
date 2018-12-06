@@ -6,9 +6,12 @@ import UserNotifications
 
 @available(iOS 10.0, *)
 @UIApplicationMain
-@objc class AppDelegate: FlutterAppDelegate {
+@objc class AppDelegate: FlutterAppDelegate, AVAudioPlayerDelegate {
     
     var appLaunchTime = Date()
+    var alarmTimer:Timer?
+    var player:AVAudioPlayer?
+    var audioStartTime:Date?
     
     override func application(
         _ application: UIApplication,
@@ -21,8 +24,76 @@ import UserNotifications
         // Initialize Flutter
         setupFlutter()
         
+        // Setup audio environment
+        setupAudioEnvironment()
+        
+        // Setup observers
+        setupObservers()
+        
+        // Get notifications permission
+        setupNotificationOptions()
+        
         return super.application(application, didFinishLaunchingWithOptions: launchOptions);
     }
+    
+    
+    //MARK:- APP DELEGATE METHODS
+    
+    override func applicationDidEnterBackground(_ application: UIApplication) {
+        print("App did enter background.")
+        
+        // If alarm is set, alert user with a local notificaiton that the app needs to remain open
+        if let alarmTimer = alarmTimer, alarmTimer.fireDate > Date() {
+            let content = UNMutableNotificationContent()
+            content.title = "⏰ Snüze was Closed"
+            content.body = "Don't forget Snüze needs to remain open for your alarms to work properly"
+            content.sound = UNNotificationSound.default()
+            
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+            
+            let identifier = "AppMustRemainOpenNotification"
+            let request = UNNotificationRequest(identifier: identifier,
+                                                content: content,
+                                                trigger: trigger)
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
+                if let error = error {
+                    print("Couldn't schedule notification. Error: \(error)")
+                }
+                else {
+                    print("Scheduled local alert notification")
+                }
+            })
+        }
+        else {
+            print("Alarm is not set.")
+        }
+    }
+    
+    
+    //MARK:- OBSERVERS
+
+    func setupObservers() {
+        // Setup volume observer
+        let audioSession = AVAudioSession.sharedInstance()
+        try? audioSession.setActive(true)
+        audioSession.addObserver(self, forKeyPath: "outputVolume", options: NSKeyValueObservingOptions.new, context: nil)
+    }
+    
+    //MARK:- OBSERVER HANDLERS
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "outputVolume" {
+            volumeDidChange()
+        }
+    }
+
+    func volumeDidChange() {
+        print("Volume changed to \(AVAudioSession.sharedInstance().outputVolume)")
+        snoozeAlarm()
+    }
+    
+    
+    //MARK:- FLUTTER
     
     private func setupFlutter() {
         let controller : FlutterViewController = window?.rootViewController as! FlutterViewController;
@@ -43,8 +114,17 @@ import UserNotifications
     private func cancelAlarm(result: FlutterResult, args: String) {
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.removeAllPendingNotificationRequests()
+        
+        // Stop audio and cancel alarm
+        stopAlarmAudio()
+        alarmTimer?.invalidate()
+        alarmTimer = nil
+        
         print("CANCELLED ALARM")
     }
+    
+    
+    //MARK:- NOTIFICATIONS SETUP
     
     private func setupNotificationOptions() {
         //        Tried to work through error and couldn't figure it out, will work on this later
@@ -84,8 +164,10 @@ import UserNotifications
             print(settings.authorizationStatus == .authorized)
             guard settings.authorizationStatus == .authorized else {return}
         }
-        
     }
+    
+    
+    //MARK:- ALARM
     
     private func setAlarm(result: FlutterResult, args: String) {
         // Don't set any alarms within 5 seconds of app launching
@@ -105,89 +187,130 @@ import UserNotifications
             return
         }
         
-        setAlarmWithMultipleNotifications(hour: hour, minute: minute)
+        setAlarmForDeviceAlwaysOnMode(hour: hour, minute: minute)
+        //setAlarmWithMultipleNotifications(hour: hour, minute: minute)
         
         return;
     }
     
-    private func setAlarmWithMultipleNotifications(hour: Int, minute: Int) {
-        let lengthOfNotificationOnscreen = 7
-        let maxSeconds = 60 * 5 // Five minutes
-        let numIntervals = Int(maxSeconds / lengthOfNotificationOnscreen)
+    private func setAutoLockMode(enable:Bool) {
+        UIApplication.shared.isIdleTimerDisabled = enable
+    }
+    
+    private func setAlarmForDeviceAlwaysOnMode(hour: Int, minute: Int) {
+        setAutoLockMode(enable: false)
         
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.delegate = self
-        
-        // Remove all pending notifications
-        notificationCenter.removeAllPendingNotificationRequests()
-        
+        let now = Date()
+
         var alarmTime = DateComponents()
         alarmTime.calendar = Calendar.current
+        alarmTime.day = Calendar.current.component(.day, from: now)
+        alarmTime.month = Calendar.current.component(.month, from: now)
+        alarmTime.year = Calendar.current.component(.year, from: now)
         alarmTime.hour = hour
         alarmTime.minute = minute
         alarmTime.second = 0
+
+        var secondsTillAlarm:TimeInterval = 0
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .none
-        dateFormatter.timeStyle = .medium
-        
-        // Schedule notifications at specifed interval up to max time
-        for i in 0 ..< numIntervals {
-            alarmTime.second = i * lengthOfNotificationOnscreen
-            let request = createAlarmRequest(dateComponents: alarmTime)
-            
-            if let date = Calendar.current.date(from: alarmTime) {
-                let dateString = dateFormatter.string(from: date)
-                print("Adding notification request at \(dateString)")
-            }
-            else {
-                print("Adding notification request at unknown time.")
+        if var date = Calendar.current.date(from: alarmTime) {
+            // If alarm time is in the past for today, add 24 hours
+            if date < now {
+               date = date.addingTimeInterval(24 * 60 * 60)
             }
             
-            // Schedule the notification request
-            notificationCenter.add(request) { (error) in
-                if error != nil {
-                    // Handle any errors.
-                    print(error!)
-                    print("THERE WAS AN ERROR ADDING THE NOTIFICATION REQUEST")
-                }
-            }
+            secondsTillAlarm = date.timeIntervalSince(now)
+        }
+
+        // Cancel a previously set alarm
+        if alarmTimer != nil {
+            print("Canceling previous alarm with fire date \(alarmTimer!.fireDate)")
+            alarmTimer!.invalidate()
+        }
+
+        stopAlarmAudio()
+
+        print("Setting alarm to sound in \(secondsTillAlarm) seconds")
+        if player == nil {
+            prepareAlarmAudio()
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            let requests = notificationCenter.getPendingNotificationRequests(completionHandler: { (requests) in
-                print("There are \(requests.count) pending notification requests.")
-            })
+        // Set a timer to fire at the chosen alarm time
+        alarmTimer = Timer.scheduledTimer(withTimeInterval: secondsTillAlarm, repeats: false) { (timer) in
+            print("ALARM IS GOING OFF NOW!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            self.playAlarmAudio()
+            self.alarmTimer = nil
         }
     }
     
-    private func createAlarmRequest(dateComponents: DateComponents) -> UNNotificationRequest {
-        let alarmContent = UNMutableNotificationContent()
-        alarmContent.title = "Snuze Alarm"
-        alarmContent.body = "Get your ass out of bed"
-        //alarmContent.sound = UNNotificationSound.default()
-        alarmContent.categoryIdentifier = "SNUZE_ALARM"
-        if #available(iOS 12.0, *) {
-            alarmContent.sound = UNNotificationSound.criticalSoundNamed("song.caf")
-        } else {
-            // Fallback on earlier versions
-            alarmContent.sound = UNNotificationSound.init(named: "song.caf")
+    private func snoozeAlarm() {
+        stopAlarmAudio()
+        
+        // Set a timer to fire at the chosen alarm time
+        alarmTimer?.invalidate()
+        let snoozeSeconds:TimeInterval = 60 * 9
+        
+        print("Snoozing alarm. Will sound again in \(snoozeSeconds) seconds.")
+        
+        alarmTimer = Timer.scheduledTimer(withTimeInterval: snoozeSeconds, repeats: false) { (timer) in
+            print("ALARM IS GOING OFF NOW!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            self.playAlarmAudio()
+            self.alarmTimer = nil
+        }
+    }
+    
+    
+    //MARK:- AUDIO
+    
+    private func setupAudioEnvironment() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        }
+        catch {
+            print("Could not set audio category. Error: \(error)")
+        }
+    }
+    
+    private func prepareAlarmAudio() {
+        if let audioURL = Bundle.main.url(forResource: "song", withExtension: "caf") {
+            if player != nil {
+                return
+            }
+            else {
+                do {
+                    player = try AVAudioPlayer(contentsOf: audioURL)
+                    player!.prepareToPlay()
+                    player!.delegate = self
+                }
+                catch {
+                    print("Error preparing audio. Error: \(error)")
+                }
+            }
+        }
+    }
+
+    private func playAlarmAudio() {
+        if player == nil {
+            prepareAlarmAudio()
         }
         
-        //        Create the trigger as a repeating event.
-        let trigger = UNCalendarNotificationTrigger(
-            dateMatching: dateComponents,
-            repeats: false
-        )
-        //        print(trigger)
-        
-        //        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-        
-        let uuidString = UUID().uuidString
-        let request = UNNotificationRequest(identifier: uuidString,
-                                            content: alarmContent, trigger: trigger)
-        
-        return request
+        player?.play()
+        audioStartTime = Date()
+    }
+    
+    private func stopAlarmAudio() {
+        player?.stop()
+        player?.currentTime = 0
+    }
+    
+    
+    //MARK:- AVAUDIOPLAYER DELEGATE
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        let maxAlarmPlayingTime:TimeInterval = 60 * 10
+        if let startTime = audioStartTime, Date().timeIntervalSince(startTime) < maxAlarmPlayingTime {
+            player.play()
+        }
     }
 }
 

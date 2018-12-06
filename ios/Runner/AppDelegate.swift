@@ -120,6 +120,9 @@ import UserNotifications
         alarmTimer?.invalidate()
         alarmTimer = nil
         
+        // Enable auto-lock
+        setAutoLockMode(disabled: false)
+        
         print("CANCELLED ALARM")
     }
     
@@ -193,12 +196,12 @@ import UserNotifications
         return;
     }
     
-    private func setAutoLockMode(enable:Bool) {
-        UIApplication.shared.isIdleTimerDisabled = enable
+    private func setAutoLockMode(disabled:Bool) {
+        UIApplication.shared.isIdleTimerDisabled = disabled
     }
     
     private func setAlarmForDeviceAlwaysOnMode(hour: Int, minute: Int) {
-        setAutoLockMode(enable: false)
+        setAutoLockMode(disabled: true)
         
         let now = Date()
 
@@ -310,6 +313,9 @@ import UserNotifications
         let maxAlarmPlayingTime:TimeInterval = 60 * 10
         if let startTime = audioStartTime, Date().timeIntervalSince(startTime) < maxAlarmPlayingTime {
             player.play()
+        }
+        else {
+            alarmTimer = nil
         }
     }
 }

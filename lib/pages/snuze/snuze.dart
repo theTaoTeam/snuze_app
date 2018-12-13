@@ -28,7 +28,7 @@ class SnuzePage extends StatelessWidget {
     );
   }
 
-  Container _buildCancelFooterSection(BuildContext context) {
+  Container _buildCancelFooterSection(BuildContext context, Function onAlarmToggleChange) {
     return Container(
         child: Column(
       children: <Widget>[
@@ -55,7 +55,8 @@ class SnuzePage extends StatelessWidget {
           ),
           onPressed: () {
             print("cancel pressed");
-            Navigator.pushReplacementNamed(context, '/home');
+            onAlarmToggleChange(<String, dynamic>{"isActive": false});
+            Navigator.pushNamed(context, '/home');
           },
         ),
       ],
@@ -138,7 +139,7 @@ class SnuzePage extends StatelessWidget {
                   width: targetWidth,
                   // height: 40,
                   child: model.alarm.isActive
-                      ? _buildCancelFooterSection(context)
+                      ? _buildCancelFooterSection(context, model.updateAlarm)
                       : _buildSnuzeStopFooterSection(),
                 ),
               ],

@@ -4,7 +4,7 @@ import Foundation
 import MediaPlayer
 import UserNotifications
 import Stripe
-
+import Firebase
 
 @available(iOS 10.0, *)
 @UIApplicationMain
@@ -13,6 +13,7 @@ import Stripe
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
   ) -> Bool {
+    FirebaseApp.configure()
     let controller : FlutterViewController = window?.rootViewController as! FlutterViewController;
     let alarmChannel = FlutterMethodChannel.init(name: "snuze.app/alarm",
                                                    binaryMessenger: controller);

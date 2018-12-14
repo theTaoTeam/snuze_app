@@ -39,7 +39,7 @@ class _SettingsPageState extends State<SettingsPage> {
     super.initState();
     setState(() {
       userSettings['email'] = model.user.email;
-      userSettings['darkTheme'] = model.user.darkTheme;
+      // userSettings['darkTheme'] = model.user.darkTheme;
     });
     print('userSettings after setState: $userSettings');
   }

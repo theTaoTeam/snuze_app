@@ -8,147 +8,96 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:snuze/helpers/stripe.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_functions/cloud_functions.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:snuze/models/auth.dart';
 import 'package:snuze/models/user.dart';
 
-class ConnectedUserAlarmModel extends Model {}
-
-mixin UserModel on ConnectedUserAlarmModel {
+mixin UserModel on Model {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final CloudFunctions _functions = CloudFunctions.instance;
+  final Firestore _firestore = Firestore.instance;
   String apiKey = FIREBASE_API_KEY;
-  User _authenticatedUser;
+  FirebaseUser _user;
   bool _isLoading = false;
   PublishSubject<bool> _userSubject = PublishSubject();
   PublishSubject<bool> _themeSubject = PublishSubject();
-  User get user {
-    return _authenticatedUser;
+  FirebaseUser get user {
+    return _user;
   }
 
-  PublishSubject<bool> get userSubject {
-    return _userSubject;
-  }
-
-  PublishSubject<bool> get themeSubject {
-    return _themeSubject;
-  }
-
-  bool get isLoading {
-    return _isLoading;
-  }
-
-  Future<Map<String, dynamic>> authenticate(String email, String password,
-      [AuthMode mode = AuthMode.Login,
-      String number,
-      int expMonth,
-      int expYear,
-      String cvc]) async {
-    _isLoading = true;
-    notifyListeners();
-
-    // refactor this part later
-    Map<String, dynamic> cardInfo = {
-      'number': number,
-      'expMonth': expMonth,
-      'expYear': expYear,
-      'cvc': cvc
-    };
-    // print("Credit Card info: $number, $expMonth, $expYear, $cvc");
-    String token = await requestStripeToken(cardInfo);
-    final Map<String, dynamic> authData = {
-      'email': email,
-      'password': password,
-      'returnSecureToken': true
-    };
-    final SharedPreferences prefs = await SharedPreferences
-        .getInstance(); //gets required instance of device storage
-    http.Response response;
-    if (mode == AuthMode.Login) {
-      response = await http.post(
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=$apiKey',
-        body: json.encode(authData),
-        headers: {'Content-Type': 'application/json'},
-      );
-    } else {
-      response = await http.post(
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=$apiKey',
-        body: json.encode(authData),
-        headers: {'Content-Type': 'application/json'},
-      );
-    }
-    bool hasError = true;
-    String message = 'Something went wrong.';
-    final Map<String, dynamic> responseData = json.decode(response.body);
-    print(responseData);
-    if (responseData.containsKey('idToken')) {
-      hasError = false;
-      message = 'Authentication succeeded!';
-      _authenticatedUser = User(
-        id: responseData['localId'],
-        email: email,
-        token: responseData['refreshToken'],
-        darkTheme: prefs.getBool('darkTheme') == null ? false : prefs.getBool('darkTheme'),
-      );
-      print("*" * 80);
-      print(_authenticatedUser.id);
-      _userSubject.add(true);
-
-      prefs.setString(
-          'token', responseData['refreshToken']); //sets token in device storage
-      prefs.setString('userEmail', email);
-      prefs.setString('userId', responseData['localId']);
-      prefs.setBool('darkTheme', _authenticatedUser.darkTheme);
-    } else if (responseData['error']['message'] == 'EMAIL_EXISTS') {
-      message = 'This email already exists.';
-    } else if (responseData['error']['message'] == 'EMAIL_NOT_FOUND') {
-      message = 'This email was not found.';
-    } else if (responseData['error']['message'] == 'INVALID_PASSWORD') {
-      message = 'The password is invalid.';
-    }
-
-    // print('USER: ${_authenticatedUser.email}');
-    _isLoading = false;
-    notifyListeners();
-    return {'success': !hasError, 'message': message};
-  }
-
-  void autoAuthenticate() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String token = prefs.getString('token');
-    print(prefs.getString('token'));
-    if (token != null) {
-      final String userEmail = prefs.getString('userEmail');
-      final String userId = prefs.getString('userId');
-      final bool darkTheme = prefs.getBool('darkTheme');
-      _authenticatedUser = User(
-          id: userId, email: userEmail, token: token, darkTheme: darkTheme);
-      _userSubject.add(true);
-      notifyListeners();
-    }
-  }
-
-  Future<Null> resetPassword(String email) async {
-    _isLoading = true;
-    notifyListeners();
-    print('About to send email to: $email');
-
-    final Map<String, String> oobRequestBody = {
-      'kind': "identitytoolkit#relyingparty",
-      'requestType': "PASSWORD_RESET",
-      'email': email,
-    };
-    http.Response getOob;
+  Future<FirebaseUser> register(
+      String email, String password, Map<String, dynamic> cardInfo) async {
+    FirebaseUser newUser;
     try {
-      getOob = await http.post(
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getOobConfirmationCode?key=$apiKey',
-        body: json.encode(oobRequestBody),
-      );
-    } catch (error) {
-      print('OOB error: $error');
+      String stripeToken = await requestStripeToken(cardInfo);
+      newUser = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      Map<String, String> stripeParams = {
+        'email': email,
+        'source': stripeToken,
+      };
+      String stripeCustomerId = await _functions.call(
+          functionName: "createStripeUser", parameters: stripeParams);
+      DocumentReference userDocRef = await _createFirestoreUser(
+          uid: newUser.uid, stripeId: stripeCustomerId);
+      DocumentReference invoiceDocRef =
+          await _createInvoice(userDocRef: userDocRef);
+      Map<String, dynamic> invoiceData = {
+        "invoiceRefs": [invoiceDocRef],
+        "activeInvoice": invoiceDocRef
+      };
+      await _updateUser(userData: invoiceData, userDocRef: userDocRef);
+      return newUser;
+    } catch (err) {
+      print("error creating user: " + err);
+      throw (new Error());
     }
+  }
 
-    _isLoading = false;
-    notifyListeners();
+  Future<DocumentReference> _createFirestoreUser(
+      {String uid, String stripeId}) async {
+    DocumentReference userDocRef = _firestore.collection("users").document(uid);
+    Map<String, String> userData = {"uid": uid, "stripeId": stripeId};
+    try {
+      await userDocRef.setData(userData);
+      return userDocRef;
+    } catch (err) {
+      print("Err creating firestore user: " + err);
+      throw (new Error());
+    }
+  }
 
+  Future<DocumentReference> _createInvoice(
+      {DocumentReference userDocRef}) async {
+    DocumentReference invoiceDocRef =
+        _firestore.collection("invoices").document();
+    Map<String, dynamic> invoiceData = {
+      "billed": false,
+      "currentTotal": 0,
+      "id": invoiceDocRef,
+      "snuzeRefs": [],
+      "userRef": userDocRef,
+    };
+    try {
+      await invoiceDocRef.setData(invoiceData);
+      return invoiceDocRef;
+    } catch (err) {
+      print("Err creating invoice: " + err);
+      throw (new Error());
+    }
+  }
+
+  Future<void> _updateUser(
+      {DocumentReference userDocRef, Map<String, dynamic> userData}) async {
+    try {
+      return await userDocRef.updateData(userData);
+    } catch (err) {
+      print("Err updating user: " + err);
+      throw (new Error());
+    }
   }
 
   Future<Null> startFacebookLogin() async {
@@ -231,7 +180,7 @@ mixin UserModel on ConnectedUserAlarmModel {
     _isLoading = true;
     notifyListeners();
     _userSubject.add(false);
-    _authenticatedUser = null;
+    // _authenticatedUser = null;
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove('token');
     prefs.remove('userEmail');
@@ -239,7 +188,6 @@ mixin UserModel on ConnectedUserAlarmModel {
     prefs.remove('darkTheme');
     _isLoading = false;
     notifyListeners();
-
   }
 
   Future<Null> fetchUserSettings() async {
@@ -248,13 +196,13 @@ mixin UserModel on ConnectedUserAlarmModel {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final email = prefs.getString('userEmail');
     final theme = prefs.getBool('darkTheme');
-    print("USER IN FETCHSETTINGS $_authenticatedUser");
-    _authenticatedUser = new User(
-      id: _authenticatedUser.id,
-      email: email,
-      token: _authenticatedUser.token,
-      darkTheme: theme,
-    );
+    // print("USER IN FETCHSETTINGS $_authenticatedUser");
+    // _authenticatedUser = new User(
+    //   id: _authenticatedUser.id,
+    //   email: email,
+    //   token: _authenticatedUser.token,
+    //   darkTheme: theme,
+    // );
     _isLoading = false;
     notifyListeners();
     return;
@@ -268,12 +216,12 @@ mixin UserModel on ConnectedUserAlarmModel {
     prefs.setString('userEmail', settings['email']);
     prefs.setBool('darkTheme', settings['darkTheme']);
     // print(_authenticatedUser);
-    _authenticatedUser = User(
-      id: _authenticatedUser.id,
-      email: settings['email'],
-      token: _authenticatedUser.token,
-      darkTheme: settings['darkTheme'],
-    );
+    // _authenticatedUser = User(
+    //   id: _authenticatedUser.id,
+    //   email: settings['email'],
+    //   token: _authenticatedUser.token,
+    //   darkTheme: settings['darkTheme'],
+    // );
     _isLoading = false;
     notifyListeners();
   }
@@ -286,5 +234,30 @@ mixin UserModel on ConnectedUserAlarmModel {
 
     _isLoading = false;
     notifyListeners();
+  }
+
+  Future<Null> resetPassword(String email) async {
+    _isLoading = true;
+    notifyListeners();
+    print('About to send email to: $email');
+
+    final Map<String, String> oobRequestBody = {
+      'kind': "identitytoolkit#relyingparty",
+      'requestType': "PASSWORD_RESET",
+      'email': email,
+    };
+    http.Response getOob;
+    try {
+      getOob = await http.post(
+        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/getOobConfirmationCode?key=$apiKey',
+        body: json.encode(oobRequestBody),
+      );
+    } catch (error) {
+      print('OOB error: $error');
+    }
+
+    _isLoading = false;
+    notifyListeners();
+
   }
 }

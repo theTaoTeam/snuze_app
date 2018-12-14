@@ -34,20 +34,20 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     // _model.autoAuthenticate();
-    _model.userSubject.listen((bool isAuthenticated) {
-      print('User subject change: $isAuthenticated');
-      //used to listen for different auth states. boolean
-      setState(() {
-        _isAuthenticated = isAuthenticated;
-      });
-    });
+    // _model.userSubject.listen((bool isAuthenticated) {
+    //   print('User subject change: $isAuthenticated');
+    //   //used to listen for different auth states. boolean
+    //   setState(() {
+    //     _isAuthenticated = isAuthenticated;
+    //   });
+    // });
 
-    _model.themeSubject.listen((bool newTheme) {
-      print('in listener | theme: $newTheme');
-      setState(() {
-        _darkTheme = newTheme;
-      });
-    });
+    // _model.themeSubject.listen((bool newTheme) {
+    //   print('in listener | theme: $newTheme');
+    //   setState(() {
+    //     _darkTheme = newTheme;
+    //   });
+    // });
     _model.fetchAlarm();
     super.initState();
   }

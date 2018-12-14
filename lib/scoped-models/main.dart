@@ -1,5 +1,6 @@
-import 'package:snuze/scoped-models/connected_user_alarm.dart';
+import 'package:scoped_model/scoped_model.dart';
 import 'package:snuze/scoped-models/alarm.dart';
+import 'package:snuze/scoped-models/user.dart';
 
-class MainModel extends ConnectedUserAlarmModel with UserModel, AlarmModel{
+class MainModel extends Model with UserModel, AlarmModel{
 }

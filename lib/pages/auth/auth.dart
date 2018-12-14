@@ -220,16 +220,15 @@ class _AuthPageState extends State<AuthPage> {
                               ),
                             ),
                           ),
-                          model.isLoading
-                              ? Column(children: <Widget>[
-                                  CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                          Colors.white)),
-                                  SizedBox(
-                                    height: 5,
-                                  )
-                                ])
-                              : Column(
+                          // Column(children: <Widget>[
+                          //         CircularProgressIndicator(
+                          //             valueColor: AlwaysStoppedAnimation<Color>(
+                          //                 Colors.white)),
+                          //         SizedBox(
+                          //           height: 5,
+                          //         )
+                          //       ])
+                          Column(
                                   children: <Widget>[
                                     Container(
                                       width: targetWidth,
@@ -250,7 +249,8 @@ class _AuthPageState extends State<AuthPage> {
                                               fontFamily: 'Montserrat'),
                                         ),
                                         onPressed: () =>
-                                            _submitForm(model.authenticate),
+                                            // _submitForm(model.authenticate),
+                                            print("still need to implement new login method with firebase sdk")
                                       ),
                                     ),
                                     SizedBox(

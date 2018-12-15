@@ -38,7 +38,7 @@ class _SettingsPageState extends State<SettingsPage> {
   void initState() {
     super.initState();
     setState(() {
-      userSettings['email'] = model.user.email;
+      // userSettings['email'] = model.user.email;
       // userSettings['darkTheme'] = model.user.darkTheme;
     });
     print('userSettings after setState: $userSettings');
@@ -76,7 +76,7 @@ class _SettingsPageState extends State<SettingsPage> {
               setState(() {
                 userSettings['darkTheme'] = val;
               });
-              model.saveUserSettings(userSettings);
+              // model.saveUserSettings(userSettings);
             },
           ),
         ),
@@ -101,7 +101,7 @@ class _SettingsPageState extends State<SettingsPage> {
             decoration: InputDecoration(
               labelText: _missingEmail
                   ? 'please enter an email first'
-                  : model.user.email,
+                  : model.currentUser.email,
               labelStyle: _missingEmail
                   ? TextStyle(color: Theme.of(context).primaryColor)
                   : TextStyle(color: Theme.of(context).disabledColor),
@@ -111,7 +111,7 @@ class _SettingsPageState extends State<SettingsPage> {
               setState(() {
                 userSettings['email'] = val;
               });
-              model.saveUserSettings(userSettings);
+              // model.saveUserSettings(userSettings);
             },
           ),
         ),
@@ -144,22 +144,22 @@ class _SettingsPageState extends State<SettingsPage> {
             textColor: Theme.of(context).primaryColor,
             onPressed: () {
               print('pressed reset password');
-              model.resetPassword(userSettings['email']).then((message) {
-                if (userSettings['email'] == '') {
-                  setState(() {
-                    _missingEmail = true;
-                  });
-                } else {
-                  setState(() {
-                    _sentPassword = true;
-                  });
-                  Timer(Duration(seconds: 5), () {
-                    setState(() {
-                      _sentPassword = false;
-                    });
-                  });
-                }
-              });
+              // model.resetPassword(userSettings['email']).then((message) {
+              //   if (userSettings['email'] == '') {
+              //     setState(() {
+              //       _missingEmail = true;
+              //     });
+              //   } else {
+              //     setState(() {
+              //       _sentPassword = true;
+              //     });
+              //     Timer(Duration(seconds: 5), () {
+              //       setState(() {
+              //         _sentPassword = false;
+              //       });
+              //     });
+              //   }
+              // });
             },
           )
         : FlatButton(

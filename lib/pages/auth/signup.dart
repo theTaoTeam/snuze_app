@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:snuze/models/auth.dart';
 import 'package:snuze/scoped-models/main.dart';
 import 'package:snuze/pages/auth/credit_card_form.dart';
 
@@ -100,14 +99,20 @@ class _SignUpPageState extends State<SignUpPage> {
     try {
       await register(_formData['email'], _formData['password'], cardInfo);
       Navigator.pushReplacementNamed(context, '/home');
-    } catch (err) {
+    } catch (e) {
+      print(e.toString());
+      try {
+        print(e.cause);
+      } catch(e) {
+        print("couldn't print cause");
+      }
       print("Register Error on SignUp Page");
       showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text('Aw Geeze!'),
-            content: Text(err),
+            content: Text("Error"),
             actions: <Widget>[
               FlatButton(
                 child: Text('Okay'),

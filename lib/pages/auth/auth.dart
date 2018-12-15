@@ -4,9 +4,7 @@ import 'dart:async';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'package:snuze/models/auth.dart';
 import 'package:snuze/scoped-models/main.dart';
-import '../../helpers/stripe.dart';
 
 class AuthPage extends StatefulWidget {
   @override
@@ -28,15 +26,8 @@ class _AuthPageState extends State<AuthPage> {
     };
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordTextController = TextEditingController();
-  AuthMode _authMode = AuthMode.Login;
   bool _forgotPasswordEmailSent = false;
   String _forgotPasswordMessage;
-
-  @override
-  void initState() {
-    requestStripeToken(cardInfo);
-    super.initState();
-  }
 
   Widget _buildTitleText(double targetWidth) {
     return Container(
@@ -103,27 +94,25 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
-  void _submitForm(Function authenticate) async {
+  void _submitForm(Function login) async {
     if (!_formKey.currentState.validate()) {
       return;
     }
     _formKey.currentState.save();
-    Map<String, dynamic> successInformation;
-    successInformation = await authenticate(
-      _formData['email'],
-      _formData['password'],
-      _authMode,
-    );
-    if (successInformation['success']) {
-      print('navigating to next page');
+    try {
+      await login(
+        email: _formData['email'],
+        password: _formData['password']
+      );
       Navigator.pushReplacementNamed(context, '/');
-    } else {
+    } catch(e) {
+      print('ERROR LOGGING IN');
       showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text('An Error Occurred!'),
-            content: Text(successInformation['message']),
+            content: Text('Incorrect username or password.'),
             actions: <Widget>[
               FlatButton(
                 child: Text('Okay'),
@@ -248,42 +237,14 @@ class _AuthPageState extends State<AuthPage> {
                                               fontSize: 20,
                                               fontFamily: 'Montserrat'),
                                         ),
-                                        onPressed: () =>
-                                            // _submitForm(model.authenticate),
-                                            print("still need to implement new login method with firebase sdk")
+                                        onPressed: () {
+                                          _submitForm(model.login);
+                                        }
                                       ),
                                     ),
                                     SizedBox(
                                       height: 15,
                                     ),
-                                    Container(
-                                        color: Color.fromRGBO(255, 255, 255, 0),
-                                        width: targetWidth,
-                                        height: 40,
-                                        child: OutlineButton(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                          ),
-                                          color:
-                                              Color.fromRGBO(255, 255, 255, 0),
-                                          textColor: Colors.white,
-                                          splashColor: Color(0xFFFE355A),
-                                          highlightColor: Colors.transparent,
-                                          highlightedBorderColor:
-                                              Colors.transparent,
-                                          child: Text(
-                                            'login with facebook',
-                                            style: TextStyle(
-                                                fontSize: 20,
-                                                fontFamily: 'Montserrat'),
-                                          ),
-                                          onPressed: () {
-                                            print(
-                                                'login with facebook pressed!');
-                                            model.startFacebookLogin();
-                                          },
-                                        )),
                                     SizedBox(
                                       height: 15,
                                     ),

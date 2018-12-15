@@ -60,7 +60,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       return;
     }
     _formKey.currentState.save();
-    _model.resetPassword(_forgotFormData['email']);
+    // _model.resetPassword(_forgotFormData['email']);
     Navigator.pop(context, "check your email!");
   }
 

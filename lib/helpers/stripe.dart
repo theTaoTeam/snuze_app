@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
 
 const MethodChannel _stripeChannel = MethodChannel('snuze.app/stripe');
 

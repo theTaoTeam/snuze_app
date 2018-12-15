@@ -114,9 +114,7 @@ mixin UserModel on Model {
   Future<void> logout() async {
     try {
       await _auth.signOut();
-      print("LOGGING OUT");
       _currentUser = null;
-      print(_currentUser);
       notifyListeners();
     } catch(e) {
       print('ERROR LOGGING OUT');

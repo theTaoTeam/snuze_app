@@ -1,13 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
-// import 'package:scoped_model/scoped_model.dart';
+import 'package:scoped_model/scoped_model.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
 
-import 'package:snuze/scoped-models/connected_user_alarm.dart';
+
 import 'package:snuze/models/alarm.dart';
 
-mixin AlarmModel on ConnectedUserAlarmModel {
+mixin AlarmModel on Model {
   Alarm _alarm;
 
   static final _alarmChannel = MethodChannel('snuze.app/alarm');

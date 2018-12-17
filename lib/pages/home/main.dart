@@ -25,7 +25,7 @@ class MainPage extends StatelessWidget {
             textColor: Theme.of(context).highlightColor,
             color: Theme.of(context).backgroundColor,
             onPressed: () {
-              model.getUserTheme(model.user.darkTheme);
+              // model.getUserTheme(model.user.darkTheme);
               Navigator.pushNamed(context, '/settings');
             },
           )

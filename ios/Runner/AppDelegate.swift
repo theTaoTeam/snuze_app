@@ -3,6 +3,8 @@ import Flutter
 import Foundation
 import MediaPlayer
 import UserNotifications
+import Stripe
+import Firebase
 
 @available(iOS 10.0, *)
 @UIApplicationMain
@@ -11,21 +13,55 @@ import UserNotifications
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
   ) -> Bool {
+    FirebaseApp.configure()
     let controller : FlutterViewController = window?.rootViewController as! FlutterViewController;
     let alarmChannel = FlutterMethodChannel.init(name: "snuze.app/alarm",
                                                    binaryMessenger: controller);
+    STPPaymentConfiguration.shared().publishableKey = "pk_test_YhN3AX1KBNqQQbDtGjctrCZd"
     alarmChannel.setMethodCallHandler({
         (call: FlutterMethodCall, result: FlutterResult) -> Void in
       if ("setAlarm" == call.method) {
         self.setAlarm(result: result, args: call.arguments as! String)
       } else if ("cancelAlarm" == call.method) {
         self.cancelAlarm(result: result, args: call.arguments as! String)
-        }
+      }
     });
+    
+    let stripeChannel = FlutterMethodChannel.init(name: "snuze.app/stripe", binaryMessenger: controller);
+    stripeChannel.setMethodCallHandler({
+        (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
+        if ("createStripeToken" == call.method) {
+            self.createStripeToken(result: result, args: call.arguments as! String)
+        }
+    })
+    
+    
     
     GeneratedPluginRegistrant.register(with: self)
     
     return super.application(application, didFinishLaunchingWithOptions: launchOptions);
+    }
+    
+    private func createStripeToken(result: @escaping FlutterResult, args: String) {
+        let json: NSDictionary = args.parseJSONString!;
+        let cardParams = STPCardParams()
+        cardParams.number = json["number"] as? String;
+        cardParams.expMonth = (json["expMonth"] as? UInt)!;
+        cardParams.expYear = (json["expYear"] as? UInt)!;
+        cardParams.cvc = json["cvc"] as? String;
+        
+        STPAPIClient.shared().createToken(withCard: cardParams) { (token: STPToken?, error: Error?) in
+            guard let token = token, error == nil else {
+                result("ERROR_STRIPE")
+                return
+            }
+            let _: [String:Any] = [
+                "tokenId": token.tokenId
+            ]
+            
+            result(token.tokenId)
+            return
+        }
     }
     
     private func cancelAlarm(result: FlutterResult, args: String) {
@@ -95,7 +131,7 @@ import UserNotifications
                 print("THERE WAS AN ERROR ADDING THE NOTIFICATION REQUEST")
             }
         }
-        result( uuidString)
+        result(uuidString)
     }
 }
 

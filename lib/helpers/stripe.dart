@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:snuze/helpers/exceptions.dart';
 
 const MethodChannel _stripeChannel = MethodChannel('snuze.app/stripe');
 
@@ -19,6 +20,6 @@ Future<String> requestStripeToken(Map<String, dynamic> cardInfo) async {
     return token;
   } catch(err) {
     print(err);
-    return "ERROR";
+    throw new CausedException(cause: "Stripe", code:'7', message: "Error creating stripe token", userMessage: "Looks like your credit card information is invalid, please double-check your card and retry.");
   }
 }

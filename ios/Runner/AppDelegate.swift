@@ -55,7 +55,7 @@ import Firebase
                 result("ERROR_STRIPE")
                 return
             }
-            let tokenDict: [String:Any] = [
+            let _: [String:Any] = [
                 "tokenId": token.tokenId
             ]
             

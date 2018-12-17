@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:async';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:snuze/helpers/exceptions.dart';
 
 import 'package:snuze/scoped-models/main.dart';
 
@@ -105,26 +106,32 @@ class _AuthPageState extends State<AuthPage> {
         password: _formData['password']
       );
       Navigator.pushReplacementNamed(context, '/');
+    } on CausedException catch (exc) {
+      exc.debugPrint();
+      _showErrorDialog(context: context, userMessage: exc.userMessage);
     } catch(e) {
-      print('ERROR LOGGING IN');
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('An Error Occurred!'),
-            content: Text('Incorrect username or password.'),
-            actions: <Widget>[
-              FlatButton(
-                child: Text('Okay'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              )
-            ],
-          );
-        },
-      );
+      _showErrorDialog(context: context, userMessage: "Something went wrong, please try again!");
     }
+  }
+
+  void _showErrorDialog({BuildContext context, String userMessage}) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Oops!'),
+          content: Text(userMessage),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Okay'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        );
+      },
+    );
   }
 
   void _navigateToSignUpPage() {

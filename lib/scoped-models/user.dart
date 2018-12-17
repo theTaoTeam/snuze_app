@@ -30,45 +30,69 @@ mixin UserModel on Model {
       Map<dynamic,dynamic> stripeCustomerInfo = await _functions.call(
           functionName: "createStripeUser", parameters: stripeParams);
       String stripeCustomerId = stripeCustomerInfo['id'];
-      DocumentReference userDocRef = await _createFirestoreUser(
-          uid: newUser.uid, stripeId: stripeCustomerId);
-      DocumentReference invoiceDocRef =
-          await _createInvoice(userDocRef: userDocRef);
-      Map<String, dynamic> invoiceData = {
-        "invoiceRefs": [invoiceDocRef],
-        "activeInvoice": invoiceDocRef
-      };
-      await _updateUser(userData: invoiceData, userDocRef: userDocRef);
+      await _createFirestoreUserWithInvoice(uid: newUser.uid, stripeId: stripeCustomerId);
       _currentUser = newUser;
       notifyListeners();
     } on PlatformException catch (e) {
-      Exception exception = getFirebaseAuthExceptionWithErrorCode(code: e.code);
+      CausedException exception = getCausedExceptionWithErrorCode(code: e.code);
       newUser.delete();
       throw exception;
+    } on CausedException catch (e) {
+      e.debugPrint();
+      throw e;
     } catch (err) {
       print("error creating user: " + err.toString());
       newUser.delete();
-      throw (new Error());
+      throw new CausedException(cause: 'Registration Function', code: '6', message: 'unknown registration error', userMessage: "Looks like we messed up this time, mind trying again?");
     }
   }
 
-  Future<DocumentReference> _createFirestoreUser(
-      {String uid, String stripeId}) async {
+  Future<void> _createFirestoreUserWithInvoice({String uid, String stripeId}) async {
+    WriteBatch batch = _firestore.batch();
+    // create document references
+    DocumentReference invoiceDocRef = _firestore.collection("invoices").document();
     DocumentReference userDocRef = _firestore.collection("users").document(uid);
-    Map<String, String> userData = {"uid": uid, "stripeId": stripeId};
+
+    // set initial data
+    Map<String, dynamic> invoiceData = {
+      "billed": false,
+      "currentTotal": 0,
+      "id": invoiceDocRef.documentID,
+      "snuzeRefs": [],
+      "userRef": userDocRef,
+    };
+    batch.setData(invoiceDocRef, invoiceData);
+    Map<String, dynamic> userData = {
+      'uid': uid,
+      'stripeId': stripeId,
+      'invoiceRefs': [invoiceDocRef],
+      'activeInvoice': invoiceDocRef,
+    };
+
+    batch.setData(userDocRef, userData);
     try {
-      await userDocRef.setData(userData);
-      return userDocRef;
-    } catch (err) {
-      print("Err creating firestore user: " + err.toString());
-      throw (new Error());
+      await batch.commit();
+    } catch(e) {
+      print(e.toString());
+      throw new CausedException(cause: "Firestore", message: "batched write error", code: "1", userMessage: "We're having issues setting up your account, please check your connection and give it another go.");
     }
   }
 
-  Future<DocumentReference> _createInvoice(
-      {DocumentReference userDocRef}) async {
-    DocumentReference invoiceDocRef =
-        _firestore.collection("invoices").document();
+  // Future<DocumentReference> _createFirestoreUser({String uid, String stripeId}) async {
+  //   DocumentReference userDocRef = _firestore.collection("users").document(uid);
+  //   Map<String, String> userData = {"uid": uid, "stripeId": stripeId};
+  //   try {
+  //     await userDocRef.setData(userData);
+  //     return userDocRef;
+  //   } catch (err) {
+  //     print(err.toString());
+  //     throw new CausedException(cause: "Firestore Error", code: "1", message: "error while creating user in cloud firestore", userMessage: "Something went wrong, please check your network connection and try again!");
+  //   }
+  // }
+
+  // candidate for moving to invoice scoped-model
+  Future<DocumentReference> _createInvoice({DocumentReference userDocRef}) async {
+    DocumentReference invoiceDocRef = _firestore.collection("invoices").document();
     Map<String, dynamic> invoiceData = {
       "billed": false,
       "currentTotal": 0,
@@ -80,8 +104,8 @@ mixin UserModel on Model {
       await invoiceDocRef.setData(invoiceData);
       return invoiceDocRef;
     } catch (err) {
-      print("Err creating invoice: " + err.toString());
-      throw (new Error());
+      print(err.toString());
+      throw new CausedException(cause: "Firestore Error", code: "2", message: "error while creating invoice in cloud firestore", userMessage: "Something went wrong, please check your network connection and try again!");
     }
   }
 
@@ -90,8 +114,8 @@ mixin UserModel on Model {
     try {
       return await userDocRef.updateData(userData);
     } catch (err) {
-      print("Err updating user: " + err);
-      throw (new Error());
+      print(err.toString());
+      throw new CausedException(cause: "Firestore Error", code: "3", message: "error while updating user", userMessage: "Something went wrong, please check your network connection and try again!");
     }
   }
 
@@ -107,7 +131,7 @@ mixin UserModel on Model {
       _currentUser = user;
       notifyListeners();
     } catch(e) {
-      throw new LoginException(cause: 'Incorrect username or password');
+      throw new CausedException(cause: 'Firebase Auth', code: "4", message: 'login error', userMessage: "It looks like your email and password don't match, give it another shot.");
     }
   }
 
@@ -117,7 +141,7 @@ mixin UserModel on Model {
       _currentUser = null;
       notifyListeners();
     } catch(e) {
-      print('ERROR LOGGING OUT');
+      throw new CausedException(cause: 'Firebase Auth', code: "5", message: 'logout error', userMessage: "We're having issues logging you out, sorry about that.");
     }
   }
 }

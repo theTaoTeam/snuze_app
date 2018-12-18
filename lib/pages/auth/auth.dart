@@ -3,8 +3,8 @@ import 'dart:io';
 import 'dart:async';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:snuze/helpers/exceptions.dart';
 
-import 'package:snuze/models/auth.dart';
 import 'package:snuze/scoped-models/main.dart';
 
 class AuthPage extends StatefulWidget {
@@ -15,14 +15,18 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  final MainModel _model = new MainModel();
   final Map<String, dynamic> _formData = {
     'email': null,
     'password': null,
   };
+  Map<String, dynamic> cardInfo = {
+      'number': '4242424242424242',
+    'expMonth': 11,
+    'expYear': 2020,
+    'cvc': '123',
+    };
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordTextController = TextEditingController();
-  AuthMode _authMode = AuthMode.Login;
   bool _forgotPasswordEmailSent = false;
   String _forgotPasswordMessage;
 
@@ -91,39 +95,43 @@ class _AuthPageState extends State<AuthPage> {
     );
   }
 
-  void _submitForm(Function authenticate) async {
+  void _submitForm(Function login) async {
     if (!_formKey.currentState.validate()) {
       return;
     }
     _formKey.currentState.save();
-    Map<String, dynamic> successInformation;
-    successInformation = await authenticate(
-      _formData['email'],
-      _formData['password'],
-      _authMode,
-    );
-    if (successInformation['success']) {
-      print('navigating to next page');
-      Navigator.pushReplacementNamed(context, '/');
-    } else {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('An Error Occurred!'),
-            content: Text(successInformation['message']),
-            actions: <Widget>[
-              FlatButton(
-                child: Text('Okay'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              )
-            ],
-          );
-        },
+    try {
+      await login(
+        email: _formData['email'],
+        password: _formData['password']
       );
+      Navigator.pushReplacementNamed(context, '/');
+    } on CausedException catch (exc) {
+      exc.debugPrint();
+      _showErrorDialog(context: context, userMessage: exc.userMessage);
+    } catch(e) {
+      _showErrorDialog(context: context, userMessage: "Something went wrong, please try again!");
     }
+  }
+
+  void _showErrorDialog({BuildContext context, String userMessage}) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Oops!'),
+          content: Text(userMessage),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Okay'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        );
+      },
+    );
   }
 
   void _navigateToSignUpPage() {
@@ -208,16 +216,15 @@ class _AuthPageState extends State<AuthPage> {
                               ),
                             ),
                           ),
-                          model.isLoading
-                              ? Column(children: <Widget>[
-                                  CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                          Colors.white)),
-                                  SizedBox(
-                                    height: 5,
-                                  )
-                                ])
-                              : Column(
+                          // Column(children: <Widget>[
+                          //         CircularProgressIndicator(
+                          //             valueColor: AlwaysStoppedAnimation<Color>(
+                          //                 Colors.white)),
+                          //         SizedBox(
+                          //           height: 5,
+                          //         )
+                          //       ])
+                          Column(
                                   children: <Widget>[
                                     Container(
                                       width: targetWidth,
@@ -237,41 +244,14 @@ class _AuthPageState extends State<AuthPage> {
                                               fontSize: 20,
                                               fontFamily: 'Montserrat'),
                                         ),
-                                        onPressed: () =>
-                                            _submitForm(model.authenticate),
+                                        onPressed: () {
+                                          _submitForm(model.login);
+                                        }
                                       ),
                                     ),
                                     SizedBox(
                                       height: 15,
                                     ),
-                                    Container(
-                                        color: Color.fromRGBO(255, 255, 255, 0),
-                                        width: targetWidth,
-                                        height: 40,
-                                        child: OutlineButton(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                          ),
-                                          color:
-                                              Color.fromRGBO(255, 255, 255, 0),
-                                          textColor: Colors.white,
-                                          splashColor: Color(0xFFFE355A),
-                                          highlightColor: Colors.transparent,
-                                          highlightedBorderColor:
-                                              Colors.transparent,
-                                          child: Text(
-                                            'login with facebook',
-                                            style: TextStyle(
-                                                fontSize: 20,
-                                                fontFamily: 'Montserrat'),
-                                          ),
-                                          onPressed: () {
-                                            print(
-                                                'login with facebook pressed!');
-                                            model.startFacebookLogin();
-                                          },
-                                        )),
                                     SizedBox(
                                       height: 15,
                                     ),

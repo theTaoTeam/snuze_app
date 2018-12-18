@@ -22,69 +22,41 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   @override
-  State<StatefulWidget> createState() {
-    return _MyAppState();
+  Widget build(BuildContext context) {
+    MainModel _model = new MainModel();
+    _model.fetchUser();
+    _model.fetchAlarm();
+    bool _darkTheme = false;
+    return ScopedModel<MainModel>(
+      model: _model,
+      child: _buildApp(context, _darkTheme)
+    );
   }
 }
 
-class _MyAppState extends State<MyApp> {
-  final MainModel _model = MainModel();
-  bool _isAuthenticated = false;
-  bool _darkTheme = false;
-  @override
-  void initState() {
-    _model.autoAuthenticate();
-    _model.userSubject.listen((bool isAuthenticated) {
-      print('User subject change: $isAuthenticated');
-      //used to listen for different auth states. boolean
-      setState(() {
-        _isAuthenticated = isAuthenticated;
-      });
-    });
-
-    _model.themeSubject.listen((bool newTheme) {
-      print('in listener | theme: $newTheme');
-      setState(() {
-        _darkTheme = newTheme;
-      });
-    });
-    _model.fetchAlarm();
-    super.initState();
-  }
-
-  Widget _buildHomePage() {
-    if(_model.alarm.isActive) {
-      return SnuzePage();
-    } else {
-      return MainPage(_model);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    bool darkTheme = _darkTheme;
-    return ScopedModel<MainModel>(
-      model: _model,
-      child: MaterialApp(
+Widget _buildApp (BuildContext context, bool darkTheme) {
+  return ScopedModelDescendant<MainModel>(
+    builder: (BuildContext context, Widget child, MainModel model) {
+      return MaterialApp(
         theme: darkTheme ? buildDarkTheme() : buildLightTheme(),
         routes: {
           '/': (BuildContext context) =>
-              !_isAuthenticated ? AuthPage() : _buildHomePage(),
+              model.currentUser == null ? AuthPage() : MainPage(model),
           '/signup': (BuildContext context) => SignUpPage(),
           '/forgotpassword': (BuildContext context) => ForgotPasswordPage(),
           '/home': (BuildContext context) =>
-              !_isAuthenticated ? AuthPage() : MainPage(_model),
+              model.currentUser == null ? AuthPage() : MainPage(model),
           '/settings': (BuildContext context) =>
-              !_isAuthenticated ? AuthPage() : SettingsPage(model: _model),
+              model.currentUser == null ? AuthPage() : SettingsPage(model: model),
         },
         onUnknownRoute: (RouteSettings settings) {
           return MaterialPageRoute(
-            builder: (BuildContext context) => MainPage(_model),
+            builder: (BuildContext context) => MainPage(model),
           );
         },
-      ),
-    );
-  }
+      );
+    }
+  );
 }

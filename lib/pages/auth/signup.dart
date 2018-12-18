@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:snuze/models/auth.dart';
 import 'package:snuze/scoped-models/main.dart';
 import 'package:snuze/pages/auth/credit_card_form.dart';
 
@@ -12,7 +11,6 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  AuthMode _authMode = AuthMode.Signup;
   final Map<String, dynamic> _formData = {
     'email': null,
     'password': null,
@@ -31,11 +29,10 @@ class _SignUpPageState extends State<SignUpPage> {
         child: Text(
           "We're going to need a few things...",
           style: TextStyle(
-            color: Colors.white,
-            fontSize: 40,
-            fontWeight: FontWeight.w900,
-            fontFamily: 'Montserrat-bold'
-          ),
+              color: Colors.white,
+              fontSize: 40,
+              fontWeight: FontWeight.w900,
+              fontFamily: 'Montserrat-bold'),
           textAlign: TextAlign.left,
         ));
   }
@@ -87,30 +84,35 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  void _submitForm(Function authenticate) async {
+  void _submitForm(Function register) async {
     if (!_formKey.currentState.validate()) {
       return;
     }
     _formKey.currentState.save();
-    Map<String, dynamic> successInformation;
-    successInformation = await authenticate(
-      _formData['email'],
-      _formData['password'],
-      _authMode,
-      _formData['number'],
-      _formData['expMonth'],
-      _formData['expYear'],
-      _formData['cvc'],
-    );
-    if (successInformation['success']) {
+    Map<String, dynamic> cardInfo = {
+      "number": _formData['number'],
+      "expMonth": _formData['expMonth'],
+      "expYear": _formData['expYear'],
+      "cvc": _formData['cvc'],
+    };
+
+    try {
+      await register(_formData['email'], _formData['password'], cardInfo);
       Navigator.pushReplacementNamed(context, '/home');
-    } else {
+    } catch (e) {
+      print(e.toString());
+      try {
+        print(e.cause);
+      } catch(e) {
+        print("couldn't print cause");
+      }
+      print("Register Error on SignUp Page");
       showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text('Aw Geeze!'),
-            content: Text(successInformation['message']),
+            content: Text("Error"),
             actions: <Widget>[
               FlatButton(
                 child: Text('Okay'),
@@ -123,6 +125,7 @@ class _SignUpPageState extends State<SignUpPage> {
         },
       );
     }
+    
   }
 
   void updateCardInfo(Map<String, dynamic> ccInfo) {
@@ -187,41 +190,39 @@ class _SignUpPageState extends State<SignUpPage> {
                           height: 10.0,
                         ),
                         CreditCardForm(onCardChange: updateCardInfo),
-                        model.isLoading
-                            ? Column(children: <Widget>[
-                                CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                        Colors.white)),
-                                SizedBox(
-                                  height: 15,
-                                )
-                              ])
-                            : Column(
-                                children: <Widget>[
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Container(
-                                    width: targetWidth,
-                                    height: 40,
-                                    child: RaisedButton(
-                                      highlightElevation: 0,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(25)),
-                                      textColor: Colors.red,
-                                      color: Colors.white,
-                                      splashColor: Color(0xFFFE2562),
-                                      child: Text(
-                                        'get snuzing',
-                                        style: TextStyle(fontSize: 20, fontFamily: 'Montserrat'),
-                                      ),
-                                      onPressed: () =>
-                                          _submitForm(model.authenticate),
-                                    ),
-                                  ),
-                                ],
+                        // Column(children: <Widget>[
+                        //         CircularProgressIndicator(
+                        //             valueColor: AlwaysStoppedAnimation<Color>(
+                        //                 Colors.white)),
+                        //         SizedBox(
+                        //           height: 15,
+                        //         )
+                        //       ])
+                        Column(
+                          children: <Widget>[
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              width: targetWidth,
+                              height: 40,
+                              child: RaisedButton(
+                                highlightElevation: 0,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(25)),
+                                textColor: Colors.red,
+                                color: Colors.white,
+                                splashColor: Color(0xFFFE2562),
+                                child: Text(
+                                  'get snuzing',
+                                  style: TextStyle(
+                                      fontSize: 20, fontFamily: 'Montserrat'),
+                                ),
+                                onPressed: () => _submitForm(model.register),
                               ),
+                            ),
+                          ],
+                        ),
                       ],
                     )),
               ),

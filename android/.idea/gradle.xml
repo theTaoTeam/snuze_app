@@ -7,7 +7,7 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$USER_HOME$/.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.8.2+3/android" />
+            <option value="$USER_HOME$/.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_firestore-0.7.4/android" />
             <option value="$USER_HOME$/.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/cloud_functions-0.0.5/android" />
             <option value="$USER_HOME$/.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_analytics-1.0.6/android" />
             <option value="$USER_HOME$/.flutter-sdk/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.6.6/android" />

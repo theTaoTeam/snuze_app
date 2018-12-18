@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 
 
 import 'package:snuze/models/alarm.dart';
+import 'package:snuze/helpers/alarm_settings.dart';
 
 mixin AlarmModel on Model {
   Alarm _alarm;
@@ -129,5 +130,15 @@ mixin AlarmModel on Model {
     "isActive": "bool",
     "snuzeAmount": "double"
   };
+
+  String alarmTimeToString() {
+    int hour = _alarm.hour != 11 ? _alarm.hour + 1 : 12;
+    return "$hour:${_alarm.minute < 10 ? '0'+_alarm.minute.toString() : _alarm.minute} ${_alarm.meridiem == 0 ? 'AM' : 'PM'}";
+  }
+
+  String snuzeAmountToString() {
+    double price = toPrice(_alarm.snuzeAmount);
+    return "\$${price.toStringAsFixed(2)}";
+  }
 
 }

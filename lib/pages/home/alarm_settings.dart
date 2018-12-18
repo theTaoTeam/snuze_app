@@ -57,6 +57,9 @@ class AlarmSettings extends StatelessWidget {
       onChanged: (bool newValue) {
         print(newValue);
         onAlarmToggleChange(<String, dynamic>{"isActive": newValue});
+        if(newValue) {
+         Navigator.pushNamed(context, '/');
+        }
       },
     );
   }

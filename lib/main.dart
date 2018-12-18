@@ -36,6 +36,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
+Widget _buildHomePage(model) {
+  if(model.alarm.isActive) {
+    return SnuzePage();
+  } else {
+    return MainPage(model);
+  }
+}
+
 Widget _buildApp (BuildContext context, bool darkTheme) {
   return ScopedModelDescendant<MainModel>(
     builder: (BuildContext context, Widget child, MainModel model) {
@@ -43,7 +51,7 @@ Widget _buildApp (BuildContext context, bool darkTheme) {
         theme: darkTheme ? buildDarkTheme() : buildLightTheme(),
         routes: {
           '/': (BuildContext context) =>
-              model.currentUser == null ? AuthPage() : MainPage(model),
+              model.currentUser == null ? AuthPage() : _buildHomePage(model),
           '/signup': (BuildContext context) => SignUpPage(),
           '/forgotpassword': (BuildContext context) => ForgotPasswordPage(),
           '/home': (BuildContext context) =>

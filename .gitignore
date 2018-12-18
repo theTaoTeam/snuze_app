@@ -62,6 +62,7 @@ unlinked_spec.ds
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
 xcuserdata/
+Pods/
 
 # Exceptions to above rules.
 !**/ios/**/default.mode1v3

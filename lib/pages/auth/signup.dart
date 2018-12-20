@@ -56,7 +56,7 @@ class _SignUpPageState extends State<SignUpPage> {
         }
       },
       onSaved: (String value) {
-        _formData['email'] = value;
+        _formData['email'] = value.trim();
       },
     );
   }
@@ -79,7 +79,7 @@ class _SignUpPageState extends State<SignUpPage> {
         }
       },
       onSaved: (String value) {
-        _formData['password'] = value;
+        _formData['password'] = value.trim();
       },
     );
   }

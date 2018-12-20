@@ -23,9 +23,7 @@ class _SettingsPageState extends State<SettingsPage> {
   _SettingsPageState({this.model});
 
   bool _sentPassword = false;
-  bool _missingEmail = false;
   Map<String, dynamic> userSettings = {
-    'email': '',
     'darkTheme': false,
   };
   Map<String, dynamic> _newCardInfo = {
@@ -34,15 +32,6 @@ class _SettingsPageState extends State<SettingsPage> {
     'expYear': null,
     'cvc': '',
   };
-  @override
-  void initState() {
-    super.initState();
-    setState(() {
-      // userSettings['email'] = model.user.email;
-      // userSettings['darkTheme'] = model.user.darkTheme;
-    });
-    print('userSettings after setState: $userSettings');
-  }
 
   Widget _buildSectionTitle(String title) {
     return Center(
@@ -99,12 +88,9 @@ class _SettingsPageState extends State<SettingsPage> {
           child: TextField(
             style: TextStyle(color: Theme.of(context).highlightColor),
             decoration: InputDecoration(
-              labelText: _missingEmail
-                  ? 'please enter an email first'
-                  : model.currentUser.email,
-              labelStyle: _missingEmail
-                  ? TextStyle(color: Theme.of(context).primaryColor)
-                  : TextStyle(color: Theme.of(context).disabledColor),
+              labelText: model.currentUser.email,
+              enabled: false,
+              labelStyle: TextStyle(color: Theme.of(context).disabledColor),
               border: InputBorder.none,
             ),
             onChanged: (String val) {
@@ -144,22 +130,15 @@ class _SettingsPageState extends State<SettingsPage> {
             textColor: Theme.of(context).primaryColor,
             onPressed: () {
               print('pressed reset password');
-              // model.resetPassword(userSettings['email']).then((message) {
-              //   if (userSettings['email'] == '') {
-              //     setState(() {
-              //       _missingEmail = true;
-              //     });
-              //   } else {
-              //     setState(() {
-              //       _sentPassword = true;
-              //     });
-              //     Timer(Duration(seconds: 5), () {
-              //       setState(() {
-              //         _sentPassword = false;
-              //       });
-              //     });
-              //   }
-              // });
+              model.resetPassword(model.currentUser.email);
+              setState(() {
+                _sentPassword = true;
+              });
+              Timer(Duration(seconds: 5), () {
+                setState(() {
+                  _sentPassword = false;
+                });
+              });
             },
           )
         : FlatButton(
@@ -198,7 +177,10 @@ class _SettingsPageState extends State<SettingsPage> {
         actions: <Widget>[
           FlatButton(
             highlightColor: Colors.transparent,
-            child: Text('logout', style: TextStyle(color: Theme.of(context).primaryColor),),
+            child: Text(
+              'logout',
+              style: TextStyle(color: Theme.of(context).primaryColor),
+            ),
             color: Theme.of(context).backgroundColor,
             onPressed: () {
               model.logout();

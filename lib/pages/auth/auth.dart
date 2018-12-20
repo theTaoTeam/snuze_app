@@ -66,7 +66,7 @@ class _AuthPageState extends State<AuthPage> {
         }
       },
       onSaved: (String value) {
-        final String newVal = value.toLowerCase();
+        final String newVal = value.toLowerCase().trim();
         _formData['email'] = newVal;
       },
     );
@@ -90,7 +90,7 @@ class _AuthPageState extends State<AuthPage> {
         }
       },
       onSaved: (String value) {
-        _formData['password'] = value;
+        _formData['password'] = value.trim();
       },
     );
   }

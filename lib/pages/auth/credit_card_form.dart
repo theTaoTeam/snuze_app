@@ -18,7 +18,7 @@ class CreditCardForm extends StatelessWidget {
       style: new TextStyle(height: .3, fontFamily: 'Montserrat'),
       keyboardType: TextInputType.number,
       validator: (String value) {
-        if (value.isEmpty || value.length != 16) {
+        if (value.isEmpty || value.trim().length != 16) {
           return 'invalid credit card number';
         }
       },
@@ -43,12 +43,13 @@ class CreditCardForm extends StatelessWidget {
           keyboardType: TextInputType.number,
           validator: (String value) {
             if (value.isEmpty || !RegExp(r"^(0[1-9]|1[012])$")
-                .hasMatch(value)) {
+                .hasMatch(value.trim())) {
               return 'invalid';
             }
           },
           onSaved: (String value) {
-            var val = int.tryParse(value.trim());
+            value.trim();
+            var val = int.tryParse(value);
             if (val == null) {
               print('Error parsing expMonth');
             }
@@ -71,7 +72,7 @@ class CreditCardForm extends StatelessWidget {
           style: new TextStyle(height: .3, fontFamily: 'Montserrat'),
           keyboardType: TextInputType.number,
           validator: (String value) {
-            if (value.isEmpty || value.length != 4) {
+            if (value.isEmpty || value.trim().length != 4) {
               return 'invalid';
             }
           },
@@ -99,7 +100,7 @@ class CreditCardForm extends StatelessWidget {
           style: new TextStyle(height: .3, fontFamily: 'Montserrat'),
           keyboardType: TextInputType.number,
           validator: (String value) {
-            if (value.isEmpty || value.length != 3) {
+            if (value.isEmpty || value.trim().length != 3) {
               return 'invalid';
             }
           },

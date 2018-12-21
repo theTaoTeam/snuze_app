@@ -61,7 +61,7 @@ class _AuthPageState extends State<AuthPage> {
         final String newVal = value.toLowerCase();
         if (newVal.isEmpty ||
             !RegExp(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
-                .hasMatch(newVal)) {
+                .hasMatch(newVal.trim())) {
           return 'Double check your email';
         }
       },
@@ -85,7 +85,7 @@ class _AuthPageState extends State<AuthPage> {
       obscureText: true,
       controller: _passwordTextController,
       validator: (String value) {
-        if (value.isEmpty || value.length < 6) {
+        if (value.isEmpty || value.trim().length < 6) {
           return 'Double check your password';
         }
       },

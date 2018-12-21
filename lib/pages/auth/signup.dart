@@ -51,7 +51,7 @@ class _SignUpPageState extends State<SignUpPage> {
       validator: (String value) {
         if (value.isEmpty ||
             !RegExp(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
-                .hasMatch(value)) {
+                .hasMatch(value.trim())) {
           return 'Double check your email';
         }
       },
@@ -74,7 +74,7 @@ class _SignUpPageState extends State<SignUpPage> {
       obscureText: true,
       controller: _passwordTextController,
       validator: (String value) {
-        if (value.isEmpty || value.length < 6) {
+        if (value.isEmpty || value.trim().length < 6) {
           return 'Double check your password';
         }
       },

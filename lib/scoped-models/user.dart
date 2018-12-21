@@ -16,7 +16,8 @@ mixin UserModel on Model {
     return _currentUser;
   }
 
-  Future<void> register(String email, String password, Map<String, dynamic> cardInfo) async {
+  Future<void> register(
+      String email, String password, Map<String, dynamic> cardInfo) async {
     FirebaseUser newUser;
     try {
       String stripeToken = await requestStripeToken(cardInfo);
@@ -27,10 +28,11 @@ mixin UserModel on Model {
         'email': email,
         'source': stripeToken,
       };
-      Map<dynamic,dynamic> stripeCustomerInfo = await _functions.call(
+      Map<dynamic, dynamic> stripeCustomerInfo = await _functions.call(
           functionName: "createStripeUser", parameters: stripeParams);
       String stripeCustomerId = stripeCustomerInfo['id'];
-      await _createFirestoreUserWithInvoice(uid: newUser.uid, stripeId: stripeCustomerId);
+      await _createFirestoreUserWithInvoice(
+          uid: newUser.uid, stripeId: stripeCustomerId);
       _currentUser = newUser;
       notifyListeners();
     } on PlatformException catch (e) {
@@ -43,14 +45,20 @@ mixin UserModel on Model {
     } catch (err) {
       print("error creating user: " + err.toString());
       newUser.delete();
-      throw new CausedException(cause: 'Registration Function', code: '6', message: 'unknown registration error', userMessage: "Looks like we messed up this time, mind trying again?");
+      throw new CausedException(
+          cause: 'Registration Function',
+          code: '6',
+          message: 'unknown registration error',
+          userMessage: "Looks like we messed up this time, mind trying again?");
     }
   }
 
-  Future<void> _createFirestoreUserWithInvoice({String uid, String stripeId}) async {
+  Future<void> _createFirestoreUserWithInvoice(
+      {String uid, String stripeId}) async {
     WriteBatch batch = _firestore.batch();
     // create document references
-    DocumentReference invoiceDocRef = _firestore.collection("invoices").document();
+    DocumentReference invoiceDocRef =
+        _firestore.collection("invoices").document();
     DocumentReference userDocRef = _firestore.collection("users").document(uid);
 
     // set initial data
@@ -72,9 +80,14 @@ mixin UserModel on Model {
     batch.setData(userDocRef, userData);
     try {
       await batch.commit();
-    } catch(e) {
+    } catch (e) {
       print(e.toString());
-      throw new CausedException(cause: "Firestore", message: "batched write error", code: "1", userMessage: "We're having issues setting up your account, please check your connection and give it another go.");
+      throw new CausedException(
+          cause: "Firestore",
+          message: "batched write error",
+          code: "1",
+          userMessage:
+              "We're having issues setting up your account, please check your connection and give it another go.");
     }
   }
 
@@ -91,8 +104,10 @@ mixin UserModel on Model {
   // }
 
   // candidate for moving to invoice scoped-model
-  Future<DocumentReference> _createInvoice({DocumentReference userDocRef}) async {
-    DocumentReference invoiceDocRef = _firestore.collection("invoices").document();
+  Future<DocumentReference> _createInvoice(
+      {DocumentReference userDocRef}) async {
+    DocumentReference invoiceDocRef =
+        _firestore.collection("invoices").document();
     Map<String, dynamic> invoiceData = {
       "billed": false,
       "currentTotal": 0,
@@ -105,7 +120,12 @@ mixin UserModel on Model {
       return invoiceDocRef;
     } catch (err) {
       print(err.toString());
-      throw new CausedException(cause: "Firestore Error", code: "2", message: "error while creating invoice in cloud firestore", userMessage: "Something went wrong, please check your network connection and try again!");
+      throw new CausedException(
+          cause: "Firestore Error",
+          code: "2",
+          message: "error while creating invoice in cloud firestore",
+          userMessage:
+              "Something went wrong, please check your network connection and try again!");
     }
   }
 
@@ -115,7 +135,12 @@ mixin UserModel on Model {
       return await userDocRef.updateData(userData);
     } catch (err) {
       print(err.toString());
-      throw new CausedException(cause: "Firestore Error", code: "3", message: "error while updating user", userMessage: "Something went wrong, please check your network connection and try again!");
+      throw new CausedException(
+          cause: "Firestore Error",
+          code: "3",
+          message: "error while updating user",
+          userMessage:
+              "Something went wrong, please check your network connection and try again!");
     }
   }
 
@@ -127,11 +152,17 @@ mixin UserModel on Model {
 
   Future<void> login({String email, String password}) async {
     try {
-      FirebaseUser user = await _auth.signInWithEmailAndPassword(email: email, password: password);
+      FirebaseUser user = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
       _currentUser = user;
       notifyListeners();
-    } catch(e) {
-      throw new CausedException(cause: 'Firebase Auth', code: "4", message: 'login error', userMessage: "It looks like your email and password don't match, give it another shot.");
+    } catch (e) {
+      throw new CausedException(
+          cause: 'Firebase Auth',
+          code: "4",
+          message: 'login error',
+          userMessage:
+              "It looks like your email and password don't match, give it another shot.");
     }
   }
 
@@ -140,8 +171,18 @@ mixin UserModel on Model {
       await _auth.signOut();
       _currentUser = null;
       notifyListeners();
-    } catch(e) {
-      throw new CausedException(cause: 'Firebase Auth', code: "5", message: 'logout error', userMessage: "We're having issues logging you out, sorry about that.");
+    } catch (e) {
+      throw new CausedException(
+          cause: 'Firebase Auth',
+          code: "5",
+          message: 'logout error',
+          userMessage:
+              "We're having issues logging you out, sorry about that.");
     }
+  }
+
+  void resetPassword(String email) {
+    print("sending reset password email...");
+    _auth.sendPasswordResetEmail(email: email);
   }
 }

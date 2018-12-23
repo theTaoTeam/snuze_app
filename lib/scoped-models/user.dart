@@ -18,7 +18,10 @@ mixin UserModel on Model {
   }
 
   Future<void> register(
-      String email, String password, Map<String, dynamic> cardInfo) async {
+      String email, 
+      String password, 
+      Map<String, dynamic> cardInfo
+  ) async {
     isLoading = true;
     notifyListeners();
     FirebaseUser newUser;

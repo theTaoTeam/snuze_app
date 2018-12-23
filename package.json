@@ -6,6 +6,9 @@
   "repository": "https://github.com/sclampet/snuze-app.git",
   "author": "Tao Team",
   "license": "MIT",
+  "scripts": {
+    "models:gen": "flutter packages pub run build_runner build"
+  },
   "devDependencies": {
     "cz-conventional-changelog": "^2.1.0"
   },

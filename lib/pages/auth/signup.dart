@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
+
 import 'package:snuze/scoped-models/main.dart';
 import 'package:snuze/pages/auth/credit_card_form.dart';
+import 'package:snuze/pages/auth/actions/signup_actions.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -84,7 +86,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  void _submitForm(Function register) async {
+  void submitForm(Function register) async {
     if (!_formKey.currentState.validate()) {
       return;
     }
@@ -103,7 +105,7 @@ class _SignUpPageState extends State<SignUpPage> {
       print(e.toString());
       try {
         print(e.cause);
-      } catch(e) {
+      } catch (e) {
         print("couldn't print cause");
       }
       print("Register Error on SignUp Page");
@@ -125,7 +127,6 @@ class _SignUpPageState extends State<SignUpPage> {
         },
       );
     }
-    
   }
 
   void updateCardInfo(Map<String, dynamic> ccInfo) {
@@ -141,95 +142,60 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     final double deviceWidth = MediaQuery.of(context).size.width;
     final double targetWidth = deviceWidth > 550.0 ? 500.0 : deviceWidth * 0.75;
-    return ScopedModelDescendant<MainModel>(
-        builder: (BuildContext context, Widget child, MainModel model) {
-      return Scaffold(
-        appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: Color(0xFFFE2562),
-          iconTheme: IconThemeData(
-            color: Colors.white, //change your color here
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: Color(0xFFFE2562),
+        iconTheme: IconThemeData(
+          color: Colors.white, //change your color here
         ),
-        body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                stops: [
-                  0,
-                  0.58,
-                  1,
-                ],
-                colors: [
-                  Color(0xFFFE2562),
-                  Color(0xFFFE355A),
-                  Color(0xFFFFB52E),
-                ]),
-          ),
-          child: Center(
-            child: SingleChildScrollView(
-              reverse: true,
-              child: Container(
-                margin: EdgeInsets.only(bottom: 75),
-                width: targetWidth,
-                child: Form(
-                    key: _formKey,
-                    child: Column(
-                      children: <Widget>[
-                        _buildTitleText(targetWidth),
-                        SizedBox(
-                          height: 35,
-                        ),
-                        _buildEmailTextField(),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        _buildPasswordTextField(),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        CreditCardForm(onCardChange: updateCardInfo),
-                        // Column(children: <Widget>[
-                        //         CircularProgressIndicator(
-                        //             valueColor: AlwaysStoppedAnimation<Color>(
-                        //                 Colors.white)),
-                        //         SizedBox(
-                        //           height: 15,
-                        //         )
-                        //       ])
-                        Column(
-                          children: <Widget>[
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Container(
-                              width: targetWidth,
-                              height: 40,
-                              child: RaisedButton(
-                                highlightElevation: 0,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(25)),
-                                textColor: Colors.red,
-                                color: Colors.white,
-                                splashColor: Color(0xFFFE2562),
-                                child: Text(
-                                  'get snuzing',
-                                  style: TextStyle(
-                                      fontSize: 20, fontFamily: 'Montserrat'),
-                                ),
-                                onPressed: () => _submitForm(model.register),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    )),
-              ),
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              stops: [
+                0,
+                0.58,
+                1,
+              ],
+              colors: [
+                Color(0xFFFE2562),
+                Color(0xFFFE355A),
+                Color(0xFFFFB52E),
+              ]),
+        ),
+        child: Center(
+          child: SingleChildScrollView(
+            reverse: true,
+            child: Container(
+              margin: EdgeInsets.only(bottom: 75),
+              width: targetWidth,
+              child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: <Widget>[
+                      _buildTitleText(targetWidth),
+                      SizedBox(
+                        height: 35,
+                      ),
+                      _buildEmailTextField(),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      _buildPasswordTextField(),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      CreditCardForm(onCardChange: updateCardInfo),
+                      SignUpActionButton(submitForm: submitForm),
+                    ],
+                  )),
             ),
           ),
         ),
-      );
-    });
+      ),
+    );
   }
 }

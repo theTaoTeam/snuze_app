@@ -12,12 +12,15 @@ mixin UserModel on Model {
   final CloudFunctions _functions = CloudFunctions.instance;
   final Firestore _firestore = Firestore.instance;
   FirebaseUser _currentUser;
+  var isLoading = false;
   FirebaseUser get currentUser {
     return _currentUser;
   }
 
   Future<void> register(
       String email, String password, Map<String, dynamic> cardInfo) async {
+    isLoading = true;
+    notifyListeners();
     FirebaseUser newUser;
     try {
       String stripeToken = await requestStripeToken(cardInfo);
@@ -34,15 +37,22 @@ mixin UserModel on Model {
       await _createFirestoreUserWithInvoice(
           uid: newUser.uid, stripeId: stripeCustomerId);
       _currentUser = newUser;
+      isLoading = false;
       notifyListeners();
     } on PlatformException catch (e) {
+      isLoading = false;
+      notifyListeners();
       CausedException exception = getCausedExceptionWithErrorCode(code: e.code);
       newUser.delete();
       throw exception;
     } on CausedException catch (e) {
+      isLoading = false;
+      notifyListeners();
       e.debugPrint();
       throw e;
     } catch (err) {
+      isLoading = false;
+      notifyListeners();
       print("error creating user: " + err.toString());
       newUser.delete();
       throw new CausedException(
@@ -151,12 +161,17 @@ mixin UserModel on Model {
   }
 
   Future<void> login({String email, String password}) async {
+    isLoading = true;
+    notifyListeners();
     try {
       FirebaseUser user = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       _currentUser = user;
+      isLoading = false;
       notifyListeners();
     } catch (e) {
+      isLoading = false;
+      notifyListeners();
       throw new CausedException(
           cause: 'Firebase Auth',
           code: "4",
@@ -184,5 +199,18 @@ mixin UserModel on Model {
   void resetPassword(String email) {
     print("sending reset password email...");
     _auth.sendPasswordResetEmail(email: email);
+  }
+
+  void _handleTimeoutError() {
+    Timer(Duration(seconds: 20), () {
+      isLoading = false;
+      notifyListeners();
+      throw new CausedException(
+          cause: "Timeout Error",
+          code: "1",
+          message: "timeout error while authenticating user",
+          userMessage:
+              "Something went wrong, please check your network connection and try again!");
+    });
   }
 }

@@ -44,12 +44,12 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       validator: (String value) {
         if (value.isEmpty ||
             !RegExp(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
-                .hasMatch(value)) {
+                .hasMatch(value.trim())) {
           return 'Double check your email';
         }
       },
       onSaved: (String value) {
-        _forgotFormData['email'] = value;
+        _forgotFormData['email'] = value.trim();
         print(_forgotFormData);
       },
     );

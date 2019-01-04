@@ -54,7 +54,8 @@ mixin AlarmModel on Model {
       final Map<String, Function> typeMap = {
         "int": prefs.setInt,
         "bool": prefs.setBool,
-        "double": prefs.setDouble
+        "double": prefs.setDouble,
+        "String": prefs.setString,
       };
 
       // prevents null error on startup
@@ -91,7 +92,8 @@ mixin AlarmModel on Model {
       final Map<String, Function> typeMap = {
         "int": prefs.getInt,
         "bool": prefs.getBool,
-        "double": prefs.getDouble
+        "double": prefs.getDouble,
+        "String": prefs.getString,
       };
 
       print(prefs.getInt('hour'));
@@ -128,7 +130,8 @@ mixin AlarmModel on Model {
     "minute": "int",
     "meridiem": "int",
     "isActive": "bool",
-    "snuzeAmount": "double"
+    "snuzeAmount": "double",
+    "sound": "String"
   };
 
   String alarmTimeToString() {

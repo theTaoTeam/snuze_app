@@ -12,7 +12,8 @@ Alarm _$AlarmFromJson(Map<String, dynamic> json) {
       minute: json['minute'] as int,
       meridiem: json['meridiem'] as int,
       snuzeAmount: (json['snuzeAmount'] as num)?.toDouble(),
-      isActive: json['isActive'] as bool);
+      isActive: json['isActive'] as bool,
+      sound: json['sound'] as String);
 }
 
 Map<String, dynamic> _$AlarmToJson(Alarm instance) => <String, dynamic>{
@@ -20,5 +21,6 @@ Map<String, dynamic> _$AlarmToJson(Alarm instance) => <String, dynamic>{
       'minute': instance.minute,
       'meridiem': instance.meridiem,
       'snuzeAmount': instance.snuzeAmount,
-      'isActive': instance.isActive
+      'isActive': instance.isActive,
+      'sound': instance.sound
     };

@@ -9,9 +9,10 @@ class Alarm {
   int meridiem;
   double snuzeAmount;
   bool isActive;
+  String sound;
 
 
-  Alarm({this.hour = 6, this.minute = 6, this.meridiem = 0, this.snuzeAmount = 0.25, this.isActive = false});
+  Alarm({this.hour = 6, this.minute = 6, this.meridiem = 0, this.snuzeAmount = 0.25, this.isActive = false, this.sound = "ring"});
 
   factory Alarm.fromJson(Map<String, dynamic> json) => _$AlarmFromJson(json);
 

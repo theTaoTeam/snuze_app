@@ -40,9 +40,13 @@ import os.log
     setupNotificationOptions()
 
     // Setup Firebase
-    FirebaseApp.configure()
+//    FirebaseApp.configure()
     
     return super.application(application, didFinishLaunchingWithOptions: launchOptions);
+    }
+    override init() {
+        // Firebase Init
+        FirebaseApp.configure()
     }
     
     private func createStripeToken(result: @escaping FlutterResult, args: String) {
@@ -200,7 +204,7 @@ import os.log
         
         var authorizationOptions:UNAuthorizationOptions = []
         if #available(iOS 12.0, *) {
-            authorizationOptions = [.alert, .sound, .criticalAlert]
+            authorizationOptions = [.alert, .sound]
         } else {
             // Fallback on earlier versions
             authorizationOptions = [.alert, .sound] // Critical alert only available in iOS 12+

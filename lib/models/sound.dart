@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+part 'sound.g.dart';
+
 @JsonSerializable()
 class Sound {
   String displayName;

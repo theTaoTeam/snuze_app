@@ -19,6 +19,7 @@ class HomeNav extends StatelessWidget {
                 child: Text('Sound'),
                 onPressed: () {
                   print('Sound button pressed');
+                  Navigator.pushNamed(context, '/sounds');
                 },
               ),
             ),

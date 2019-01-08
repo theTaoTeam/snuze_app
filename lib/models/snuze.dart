@@ -4,10 +4,11 @@ part 'snuze.g.dart';
 
 @JsonSerializable()
 class Snuze {
-  DateTime alarmTime;
+  DateTime snuzeTime;
   double snuzeAmount;
+  String id;
 
-  Snuze({this.alarmTime, this.snuzeAmount = 0.25});
+  Snuze({this.snuzeTime, this.snuzeAmount, this.id});
 
   factory Snuze.fromJson(Map<String, dynamic> json) => _$SnuzeFromJson(json);
 

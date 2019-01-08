@@ -67,27 +67,27 @@ mixin UserModel on Model {
       {String uid, String stripeId}) async {
     WriteBatch batch = _firestore.batch();
     // create document references
-    DocumentReference invoiceDocRef =
+    DocumentReference invoiceRef =
         _firestore.collection("invoices").document();
-    DocumentReference userDocRef = _firestore.collection("users").document(uid);
+    DocumentReference userRef = _firestore.collection("users").document(uid);
 
     // set initial data
     Map<String, dynamic> invoiceData = {
       "billed": false,
       "currentTotal": 0,
-      "id": invoiceDocRef.documentID,
-      "snuzeRefs": [],
-      "userRef": userDocRef,
+      "id": invoiceRef.documentID,
+      "snuzeIds": [],
+      "userId": uid,
     };
-    batch.setData(invoiceDocRef, invoiceData);
+    batch.setData(invoiceRef, invoiceData);
     Map<String, dynamic> userData = {
       'uid': uid,
       'stripeId': stripeId,
-      'invoiceRefs': [invoiceDocRef],
-      'activeInvoice': invoiceDocRef,
+      'invoiceIds': [invoiceRef.documentID],
+      'activeInvoice': invoiceRef.documentID,
     };
 
-    batch.setData(userDocRef, userData);
+    batch.setData(userRef, userData);
     try {
       await batch.commit();
     } catch (e) {
@@ -115,15 +115,15 @@ mixin UserModel on Model {
 
   // candidate for moving to invoice scoped-model
   Future<DocumentReference> _createInvoice(
-      {DocumentReference userDocRef}) async {
+      {DocumentReference userRef}) async {
     DocumentReference invoiceDocRef =
         _firestore.collection("invoices").document();
     Map<String, dynamic> invoiceData = {
       "billed": false,
       "currentTotal": 0,
-      "id": invoiceDocRef,
-      "snuzeRefs": [],
-      "userRef": userDocRef,
+      "id": invoiceDocRef.documentID,
+      "snuzeIds": [],
+      "userId": userRef,
     };
     try {
       await invoiceDocRef.setData(invoiceData);

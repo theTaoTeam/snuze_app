@@ -123,13 +123,6 @@ mixin AlarmModel on Model {
   //   return <String, dynamic>{key: value};
   // }
 
-  Map<String, String> _alarmMap = {
-    "hour": "int",
-    "minute": "int",
-    "meridiem": "int",
-    "isActive": "bool",
-    "snuzeAmount": "double"
-  };
 
   String alarmTimeToString() {
     int hour = _alarm.hour != 11 ? _alarm.hour + 1 : 12;
@@ -141,4 +134,28 @@ mixin AlarmModel on Model {
     return "\$${price.toStringAsFixed(2)}";
   }
 
+  bool isAlarmTriggered() {
+    DateTime currentTime = new DateTime.now();
+    DateTime alarmTime = new DateTime(
+      currentTime.year,
+      currentTime.month,
+      currentTime.day,
+      _militaryHour(hour: _alarm.hour, meridiem: _alarm.meridiem),
+      _alarm.minute
+    );
+    print(alarmTime.isBefore(currentTime));
+    return alarmTime.isBefore(currentTime);
+  }
+
+  void handleStop() {
+    updateAlarm({'isActive': false});
+  }
+  
+  Map<String, String> _alarmMap = {
+    "hour": "int",
+    "minute": "int",
+    "meridiem": "int",
+    "isActive": "bool",
+    "snuzeAmount": "double"
+  };
 }

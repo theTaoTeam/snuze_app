@@ -11,12 +11,27 @@ mixin SnuzeModel on Model {
   final Firestore _firestore = Firestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<void> createSnuze({snuze}) async {
-    FirebaseUser currentUser = await _auth.currentUser();
-    final DocumentReference userRef = _firestore.collection('users').document(currentUser.uid);
-    _firestore.runTransaction((Transaction tx) async {
-      DocumentSnapshot userSnapshot = await tx.get(userRef);
-      print(userSnapshot);
-    });
+  Future<void> createSnuze({double snuzeAmount}) async {
+    try {
+      FirebaseUser currentUser = await _auth.currentUser();
+      DocumentReference userRef = _firestore.collection('users').document(currentUser.uid);
+      DocumentSnapshot userDoc = await userRef.get();
+      DocumentReference invoiceRef = userDoc.data['activeInvoice'];
+      DocumentReference snuzeRef = _firestore.collection('snuzes').document();
+      Map<String, dynamic> snuzeData = {
+        'snuzeTime': Timestamp.now(),
+        'id': snuzeRef.documentID,
+        'snuzeAmount': snuzeAmount,
+        'userId': currentUser.uid,
+        'invoiceRef': invoiceRef,
+      };
+      await snuzeRef.setData(snuzeData);
+      await invoiceRef.updateData({
+        'snuzeRefs': FieldValue.arrayUnion([snuzeRef]),
+      });
+    } catch(e) {
+      print('ERROR CREATING SNUZE');
+      print(e.toString());
+    }
   }
 }

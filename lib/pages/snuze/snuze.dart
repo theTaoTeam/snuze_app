@@ -63,7 +63,7 @@ class SnuzePage extends StatelessWidget {
     ));
   }
 
-  Container _buildSnuzeStopFooterSection(Function onSnuze) {
+  Container _buildSnuzeStopFooterSection(BuildContext context, Function onSnuze, Function onStop, double snuzeAmount) {
     return Container(
       child: Column(
         children: <Widget>[
@@ -83,6 +83,7 @@ class SnuzePage extends StatelessWidget {
             ),
             onPressed: () {
               print("snuze pressed");
+              onSnuze(snuzeAmount: snuzeAmount);
             },
           ),
           OutlineButton(
@@ -101,7 +102,8 @@ class SnuzePage extends StatelessWidget {
             ),
             onPressed: () {
               print("stop pressed");
-              onSnuze();
+              onStop();
+              Navigator.pushReplacementNamed(context, '/home');
             },
           ),
         ],
@@ -139,9 +141,9 @@ class SnuzePage extends StatelessWidget {
                 Container(
                   width: targetWidth,
                   // height: 40,
-                  child: model.alarm.isActive
-                      ? _buildCancelFooterSection(context, model.updateAlarm)
-                      : _buildSnuzeStopFooterSection(model.createSnuze),
+                  child: model.isAlarmTriggered()
+                      ? _buildSnuzeStopFooterSection(context, model.createSnuze, model.handleStop, model.alarm.snuzeAmount)
+                      : _buildCancelFooterSection(context, model.updateAlarm)
                 ),
               ],
               mainAxisAlignment: MainAxisAlignment.center,

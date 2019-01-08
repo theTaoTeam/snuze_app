@@ -14,6 +14,7 @@ import 'package:snuze/pages/auth/forgot_password.dart';
 import 'package:snuze/pages/settings/settings.dart';
 import 'package:snuze/pages/snuze/snuze.dart';
 import 'package:snuze/pages/sounds/sounds.dart';
+import 'package:snuze/pages/mysnuze/mysnuze.dart';
 
 
 void main() {
@@ -60,6 +61,7 @@ Widget _buildApp (BuildContext context, bool darkTheme) {
           '/settings': (BuildContext context) =>
               model.currentUser == null ? AuthPage() : SettingsPage(model: model),
           '/sounds': (BuildContext context) => SoundsPage(),
+          '/mysnuze': (BuildContext context) => MySnuzePage(),
 
         },
         onUnknownRoute: (RouteSettings settings) {

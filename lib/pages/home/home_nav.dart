@@ -30,6 +30,7 @@ class HomeNav extends StatelessWidget {
                 child: Text('My Snüze'),
                 onPressed: () {
                   print('My Snüze button pressed');
+                  Navigator.pushNamed(context, '/mysnuze');
                 },
               ),
             ),

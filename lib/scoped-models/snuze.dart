@@ -16,18 +16,18 @@ mixin SnuzeModel on Model {
       FirebaseUser currentUser = await _auth.currentUser();
       DocumentReference userRef = _firestore.collection('users').document(currentUser.uid);
       DocumentSnapshot userDoc = await userRef.get();
-      DocumentReference invoiceRef = userDoc.data['activeInvoice'];
+      DocumentReference invoiceRef = _firestore.collection('invoices').document(userDoc.data['activeInvoice']);
       DocumentReference snuzeRef = _firestore.collection('snuzes').document();
       Map<String, dynamic> snuzeData = {
         'snuzeTime': Timestamp.now(),
         'id': snuzeRef.documentID,
         'snuzeAmount': snuzeAmount,
         'userId': currentUser.uid,
-        'invoiceRef': invoiceRef,
+        'invoiceId': invoiceRef.documentID,
       };
       await snuzeRef.setData(snuzeData);
       await invoiceRef.updateData({
-        'snuzeRefs': FieldValue.arrayUnion([snuzeRef]),
+        'snuzeIds': FieldValue.arrayUnion([snuzeRef.documentID]),
       });
     } catch(e) {
       print('ERROR CREATING SNUZE');

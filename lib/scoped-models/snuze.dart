@@ -17,6 +17,8 @@ mixin SnuzeModel on Model {
       DocumentReference userRef = _firestore.collection('users').document(currentUser.uid);
       DocumentSnapshot userDoc = await userRef.get();
       DocumentReference invoiceRef = _firestore.collection('invoices').document(userDoc.data['activeInvoice']);
+      DocumentSnapshot invoiceDoc = await invoiceRef.get();
+      double currentSnuzeTotal = invoiceDoc.data['currentTotal'].toDouble();
       DocumentReference snuzeRef = _firestore.collection('snuzes').document();
       Map<String, dynamic> snuzeData = {
         'snuzeTime': Timestamp.now(),
@@ -25,11 +27,14 @@ mixin SnuzeModel on Model {
         'userId': currentUser.uid,
         'invoiceId': invoiceRef.documentID,
       };
+      Map<String, dynamic> invoiceData = {
+        'snuzeIds': FieldValue.arrayUnion([snuzeRef.documentID]),
+        'currentTotal': currentSnuzeTotal + snuzeAmount,
+      };
+
       WriteBatch batch = _firestore.batch();
       batch.setData(snuzeRef, snuzeData);
-      batch.updateData(invoiceRef, <String, dynamic>{
-        'snuzeIds': FieldValue.arrayUnion([snuzeRef.documentID]),
-      });
+      batch.updateData(invoiceRef, invoiceData);
       await batch.commit();
     } catch(e) {
       print('ERROR CREATING SNUZE');

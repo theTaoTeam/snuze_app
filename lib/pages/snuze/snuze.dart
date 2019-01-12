@@ -138,9 +138,9 @@ class SnuzePage extends StatelessWidget {
                 Container(
                   width: targetWidth,
                   // height: 40,
-                  child: model.alarm.isActive
-                      ? _buildCancelFooterSection(context, model.updateAlarm)
-                      : _buildSnuzeStopFooterSection(),
+                  child: model.alarm.isTriggered
+                      ? _buildSnuzeStopFooterSection()
+                      : _buildCancelFooterSection(context, model.updateAlarm),
                 ),
               ],
               mainAxisAlignment: MainAxisAlignment.center,

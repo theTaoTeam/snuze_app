@@ -25,10 +25,12 @@ mixin SnuzeModel on Model {
         'userId': currentUser.uid,
         'invoiceId': invoiceRef.documentID,
       };
-      await snuzeRef.setData(snuzeData);
-      await invoiceRef.updateData({
+      WriteBatch batch = _firestore.batch();
+      batch.setData(snuzeRef, snuzeData);
+      batch.updateData(invoiceRef, <String, dynamic>{
         'snuzeIds': FieldValue.arrayUnion([snuzeRef.documentID]),
       });
+      await batch.commit();
     } catch(e) {
       print('ERROR CREATING SNUZE');
       print(e.toString());

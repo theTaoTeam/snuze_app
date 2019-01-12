@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:snuze/scoped-models/main.dart';
+import 'package:snuze/helpers/alarm_settings.dart';
 
 
 class SnuzePage extends StatelessWidget {
@@ -142,7 +143,7 @@ class SnuzePage extends StatelessWidget {
                   width: targetWidth,
                   // height: 40,
                   child: model.isAlarmTriggered()
-                      ? _buildSnuzeStopFooterSection(context, model.createSnuze, model.handleStop, model.alarm.snuzeAmount)
+                      ? _buildSnuzeStopFooterSection(context, model.createSnuze, model.handleStop, toPrice(model.alarm.snuzeAmount))
                       : _buildCancelFooterSection(context, model.updateAlarm)
                 ),
               ],

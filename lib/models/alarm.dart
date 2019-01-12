@@ -9,6 +9,7 @@ class Alarm {
   int meridiem;
   double snuzeAmount;
   bool isActive;
+  bool isTriggered;
   String sound;
 
 

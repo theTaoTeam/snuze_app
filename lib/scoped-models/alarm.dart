@@ -73,12 +73,6 @@ mixin AlarmModel on Model {
       _alarm = new Alarm.fromJson(jsonAlarm);
       print(_alarm.toJson());
       notifyListeners();
-
-      if(_alarm.isActive == true) {
-        this._setNativeAlarm();
-      } else {
-        this._cancelNativeAlarm();
-      }
     });
   }
 
@@ -131,7 +125,8 @@ mixin AlarmModel on Model {
     "meridiem": "int",
     "isActive": "bool",
     "snuzeAmount": "double",
-    "sound": "String"
+    "sound": "String",
+    "isTriggered": "bool",
   };
 
   String alarmTimeToString() {

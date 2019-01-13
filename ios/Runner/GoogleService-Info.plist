@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>470335422668-gr6826ctrvn9u95fos217phljtv0p4bb.apps.googleusercontent.com</string>
+	<string>470335422668-b22519rph32lfil5s64ukdp4d9m2rds9.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.470335422668-gr6826ctrvn9u95fos217phljtv0p4bb</string>
+	<string>com.googleusercontent.apps.470335422668-b22519rph32lfil5s64ukdp4d9m2rds9</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAjcf1B8mxatdVxzu51KFcT9NbEHve_C-U</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.snuze</string>
+	<string>com.taoteam.snuze</string>
 	<key>PROJECT_ID</key>
 	<string>snuze-stage</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:470335422668:ios:afbb06422ba14233</string>
+	<string>1:470335422668:ios:b6f28e5b3afe8839</string>
 	<key>DATABASE_URL</key>
 	<string>https://snuze-stage.firebaseio.com</string>
 </dict>

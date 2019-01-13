@@ -5,6 +5,7 @@ pod 'Firebase/Core'
 pod 'Firebase/Firestore'
 pod 'Firebase/Functions'
 pod 'Firebase/Auth'
+pod 'Firebase/Messaging'
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'

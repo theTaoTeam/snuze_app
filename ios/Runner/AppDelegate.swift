@@ -9,7 +9,7 @@ import os.log
 
 @available(iOS 10.0, *)
 @UIApplicationMain
-@objc class AppDelegate: FlutterAppDelegate, AVAudioPlayerDelegate {
+@objc class AppDelegate: FlutterAppDelegate, AVAudioPlayerDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
     
     private var flutterViewController:FlutterViewController!
     private var alarmStartedMessageChannel:FlutterBasicMessageChannel!
@@ -23,7 +23,9 @@ import os.log
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
   ) -> Bool {
-    
+    application.registerForRemoteNotifications()
+    Messaging.messaging().delegate = self
+    getCurrentFCMToken()
     // Set launch date for time-related functionality
     appLaunchTime = Date()
     
@@ -70,6 +72,10 @@ import os.log
             return
         }
     }
+    //MARK:- FIREBASE MESSAGING DELEGATE
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("RECEIVED FCM REGISTRATION TOKEN")
+    }
     
     //MARK:- APP DELEGATE METHODS
     
@@ -102,6 +108,18 @@ import os.log
             print("Alarm is not set.")
         }
     }
+    
+    
+    func getCurrentFCMToken() -> String? {
+        let token = Messaging.messaging().fcmToken
+        print("FCM token: \(token ?? "No current token")")
+        return token
+    }
+    
+    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
+        print("did receive remote firebase message")
+    }
+
     
     
     //MARK:- FLUTTER
@@ -381,10 +399,45 @@ import os.log
             alarmTimer = nil
         }
     }
-}
-
-@available(iOS 10.0, *)
-extension AppDelegate: UNUserNotificationCenterDelegate {
+    override func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+        
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        Messaging.messaging().appDidReceiveMessage(userInfo)
+        
+        // Debug print full message
+        print(userInfo)
+    }
+    
+    override func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+        
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+        
+        // Print message ID.
+//        if let messageID = userInfo[//gcmMessageIDKey] {
+//            print("Message ID: \(messageID)")
+//        }
+        
+        // Print full message.
+        print(userInfo)
+        
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
+    
+    override func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("didRegisterForRemoteNotificationsWithDeviceToken")
+    }
+    override func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("didFailToRegisterForRemoteNotificationsWithError. error: \(error)")
+    }
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         //        let title = notification.request.content.title
         //        let body = notification.request.content.body

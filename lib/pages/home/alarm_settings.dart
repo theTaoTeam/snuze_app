@@ -55,10 +55,9 @@ class AlarmSettings extends StatelessWidget {
     return SwitchListTile(
       value: _alarmSet,
       onChanged: (bool newValue) {
-        print(newValue);
-        onAlarmToggleChange(<String, dynamic>{"isActive": newValue});
+        onAlarmToggleChange();
         if(newValue) {
-         Navigator.pushNamed(context, '/');
+          Navigator.pushNamed(context, '/');
         }
       },
     );
@@ -76,7 +75,7 @@ class AlarmSettings extends StatelessWidget {
               _buildDonationSlider(
                   context, model.alarm.snuzeAmount, model.updateAlarm),
                _buildAlarmToggle(
-                    context, model.alarm.isActive, model.updateAlarm),
+                    context, model.alarm.isActive, model.setAlarm),
               
             ],
           ),

@@ -54,8 +54,7 @@ class SnuzePage extends StatelessWidget {
             style: TextStyle(fontSize: 20, fontFamily: 'Montserrat'),
           ),
           onPressed: () {
-            print("cancel pressed");
-            onAlarmToggleChange(<String, dynamic>{"isActive": false});
+            onAlarmToggleChange();
             Navigator.pushNamed(context, '/home');
           },
         ),
@@ -140,7 +139,7 @@ class SnuzePage extends StatelessWidget {
                   // height: 40,
                   child: model.alarm.isTriggered
                       ? _buildSnuzeStopFooterSection()
-                      : _buildCancelFooterSection(context, model.updateAlarm),
+                      : _buildCancelFooterSection(context, model.cancelAlarm),
                 ),
               ],
               mainAxisAlignment: MainAxisAlignment.center,

@@ -16,38 +16,38 @@ mixin AlarmModel on Model {
 
   Alarm get alarm => _alarm;
 
-  // send alarm message to iOS devices
-  Future<Null> _setNativeAlarm() async {
-    var jsonArgs = json.encode(<String, dynamic> {
-      'hour': this._militaryHour(hour: _alarm.hour, meridiem: _alarm.meridiem),
-      'minute': _alarm.minute
-    });
+  // // send alarm message to iOS devices
+  // Future<Null> _setNativeAlarm() async {
+  //   var jsonArgs = json.encode(<String, dynamic> {
+  //     'hour': this._militaryHour(hour: _alarm.hour, meridiem: _alarm.meridiem),
+  //     'minute': _alarm.minute
+  //   });
 
-    try {
-      final String result = await _alarmChannel.invokeMethod('setAlarm', jsonArgs);
-      print(result);
-    } catch (err) {
-      print(err);
-    }
-  }
+  //   try {
+  //     final String result = await _alarmChannel.invokeMethod('setAlarm', jsonArgs);
+  //     print(result);
+  //   } catch (err) {
+  //     print(err);
+  //   }
+  // }
 
-  int _militaryHour({int hour, int meridiem}) {
+  int _militaryHour() {
     int convertedHour;
-    if(meridiem == 0) {
-      convertedHour = hour != 11 ? hour + 1 : 0;
+    if(alarm.meridiem == 0) {
+      convertedHour = alarm.hour != 11 ? alarm.hour + 1 : 0;
     } else {
-      convertedHour = hour != 11 ? hour + 1 + 12 : 12;
+      convertedHour = alarm.hour != 11 ? alarm.hour + 1 + 12 : 12;
     }
     return convertedHour;
   }
 
-  Future<Null> _cancelNativeAlarm() async {
-    try {
-      final String result = await _alarmChannel.invokeMethod('cancelAlarm', "test");
-    } catch(err) {
-      print(err);
-    }
-  }
+  // Future<Null> _cancelNativeAlarm() async {
+  //   try {
+  //     final String result = await _alarmChannel.invokeMethod('cancelAlarm', "test");
+  //   } catch(err) {
+  //     print(err);
+  //   }
+  // }
 
   void updateAlarm(Map<String, dynamic> alarmData) {
     SharedPreferences.getInstance().then((prefs) {
@@ -74,6 +74,14 @@ mixin AlarmModel on Model {
       print(_alarm.toJson());
       notifyListeners();
     });
+  }
+
+  Future<void> setAlarm() async { 
+    this.updateAlarm({'isActive': true});
+  }
+
+  Future<void> cancelAlarm() async {
+    this.updateAlarm({'isActive': false});
   }
 
   void defaultAlarm() {

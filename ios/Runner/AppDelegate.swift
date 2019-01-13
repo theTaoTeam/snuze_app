@@ -23,7 +23,6 @@ import os.log
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
   ) -> Bool {
-    application.registerForRemoteNotifications()
     Messaging.messaging().delegate = self
     getCurrentFCMToken()
     // Set launch date for time-related functionality
@@ -232,6 +231,7 @@ import os.log
         { (granted, error) in
             // Enable or disable features based on authorization.
             notificationCenter.delegate = self
+            UIApplication.shared.registerForRemoteNotifications()
         }
         
         

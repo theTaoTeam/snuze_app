@@ -1,10 +1,9 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:scoped_model/scoped_model.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
-
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'package:snuze/models/alarm.dart';
 import 'package:snuze/helpers/alarm_settings.dart';
@@ -30,6 +29,7 @@ mixin AlarmModel on Model {
   //     print(err);
   //   }
   // }
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
   int _militaryHour() {
     int convertedHour;
@@ -77,11 +77,23 @@ mixin AlarmModel on Model {
   }
 
   Future<void> setAlarm() async { 
-    this.updateAlarm({'isActive': true});
+    DateTime alarmDate = new DateTime(2019, 1, 1, _militaryHour(), _alarm.minute).toUtc();
+    String hour = alarmDate.hour.toString().padLeft(2, "0");
+    String minute = alarmDate.minute.toString().padLeft(2, "0");
+    String topic = '$hour$minute';
+    this.updateAlarm({
+      'isActive': true,
+      'subscriptionTopic': topic,
+    });
+    _firebaseMessaging.subscribeToTopic(topic);
   }
 
   Future<void> cancelAlarm() async {
-    this.updateAlarm({'isActive': false});
+    this.updateAlarm({
+      'isActive': false,
+      'subscriptionTopic': '',
+    });
+    _firebaseMessaging.unsubscribeFromTopic(_alarm.subscriptionTopic);
   }
 
   void defaultAlarm() {
@@ -135,6 +147,7 @@ mixin AlarmModel on Model {
     "snuzeAmount": "double",
     "sound": "String",
     "isTriggered": "bool",
+    "subscriptionTopic": "String",
   };
 
   String alarmTimeToString() {

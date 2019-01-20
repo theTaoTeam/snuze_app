@@ -11,6 +11,7 @@ class Alarm {
   bool isActive;
   bool isTriggered;
   String sound;
+  String subscriptionTopic;
 
 
   Alarm({this.hour = 6, this.minute = 6, this.meridiem = 0, this.snuzeAmount = 0.25, this.isActive = false, this.sound = "bounce.mp4", this.isTriggered = false});

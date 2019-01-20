@@ -82,30 +82,30 @@ import os.log
         print("App did enter background.")
         
         // If alarm is set, alert user with a local notificaiton that the app needs to remain open
-        if let alarmTimer = alarmTimer, alarmTimer.fireDate > Date() {
-            let content = UNMutableNotificationContent()
-            content.title = "⏰ Snüze was Closed"
-            content.body = "Don't forget Snüze needs to remain open for your alarms to work properly"
-            content.sound = UNNotificationSound.default()
-            
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-            
-            let identifier = "AppMustRemainOpenNotification"
-            let request = UNNotificationRequest(identifier: identifier,
-                                                content: content,
-                                                trigger: trigger)
-            UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
-                if let error = error {
-                    print("Couldn't schedule notification. Error: \(error)")
-                }
-                else {
-                    print("Scheduled local alert notification")
-                }
-            })
-        }
-        else {
-            print("Alarm is not set.")
-        }
+//        if let alarmTimer = alarmTimer, alarmTimer.fireDate > Date() {
+//            let content = UNMutableNotificationContent()
+//            content.title = "⏰ Snüze was Closed"
+//            content.body = "Don't forget Snüze needs to remain open for your alarms to work properly"
+//            content.sound = UNNotificationSound.default()
+//
+//            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+//
+//            let identifier = "AppMustRemainOpenNotification"
+//            let request = UNNotificationRequest(identifier: identifier,
+//                                                content: content,
+//                                                trigger: trigger)
+//            UNUserNotificationCenter.current().add(request, withCompletionHandler: { (error) in
+//                if let error = error {
+//                    print("Couldn't schedule notification. Error: \(error)")
+//                }
+//                else {
+//                    print("Scheduled local alert notification")
+//                }
+//            })
+//        }
+//        else {
+//            print("Alarm is not set.")
+//        }
     }
     
     
@@ -231,7 +231,9 @@ import os.log
         { (granted, error) in
             // Enable or disable features based on authorization.
             notificationCenter.delegate = self
-            UIApplication.shared.registerForRemoteNotifications()
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
         }
         
         
@@ -409,6 +411,11 @@ import os.log
         
         // Debug print full message
         print(userInfo)
+        print("*********************************************************")
+        print("TRIGGERED ALARM")
+        DispatchQueue.main.async {
+            self.playAlarmAudio()
+        }
     }
     
     override func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
@@ -427,7 +434,11 @@ import os.log
         
         // Print full message.
         print(userInfo)
-        
+        print("*********************************************************")
+        print("TRIGGERED ALARM FETCH")
+        DispatchQueue.main.async {
+            self.playAlarmAudio()
+        }
         completionHandler(UIBackgroundFetchResult.newData)
     }
     
